@@ -1,18 +1,18 @@
 // Brutalist Tech Capabilities Component
 class BrutalistTechCapabilities {
   constructor() {
-    this.techSection = document.getElementById("techCapabilitiesSection");
-    this.capabilityTabs = document.getElementById("capabilityTabs");
-    this.tabContents = document.querySelectorAll(".tab-content");
-    this.radarChart = document.getElementById("radarChart");
-    this.radarData = document.getElementById("radarData");
-    this.languageList = document.getElementById("languageList");
-    this.certificationsGrid = document.getElementById("certificationsGrid");
-    this.codeEditor = document.getElementById("codeEditor");
-    this.binaryStreams = document.getElementById("binaryStreams");
-    this.codeRainOverlay = document.getElementById("codeRainOverlay");
+    this.techSection = document.getElementById('techCapabilitiesSection');
+    this.capabilityTabs = document.getElementById('capabilityTabs');
+    this.tabContents = document.querySelectorAll('.tab-content');
+    this.radarChart = document.getElementById('radarChart');
+    this.radarData = document.getElementById('radarData');
+    this.languageList = document.getElementById('languageList');
+    this.certificationsGrid = document.getElementById('certificationsGrid');
+    this.codeEditor = document.getElementById('codeEditor');
+    this.binaryStreams = document.getElementById('binaryStreams');
+    this.codeRainOverlay = document.getElementById('codeRainOverlay');
 
-    this.currentTab = "skills";
+    this.currentTab = 'skills';
     this.skillsData = {
       frontend: 90,
       backend: 85,
@@ -159,10 +159,10 @@ class SearchOptimizer {
   }
 
   setupTabNavigation() {
-    const tabButtons = this.capabilityTabs?.querySelectorAll(".tab-btn");
+    const tabButtons = this.capabilityTabs?.querySelectorAll('.tab-btn');
 
     tabButtons?.forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener('click', () => {
         const tabName = button.dataset.tab;
         this.switchTab(tabName);
       });
@@ -173,14 +173,14 @@ class SearchOptimizer {
     if (this.currentTab === tabName) return;
 
     // Update button states
-    const tabButtons = this.capabilityTabs?.querySelectorAll(".tab-btn");
+    const tabButtons = this.capabilityTabs?.querySelectorAll('.tab-btn');
     tabButtons?.forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.tab === tabName);
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
     });
 
     // Update content visibility
     this.tabContents.forEach((content) => {
-      content.classList.toggle("active", content.id === `${tabName}Tab`);
+      content.classList.toggle('active', content.id === `${tabName}Tab`);
     });
 
     this.currentTab = tabName;
@@ -191,20 +191,20 @@ class SearchOptimizer {
 
   triggerTabAnimation(tabName) {
     switch (tabName) {
-      case "skills":
+      case 'skills':
         this.animateRadarChart();
         this.animateLanguageStats();
         break;
-      case "timeline":
+      case 'timeline':
         this.animateTimeline();
         break;
-      case "certifications":
+      case 'certifications':
         this.animateCertifications();
         break;
-      case "code":
+      case 'code':
         this.animateCodeEditor();
         break;
-      case "learning":
+      case 'learning':
         this.animateLearningProgress();
         break;
     }
@@ -233,18 +233,18 @@ class SearchOptimizer {
         const y = centerY + radius * Math.sin(angle);
         return `${x},${y}`;
       })
-      .join(" ");
+      .join(' ');
 
     // Create SVG elements
     const polygon = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "polygon"
+      'http://www.w3.org/2000/svg',
+      'polygon'
     );
-    polygon.setAttribute("points", points);
-    polygon.setAttribute("fill", "rgba(0, 255, 255, 0.2)");
-    polygon.setAttribute("stroke", "#00ffff");
-    polygon.setAttribute("stroke-width", "2");
-    polygon.classList.add("radar-polygon");
+    polygon.setAttribute('points', points);
+    polygon.setAttribute('fill', 'rgba(0, 255, 255, 0.2)');
+    polygon.setAttribute('stroke', '#00ffff');
+    polygon.setAttribute('stroke-width', '2');
+    polygon.classList.add('radar-polygon');
 
     // Create skill points
     skills.forEach((skill, index) => {
@@ -255,25 +255,25 @@ class SearchOptimizer {
       const y = centerY + radius * Math.sin(angle);
 
       const circle = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "circle"
+        'http://www.w3.org/2000/svg',
+        'circle'
       );
-      circle.setAttribute("cx", x);
-      circle.setAttribute("cy", y);
-      circle.setAttribute("r", "6");
-      circle.setAttribute("fill", "#ffff00");
-      circle.setAttribute("stroke", "#00ffff");
-      circle.setAttribute("stroke-width", "2");
-      circle.classList.add("skill-point");
+      circle.setAttribute('cx', x);
+      circle.setAttribute('cy', y);
+      circle.setAttribute('r', '6');
+      circle.setAttribute('fill', '#ffff00');
+      circle.setAttribute('stroke', '#00ffff');
+      circle.setAttribute('stroke-width', '2');
+      circle.classList.add('skill-point');
       circle.dataset.skill = skill;
       circle.dataset.value = value;
 
       // Add hover effects
-      circle.addEventListener("mouseenter", () => {
+      circle.addEventListener('mouseenter', () => {
         this.showSkillTooltip(circle, skill, value);
       });
 
-      circle.addEventListener("mouseleave", () => {
+      circle.addEventListener('mouseleave', () => {
         this.hideSkillTooltip();
       });
 
@@ -284,29 +284,29 @@ class SearchOptimizer {
   }
 
   animateRadarChart() {
-    const polygon = this.radarData?.querySelector(".radar-polygon");
-    const points = this.radarData?.querySelectorAll(".skill-point");
+    const polygon = this.radarData?.querySelector('.radar-polygon');
+    const points = this.radarData?.querySelectorAll('.skill-point');
 
     if (polygon) {
-      polygon.style.opacity = "0";
-      polygon.style.transform = "scale(0)";
+      polygon.style.opacity = '0';
+      polygon.style.transform = 'scale(0)';
 
       setTimeout(() => {
-        polygon.style.transition = "all 1s ease-out";
-        polygon.style.opacity = "1";
-        polygon.style.transform = "scale(1)";
+        polygon.style.transition = 'all 1s ease-out';
+        polygon.style.opacity = '1';
+        polygon.style.transform = 'scale(1)';
       }, 100);
     }
 
     points?.forEach((point, index) => {
-      point.style.opacity = "0";
-      point.style.transform = "scale(0)";
+      point.style.opacity = '0';
+      point.style.transform = 'scale(0)';
 
       setTimeout(
         () => {
-          point.style.transition = "all 0.5s ease-out";
-          point.style.opacity = "1";
-          point.style.transform = "scale(1)";
+          point.style.transition = 'all 0.5s ease-out';
+          point.style.opacity = '1';
+          point.style.transform = 'scale(1)';
         },
         200 + index * 100
       );
@@ -314,8 +314,8 @@ class SearchOptimizer {
   }
 
   showSkillTooltip(element, skill, value) {
-    const tooltip = document.createElement("div");
-    tooltip.className = "skill-tooltip";
+    const tooltip = document.createElement('div');
+    tooltip.className = 'skill-tooltip';
     tooltip.innerHTML = `
       <div class="tooltip-skill">${skill.toUpperCase()}</div>
       <div class="tooltip-value">${value}%</div>
@@ -342,43 +342,43 @@ class SearchOptimizer {
   }
 
   hideSkillTooltip() {
-    const tooltip = this.radarChart?.querySelector(".skill-tooltip");
+    const tooltip = this.radarChart?.querySelector('.skill-tooltip');
     tooltip?.remove();
   }
 
   setupLanguageStats() {
-    const languageItems = this.languageList?.querySelectorAll(".language-item");
+    const languageItems = this.languageList?.querySelectorAll('.language-item');
 
     languageItems?.forEach((item) => {
-      const progressBar = item.querySelector(".progress-bar");
+      const progressBar = item.querySelector('.progress-bar');
       const percentage = progressBar?.dataset.percentage;
 
       if (progressBar && percentage) {
-        progressBar.style.setProperty("--percentage", `${percentage}%`);
+        progressBar.style.setProperty('--percentage', `${percentage}%`);
       }
     });
   }
 
   animateLanguageStats() {
-    const languageItems = this.languageList?.querySelectorAll(".language-item");
+    const languageItems = this.languageList?.querySelectorAll('.language-item');
 
     languageItems?.forEach((item, index) => {
-      const progressBar = item.querySelector(".progress-bar");
-      const percentageText = item.querySelector(".percentage-text");
+      const progressBar = item.querySelector('.progress-bar');
+      const percentageText = item.querySelector('.percentage-text');
       const targetPercentage = progressBar?.dataset.percentage || 0;
 
       // Reset animation
       if (progressBar) {
-        progressBar.style.setProperty("--percentage", "0%");
+        progressBar.style.setProperty('--percentage', '0%');
       }
       if (percentageText) {
-        percentageText.textContent = "0%";
+        percentageText.textContent = '0%';
       }
 
       // Animate with delay
       setTimeout(() => {
         if (progressBar) {
-          progressBar.style.setProperty("--percentage", `${targetPercentage}%`);
+          progressBar.style.setProperty('--percentage', `${targetPercentage}%`);
         }
 
         // Animate counter
@@ -387,14 +387,14 @@ class SearchOptimizer {
           0,
           parseInt(targetPercentage),
           1000,
-          "%"
+          '%'
         );
       }, index * 200);
     });
 
     // Animate summary values
     const summaryValues = document.querySelectorAll(
-      ".summary-value[data-target]"
+      '.summary-value[data-target]'
     );
     summaryValues.forEach((element, index) => {
       const target = parseInt(element.dataset.target);
@@ -408,15 +408,15 @@ class SearchOptimizer {
   }
 
   setupCertifications() {
-    const certCards = this.certificationsGrid?.querySelectorAll(".cert-card");
+    const certCards = this.certificationsGrid?.querySelectorAll('.cert-card');
 
     certCards?.forEach((card) => {
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         this.flipCertification(card);
       });
 
-      const verifyBtn = card.querySelector(".verify-btn");
-      verifyBtn?.addEventListener("click", (e) => {
+      const verifyBtn = card.querySelector('.verify-btn');
+      verifyBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         this.verifyCertification(verifyBtn);
       });
@@ -424,21 +424,21 @@ class SearchOptimizer {
   }
 
   flipCertification(card) {
-    card.classList.toggle("flipped");
+    card.classList.toggle('flipped');
 
     // Add glitch effect
-    card.style.animation = "certGlitch 0.3s ease-out";
+    card.style.animation = 'certGlitch 0.3s ease-out';
     setTimeout(() => {
-      card.style.animation = "";
+      card.style.animation = '';
     }, 300);
   }
 
   verifyCertification(button) {
     const originalText = button.textContent;
     const states = [
-      { text: "VERIFYING...", bg: "#ffff00", color: "#000" },
-      { text: "CONNECTING...", bg: "#ff9900", color: "#fff" },
-      { text: "✓ VERIFIED", bg: "#00ff00", color: "#000" },
+      { text: 'VERIFYING...', bg: '#ffff00', color: '#000' },
+      { text: 'CONNECTING...', bg: '#ff9900', color: '#fff' },
+      { text: '✓ VERIFIED', bg: '#00ff00', color: '#000' },
     ];
 
     let currentState = 0;
@@ -455,8 +455,8 @@ class SearchOptimizer {
       } else {
         setTimeout(() => {
           button.textContent = originalText;
-          button.style.background = "";
-          button.style.color = "";
+          button.style.background = '';
+          button.style.color = '';
         }, 2000);
       }
     };
@@ -465,40 +465,40 @@ class SearchOptimizer {
   }
 
   animateCertifications() {
-    const certCards = this.certificationsGrid?.querySelectorAll(".cert-card");
+    const certCards = this.certificationsGrid?.querySelectorAll('.cert-card');
 
     certCards?.forEach((card, index) => {
-      card.style.opacity = "0";
-      card.style.transform = "translateY(50px) rotateY(-90deg)";
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px) rotateY(-90deg)';
 
       setTimeout(() => {
-        card.style.transition = "all 0.6s ease-out";
-        card.style.opacity = "1";
-        card.style.transform = "translateY(0) rotateY(0deg)";
+        card.style.transition = 'all 0.6s ease-out';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0) rotateY(0deg)';
       }, index * 150);
     });
   }
 
   setupCodeEditor() {
-    const editorTabs = this.codeEditor?.querySelectorAll(".editor-tab");
+    const editorTabs = this.codeEditor?.querySelectorAll('.editor-tab');
     const editorContent = this.codeEditor?.querySelector(
-      ".editor-content .code-block code"
+      '.editor-content .code-block code'
     );
-    const copyBtn = this.codeEditor?.querySelector(".copy-btn");
-    const githubBtn = this.codeEditor?.querySelector(".github-btn");
+    const copyBtn = this.codeEditor?.querySelector('.copy-btn');
+    const githubBtn = this.codeEditor?.querySelector('.github-btn');
 
     editorTabs?.forEach((tab) => {
-      tab.addEventListener("click", () => {
+      tab.addEventListener('click', () => {
         const codeType = tab.dataset.code;
         this.switchCodeExample(codeType, editorTabs, editorContent);
       });
     });
 
-    copyBtn?.addEventListener("click", () => {
+    copyBtn?.addEventListener('click', () => {
       this.copyCode(editorContent);
     });
 
-    githubBtn?.addEventListener("click", () => {
+    githubBtn?.addEventListener('click', () => {
       this.openGitHub();
     });
   }
@@ -506,7 +506,7 @@ class SearchOptimizer {
   switchCodeExample(codeType, tabs, content) {
     // Update tab states
     tabs.forEach((tab) => {
-      tab.classList.toggle("active", tab.dataset.code === codeType);
+      tab.classList.toggle('active', tab.dataset.code === codeType);
     });
 
     // Update content with typewriter effect
@@ -516,10 +516,10 @@ class SearchOptimizer {
   }
 
   typewriterCode(element, newCode) {
-    element.style.opacity = "0.5";
+    element.style.opacity = '0.5';
 
     setTimeout(() => {
-      element.textContent = "";
+      element.textContent = '';
       let index = 0;
 
       const typeInterval = setInterval(() => {
@@ -528,7 +528,7 @@ class SearchOptimizer {
           index++;
         } else {
           clearInterval(typeInterval);
-          element.style.opacity = "1";
+          element.style.opacity = '1';
         }
       }, 10);
     }, 200);
@@ -543,8 +543,8 @@ class SearchOptimizer {
   }
 
   showCopyFeedback() {
-    const feedback = document.createElement("div");
-    feedback.textContent = "CODE COPIED!";
+    const feedback = document.createElement('div');
+    feedback.textContent = 'CODE COPIED!';
     feedback.style.cssText = `
       position: fixed;
       top: 50%;
@@ -568,7 +568,7 @@ class SearchOptimizer {
 
   openGitHub() {
     // Simulate GitHub redirect with terminal effect
-    const terminal = document.createElement("div");
+    const terminal = document.createElement('div');
     terminal.innerHTML = `
       <div style="font-family: 'JetBrains Mono', monospace; color: #00ff00;">
         > git remote get-url origin<br>
@@ -594,7 +594,7 @@ class SearchOptimizer {
     setTimeout(() => {
       terminal.remove();
       // In real implementation, would open GitHub
-      console.log("Opening GitHub repository...");
+      console.log('Opening GitHub repository...');
     }, 3000);
   }
 
@@ -602,56 +602,56 @@ class SearchOptimizer {
     const editor = this.codeEditor;
     if (!editor) return;
 
-    editor.style.opacity = "0";
-    editor.style.transform = "translateY(30px)";
+    editor.style.opacity = '0';
+    editor.style.transform = 'translateY(30px)';
 
     setTimeout(() => {
-      editor.style.transition = "all 0.8s ease-out";
-      editor.style.opacity = "1";
-      editor.style.transform = "translateY(0)";
+      editor.style.transition = 'all 0.8s ease-out';
+      editor.style.opacity = '1';
+      editor.style.transform = 'translateY(0)';
     }, 100);
   }
 
   animateTimeline() {
-    const timelineNodes = document.querySelectorAll(".timeline-node");
+    const timelineNodes = document.querySelectorAll('.timeline-node');
 
     timelineNodes.forEach((node, index) => {
-      node.style.opacity = "0";
-      node.style.transform = "translateX(-50px)";
+      node.style.opacity = '0';
+      node.style.transform = 'translateX(-50px)';
 
       setTimeout(() => {
-        node.style.transition = "all 0.6s ease-out";
-        node.style.opacity = "1";
-        node.style.transform = "translateX(0)";
+        node.style.transition = 'all 0.6s ease-out';
+        node.style.opacity = '1';
+        node.style.transform = 'translateX(0)';
       }, index * 200);
     });
   }
 
   animateLearningProgress() {
-    const learningTracks = document.querySelectorAll(".learning-track");
+    const learningTracks = document.querySelectorAll('.learning-track');
 
     learningTracks.forEach((track, index) => {
-      const progressBar = track.querySelector(".progress-bar");
+      const progressBar = track.querySelector('.progress-bar');
       const progressValue = progressBar?.dataset.progress || 0;
 
       // Reset progress
       if (progressBar) {
-        progressBar.style.setProperty("--progress", "0%");
+        progressBar.style.setProperty('--progress', '0%');
       }
 
       // Animate track appearance
-      track.style.opacity = "0";
-      track.style.transform = "translateY(30px)";
+      track.style.opacity = '0';
+      track.style.transform = 'translateY(30px)';
 
       setTimeout(() => {
-        track.style.transition = "all 0.6s ease-out";
-        track.style.opacity = "1";
-        track.style.transform = "translateY(0)";
+        track.style.transition = 'all 0.6s ease-out';
+        track.style.opacity = '1';
+        track.style.transform = 'translateY(0)';
 
         // Animate progress bar
         if (progressBar) {
           setTimeout(() => {
-            progressBar.style.setProperty("--progress", `${progressValue}%`);
+            progressBar.style.setProperty('--progress', `${progressValue}%`);
           }, 300);
         }
       }, index * 300);
@@ -668,8 +668,8 @@ class SearchOptimizer {
 
     // Create 20 binary streams
     for (let i = 0; i < 20; i++) {
-      const stream = document.createElement("div");
-      stream.className = "binary-stream";
+      const stream = document.createElement('div');
+      stream.className = 'binary-stream';
       stream.style.left = `${Math.random() * 100}%`;
       stream.style.animationDelay = `${Math.random() * 8}s`;
       stream.style.animationDuration = `${6 + Math.random() * 4}s`;
@@ -681,12 +681,12 @@ class SearchOptimizer {
   createCodeRain() {
     if (!this.codeRainOverlay) return;
 
-    const codeChars = "01{}[]();=><+-*/&|!@#$%^";
+    const codeChars = '01{}[]();=><+-*/&|!@#$%^';
 
     // Create 50 falling code characters
     for (let i = 0; i < 50; i++) {
-      const char = document.createElement("div");
-      char.className = "code-char";
+      const char = document.createElement('div');
+      char.className = 'code-char';
       char.textContent =
         codeChars[Math.floor(Math.random() * codeChars.length)];
       char.style.left = `${Math.random() * 100}%`;
@@ -698,7 +698,7 @@ class SearchOptimizer {
 
     // Update characters periodically
     setInterval(() => {
-      const chars = this.codeRainOverlay.querySelectorAll(".code-char");
+      const chars = this.codeRainOverlay.querySelectorAll('.code-char');
       chars.forEach((char) => {
         if (Math.random() > 0.9) {
           char.textContent =
@@ -713,10 +713,10 @@ class SearchOptimizer {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations
-            if (entry.target.classList.contains("tech-capabilities-section")) {
+            if (entry.target.classList.contains('tech-capabilities-section')) {
               this.triggerTabAnimation(this.currentTab);
             }
           }
@@ -743,11 +743,11 @@ class SearchOptimizer {
   }
 
   updateLanguageStats() {
-    const languageItems = this.languageList?.querySelectorAll(".language-item");
+    const languageItems = this.languageList?.querySelectorAll('.language-item');
 
     languageItems?.forEach((item) => {
-      const progressBar = item.querySelector(".progress-bar");
-      const percentageText = item.querySelector(".percentage-text");
+      const progressBar = item.querySelector('.progress-bar');
+      const percentageText = item.querySelector('.percentage-text');
       const currentPercentage = parseInt(progressBar?.dataset.percentage || 0);
 
       // Small random fluctuation
@@ -758,21 +758,21 @@ class SearchOptimizer {
       );
 
       if (newPercentage !== currentPercentage) {
-        progressBar?.style.setProperty("--percentage", `${newPercentage}%`);
+        progressBar?.style.setProperty('--percentage', `${newPercentage}%`);
         if (percentageText) {
           percentageText.textContent = `${newPercentage}%`;
         }
-        progressBar?.setAttribute("data-percentage", newPercentage.toString());
+        progressBar?.setAttribute('data-percentage', newPercentage.toString());
       }
     });
   }
 
   updateLearningProgress() {
-    const learningTracks = document.querySelectorAll(".learning-track");
+    const learningTracks = document.querySelectorAll('.learning-track');
 
     learningTracks.forEach((track) => {
-      const progressBar = track.querySelector(".progress-bar");
-      const progressText = track.querySelector(".track-progress");
+      const progressBar = track.querySelector('.progress-bar');
+      const progressText = track.querySelector('.track-progress');
       const currentProgress = parseInt(progressBar?.dataset.progress || 0);
 
       // Increment progress slightly
@@ -782,16 +782,16 @@ class SearchOptimizer {
       );
 
       if (newProgress !== currentProgress) {
-        progressBar?.style.setProperty("--progress", `${newProgress}%`);
+        progressBar?.style.setProperty('--progress', `${newProgress}%`);
         if (progressText) {
           progressText.textContent = `${newProgress}%`;
         }
-        progressBar?.setAttribute("data-progress", newProgress.toString());
+        progressBar?.setAttribute('data-progress', newProgress.toString());
       }
     });
   }
 
-  animateCounter(element, start, end, duration, suffix = "") {
+  animateCounter(element, start, end, duration, suffix = '') {
     if (!element) return;
 
     const startTime = performance.now();
@@ -814,7 +814,7 @@ class SearchOptimizer {
 }
 
 // Add required CSS animations
-const style = document.createElement("style");
+const style = document.createElement('style');
 style.textContent = `
   @keyframes certGlitch {
     0% { transform: translate(0); }
@@ -850,11 +850,11 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Initialize the component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistTechCapabilities();
 });
 
 // Export for module usage
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistTechCapabilities;
 }

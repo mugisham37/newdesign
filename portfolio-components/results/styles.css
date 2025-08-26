@@ -8,8 +8,8 @@
   --accent-yellow: #ffff00;
   --accent-purple: #8b5cf6;
   --accent-green: #00ff00;
-  --font-mono: "Space Mono", monospace;
-  --font-code: "JetBrains Mono", monospace;
+  --font-mono: 'Space Mono', monospace;
+  --font-code: 'JetBrains Mono', monospace;
   --brutal-shadow: 16px 16px 0;
   --brutal-border: 8px solid;
   --brutal-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -37,7 +37,7 @@
 }
 
 .results-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
@@ -52,7 +52,7 @@
 }
 
 .results-section::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background:
@@ -121,7 +121,7 @@
 }
 
 .terminal-success-line::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -212,7 +212,7 @@
 }
 
 .results-header::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -230,7 +230,7 @@
 }
 
 .results-header::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-yellow);
@@ -325,7 +325,7 @@
 }
 
 .counter-metric::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -343,7 +343,7 @@
 }
 
 .counter-metric::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-cyan);
@@ -432,7 +432,7 @@
 }
 
 .comparison-showcase::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -506,7 +506,7 @@
 }
 
 .comparison-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -524,7 +524,7 @@
 }
 
 .comparison-card::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-purple);
@@ -596,7 +596,7 @@
 }
 
 .client-badge::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -645,7 +645,7 @@
 }
 
 .before-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -668,7 +668,7 @@
 }
 
 .after-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -737,7 +737,7 @@
 }
 
 .metric-item::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -793,7 +793,7 @@
 }
 
 .arrow-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -826,7 +826,7 @@
 }
 
 .transformation-text::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -854,7 +854,7 @@
 }
 
 .impact-summary::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -921,7 +921,7 @@
 }
 
 .revenue-dashboard::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -998,7 +998,7 @@
 }
 
 .revenue-category::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1016,7 +1016,7 @@
 }
 
 .revenue-category::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-cyan);
@@ -1066,7 +1066,7 @@
 }
 
 .category-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1137,7 +1137,7 @@
 }
 
 .achievement-timeline::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1220,7 +1220,7 @@
 }
 
 .achievement-medallion::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1238,7 +1238,7 @@
 }
 
 .achievement-medallion::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-cyan);
@@ -1298,7 +1298,7 @@
 }
 
 .medallion-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1369,7 +1369,7 @@
 }
 
 .results-cta-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1406,7 +1406,7 @@
 }
 
 .results-cta-button::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1424,7 +1424,7 @@
 }
 
 .results-cta-button::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-purple);
@@ -1519,7 +1519,7 @@
 }
 
 .results-cta-section .cta-subtitle::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);

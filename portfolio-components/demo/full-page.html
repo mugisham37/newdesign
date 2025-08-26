@@ -153,17 +153,17 @@
       class FullPageIntegration {
         constructor() {
           this.components = [
-            "navigation",
-            "hero",
-            "trust",
-            "value-proposition",
-            "project-showcase",
-            "tech-capabilities",
-            "results",
-            "process",
-            "social-proof",
-            "contact-hub",
-            "footer",
+            'navigation',
+            'hero',
+            'trust',
+            'value-proposition',
+            'project-showcase',
+            'tech-capabilities',
+            'results',
+            'process',
+            'social-proof',
+            'contact-hub',
+            'footer',
           ];
           this.loadedComponents = new Set();
           this.init();
@@ -174,9 +174,9 @@
             await this.loadComponents();
             this.initializeComponents();
             this.setupGlobalInteractions();
-            console.log("Full page integration complete");
+            console.log('Full page integration complete');
           } catch (error) {
-            console.error("Error initializing full page:", error);
+            console.error('Error initializing full page:', error);
           }
         }
 
@@ -192,20 +192,20 @@
 
               const html = await response.text();
               const parser = new DOMParser();
-              const doc = parser.parseFromString(html, "text/html");
+              const doc = parser.parseFromString(html, 'text/html');
 
               // Extract the main content (skip head and body tags)
               const content =
-                componentName === "navigation"
-                  ? doc.querySelector("nav") || doc.body.firstElementChild
-                  : doc.querySelector("section") || doc.body.firstElementChild;
+                componentName === 'navigation'
+                  ? doc.querySelector('nav') || doc.body.firstElementChild
+                  : doc.querySelector('section') || doc.body.firstElementChild;
 
               if (content) {
                 const targetContainer = document.getElementById(
                   `${componentName}-component`
                 );
                 if (targetContainer) {
-                  targetContainer.innerHTML = "";
+                  targetContainer.innerHTML = '';
                   targetContainer.appendChild(content.cloneNode(true));
                   this.loadedComponents.add(componentName);
                   console.log(`Loaded ${componentName} component`);
@@ -243,9 +243,9 @@
         getComponentClassName(componentName) {
           // Convert kebab-case to PascalCase and add Brutalist prefix
           const pascalCase = componentName
-            .split("-")
+            .split('-')
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join("");
+            .join('');
           return `Brutalist${pascalCase}`;
         }
 
@@ -261,17 +261,17 @@
         }
 
         setupSmoothScrolling() {
-          document.addEventListener("click", (e) => {
-            const link = e.target.closest("[data-section]");
+          document.addEventListener('click', (e) => {
+            const link = e.target.closest('[data-section]');
             if (link) {
               e.preventDefault();
-              const sectionName = link.getAttribute("data-section");
+              const sectionName = link.getAttribute('data-section');
               const targetSection = this.findSectionByName(sectionName);
 
               if (targetSection) {
                 targetSection.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
+                  behavior: 'smooth',
+                  block: 'start',
                 });
               }
             }
@@ -280,12 +280,12 @@
 
         findSectionByName(sectionName) {
           const sectionMap = {
-            home: "hero-component",
-            projects: "project-showcase-component",
-            capabilities: "tech-capabilities-component",
-            github: "trust-component",
-            results: "results-component",
-            contact: "contact-hub-component",
+            home: 'hero-component',
+            projects: 'project-showcase-component',
+            capabilities: 'tech-capabilities-component',
+            github: 'trust-component',
+            results: 'results-component',
+            contact: 'contact-hub-component',
           };
 
           const componentId =
@@ -305,7 +305,7 @@
             },
             {
               threshold: 0.3,
-              rootMargin: "-80px 0px -50% 0px",
+              rootMargin: '-80px 0px -50% 0px',
             }
           );
 
@@ -321,47 +321,47 @@
 
         highlightActiveSection(sectionId) {
           // Remove active class from all nav items
-          document.querySelectorAll(".nav-item").forEach((item) => {
-            item.classList.remove("active");
+          document.querySelectorAll('.nav-item').forEach((item) => {
+            item.classList.remove('active');
           });
 
           // Add active class to corresponding nav item
-          const sectionName = sectionId.replace("-component", "");
+          const sectionName = sectionId.replace('-component', '');
           const navItem = document.querySelector(
             `[data-section="${sectionName}"]`
           );
           if (navItem) {
-            navItem.classList.add("active");
+            navItem.classList.add('active');
           }
         }
 
         setupKeyboardShortcuts() {
-          document.addEventListener("keydown", (e) => {
+          document.addEventListener('keydown', (e) => {
             // Only handle shortcuts when not in input fields
             if (
-              e.target.tagName === "INPUT" ||
-              e.target.tagName === "TEXTAREA"
+              e.target.tagName === 'INPUT' ||
+              e.target.tagName === 'TEXTAREA'
             ) {
               return;
             }
 
             switch (e.key) {
-              case "1":
-                this.scrollToSection("hero-component");
+              case '1':
+                this.scrollToSection('hero-component');
                 break;
-              case "2":
-                this.scrollToSection("project-showcase-component");
+              case '2':
+                this.scrollToSection('project-showcase-component');
                 break;
-              case "3":
-                this.scrollToSection("tech-capabilities-component");
+              case '3':
+                this.scrollToSection('tech-capabilities-component');
                 break;
-              case "4":
-                this.scrollToSection("results-component");
+              case '4':
+                this.scrollToSection('results-component');
                 break;
-              case "5":
-                this.scrollToSection("contact-hub-component");
+              case '5':
+                this.scrollToSection('contact-hub-component');
                 break;
-              case "Escape":
+              case 'Escape':
                 // Close any open modals or menus
                 this.closeAllModals();
                 break;
@@ -373,41 +373,41 @@
           const section = document.getElementById(sectionId);
           if (section) {
             section.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+              behavior: 'smooth',
+              block: 'start',
             });
           }
         }
 
         closeAllModals() {
           // Close mobile menu if open
-          const mobileMenu = document.getElementById("mobileMenu");
-          if (mobileMenu && mobileMenu.classList.contains("active")) {
-            mobileMenu.classList.remove("active");
+          const mobileMenu = document.getElementById('mobileMenu');
+          if (mobileMenu && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
           }
 
           // Close any other modals
           document
-            .querySelectorAll(".modal.active, .overlay.active")
+            .querySelectorAll('.modal.active, .overlay.active')
             .forEach((modal) => {
-              modal.classList.remove("active");
+              modal.classList.remove('active');
             });
         }
       }
 
       // Initialize full page integration when DOM is loaded
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener('DOMContentLoaded', () => {
         new FullPageIntegration();
       });
 
       // Handle loading states
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
       });
 
       // Error handling for missing components
-      window.addEventListener("error", (e) => {
-        console.error("Global error:", e.error);
+      window.addEventListener('error', (e) => {
+        console.error('Global error:', e.error);
       });
     </script>
   </body>

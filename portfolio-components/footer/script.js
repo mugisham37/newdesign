@@ -1,14 +1,14 @@
 // Brutalist Footer Component
 class BrutalistFooter {
   constructor() {
-    this.footerSection = document.getElementById("footerSection");
-    this.ultimateCtaTitle = document.getElementById("ultimateCtaTitle");
-    this.startProjectBtn = document.getElementById("startProjectBtn");
-    this.quickQuoteBtn = document.getElementById("quickQuoteBtn");
-    this.scheduleCallBtn = document.getElementById("scheduleCallBtn");
-    this.newsletterForm = document.getElementById("newsletterForm");
-    this.backToTopBtn = document.getElementById("backToTopBtn");
-    this.footerParticles = document.getElementById("footerParticles");
+    this.footerSection = document.getElementById('footerSection');
+    this.ultimateCtaTitle = document.getElementById('ultimateCtaTitle');
+    this.startProjectBtn = document.getElementById('startProjectBtn');
+    this.quickQuoteBtn = document.getElementById('quickQuoteBtn');
+    this.scheduleCallBtn = document.getElementById('scheduleCallBtn');
+    this.newsletterForm = document.getElementById('newsletterForm');
+    this.backToTopBtn = document.getElementById('backToTopBtn');
+    this.footerParticles = document.getElementById('footerParticles');
 
     this.particles = [];
     this.isAnimating = false;
@@ -30,28 +30,28 @@ class BrutalistFooter {
 
   setupUltimateCTA() {
     // Start Project Button
-    this.startProjectBtn?.addEventListener("click", () => {
+    this.startProjectBtn?.addEventListener('click', () => {
       this.handleStartProject();
     });
 
     // Quick Quote Button
-    this.quickQuoteBtn?.addEventListener("click", () => {
+    this.quickQuoteBtn?.addEventListener('click', () => {
       this.handleQuickQuote();
     });
 
     // Schedule Call Button
-    this.scheduleCallBtn?.addEventListener("click", () => {
+    this.scheduleCallBtn?.addEventListener('click', () => {
       this.handleScheduleCall();
     });
 
     // Add hover effects to CTA buttons
-    const ctaButtons = document.querySelectorAll(".ultimate-btn");
+    const ctaButtons = document.querySelectorAll('.ultimate-btn');
     ctaButtons.forEach((button) => {
-      button.addEventListener("mouseenter", () => {
+      button.addEventListener('mouseenter', () => {
         this.triggerButtonHoverEffect(button);
       });
 
-      button.addEventListener("mouseleave", () => {
+      button.addEventListener('mouseleave', () => {
         this.resetButtonHoverEffect(button);
       });
     });
@@ -66,17 +66,17 @@ class BrutalistFooter {
 
     // Change button text with typewriter effect
     const originalText =
-      this.startProjectBtn.querySelector(".btn-text").textContent;
+      this.startProjectBtn.querySelector('.btn-text').textContent;
     this.typewriterEffect(
-      this.startProjectBtn.querySelector(".btn-text"),
-      "INITIATING...",
+      this.startProjectBtn.querySelector('.btn-text'),
+      'INITIATING...',
       () => {
         // Simulate project initiation
         this.showProjectInitiationModal();
 
         setTimeout(() => {
           this.typewriterEffect(
-            this.startProjectBtn.querySelector(".btn-text"),
+            this.startProjectBtn.querySelector('.btn-text'),
             originalText,
             () => {
               this.isAnimating = false;
@@ -87,7 +87,7 @@ class BrutalistFooter {
     );
 
     // Track conversion
-    this.trackConversion("start_project", "ultimate_cta");
+    this.trackConversion('start_project', 'ultimate_cta');
   }
 
   handleQuickQuote() {
@@ -95,16 +95,16 @@ class BrutalistFooter {
     this.isAnimating = true;
 
     const originalText =
-      this.quickQuoteBtn.querySelector(".btn-text").textContent;
+      this.quickQuoteBtn.querySelector('.btn-text').textContent;
     this.typewriterEffect(
-      this.quickQuoteBtn.querySelector(".btn-text"),
-      "CALCULATING...",
+      this.quickQuoteBtn.querySelector('.btn-text'),
+      'CALCULATING...',
       () => {
         this.showQuickQuoteModal();
 
         setTimeout(() => {
           this.typewriterEffect(
-            this.quickQuoteBtn.querySelector(".btn-text"),
+            this.quickQuoteBtn.querySelector('.btn-text'),
             originalText,
             () => {
               this.isAnimating = false;
@@ -114,7 +114,7 @@ class BrutalistFooter {
       }
     );
 
-    this.trackConversion("quick_quote", "ultimate_cta");
+    this.trackConversion('quick_quote', 'ultimate_cta');
   }
 
   handleScheduleCall() {
@@ -122,16 +122,16 @@ class BrutalistFooter {
     this.isAnimating = true;
 
     const originalText =
-      this.scheduleCallBtn.querySelector(".btn-text").textContent;
+      this.scheduleCallBtn.querySelector('.btn-text').textContent;
     this.typewriterEffect(
-      this.scheduleCallBtn.querySelector(".btn-text"),
-      "CONNECTING...",
+      this.scheduleCallBtn.querySelector('.btn-text'),
+      'CONNECTING...',
       () => {
         this.showScheduleCallModal();
 
         setTimeout(() => {
           this.typewriterEffect(
-            this.scheduleCallBtn.querySelector(".btn-text"),
+            this.scheduleCallBtn.querySelector('.btn-text'),
             originalText,
             () => {
               this.isAnimating = false;
@@ -141,12 +141,12 @@ class BrutalistFooter {
       }
     );
 
-    this.trackConversion("schedule_call", "ultimate_cta");
+    this.trackConversion('schedule_call', 'ultimate_cta');
   }
 
   showProjectInitiationModal() {
     const modal = this.createModal(
-      "PROJECT INITIATION",
+      'PROJECT INITIATION',
       `
       <div class="modal-content">
         <div class="initiation-steps">
@@ -179,7 +179,7 @@ class BrutalistFooter {
 
   showQuickQuoteModal() {
     const modal = this.createModal(
-      "QUICK QUOTE CALCULATOR",
+      'QUICK QUOTE CALCULATOR',
       `
       <div class="modal-content">
         <div class="quote-calculator">
@@ -203,7 +203,7 @@ class BrutalistFooter {
 
   showScheduleCallModal() {
     const modal = this.createModal(
-      "SCHEDULE CONSULTATION",
+      'SCHEDULE CONSULTATION',
       `
       <div class="modal-content">
         <div class="calendar-widget">
@@ -230,8 +230,8 @@ class BrutalistFooter {
   }
 
   createModal(title, content) {
-    const modal = document.createElement("div");
-    modal.className = "footer-modal";
+    const modal = document.createElement('div');
+    modal.className = 'footer-modal';
     modal.innerHTML = `
       <div class="modal-overlay">
         <div class="modal-dialog">
@@ -247,7 +247,7 @@ class BrutalistFooter {
     `;
 
     // Add modal styles
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       .footer-modal {
         position: fixed;
@@ -482,40 +482,40 @@ class BrutalistFooter {
     document.body.appendChild(modal);
 
     // Setup close functionality
-    const closeBtn = modal.querySelector(".modal-close");
-    const overlay = modal.querySelector(".modal-overlay");
+    const closeBtn = modal.querySelector('.modal-close');
+    const overlay = modal.querySelector('.modal-overlay');
 
-    closeBtn.addEventListener("click", () => this.closeModal(modal));
-    overlay.addEventListener("click", (e) => {
+    closeBtn.addEventListener('click', () => this.closeModal(modal));
+    overlay.addEventListener('click', (e) => {
       if (e.target === overlay) this.closeModal(modal);
     });
 
     // Escape key to close
     const handleEscape = (e) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         this.closeModal(modal);
-        document.removeEventListener("keydown", handleEscape);
+        document.removeEventListener('keydown', handleEscape);
       }
     };
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
     return modal;
   }
 
   closeModal(modal) {
-    modal.style.animation = "fadeOut 0.3s ease-out";
+    modal.style.animation = 'fadeOut 0.3s ease-out';
     setTimeout(() => {
       modal.remove();
     }, 300);
   }
 
   animateInitiationSteps(modal) {
-    const steps = modal.querySelectorAll(".step");
+    const steps = modal.querySelectorAll('.step');
     let currentStep = 0;
 
     const activateStep = () => {
       if (currentStep < steps.length) {
-        steps[currentStep].classList.add("active");
+        steps[currentStep].classList.add('active');
         currentStep++;
         setTimeout(activateStep, 800);
       }
@@ -525,12 +525,12 @@ class BrutalistFooter {
   }
 
   animateQuoteCalculation(modal) {
-    const values = modal.querySelectorAll(".value");
+    const values = modal.querySelectorAll('.value');
     const finalValues = [
-      "MEDIUM COMPLEXITY",
-      "4-6 WEEKS",
-      "1 SENIOR DEVELOPER",
-      "$5,000 - $15,000",
+      'MEDIUM COMPLEXITY',
+      '4-6 WEEKS',
+      '1 SENIOR DEVELOPER',
+      '$5,000 - $15,000',
     ];
 
     values.forEach((value, index) => {
@@ -546,19 +546,19 @@ class BrutalistFooter {
   }
 
   setupTimeSlotSelection(modal) {
-    const timeSlots = modal.querySelectorAll(".time-slot");
+    const timeSlots = modal.querySelectorAll('.time-slot');
 
     timeSlots.forEach((slot) => {
-      slot.addEventListener("click", () => {
+      slot.addEventListener('click', () => {
         // Remove previous selection
-        timeSlots.forEach((s) => s.classList.remove("selected"));
+        timeSlots.forEach((s) => s.classList.remove('selected'));
 
         // Select current slot
-        slot.classList.add("selected");
+        slot.classList.add('selected');
 
         // Show confirmation
         setTimeout(() => {
-          slot.textContent = "CONFIRMED ✓";
+          slot.textContent = 'CONFIRMED ✓';
           setTimeout(() => {
             this.closeModal(modal);
             this.showConfirmationMessage(
@@ -571,42 +571,42 @@ class BrutalistFooter {
   }
 
   setupNewsletterForm() {
-    this.newsletterForm?.addEventListener("submit", (e) => {
+    this.newsletterForm?.addEventListener('submit', (e) => {
       e.preventDefault();
       this.handleNewsletterSignup(e.target);
     });
   }
 
   handleNewsletterSignup(form) {
-    const email = form.querySelector(".newsletter-input").value;
-    const submitBtn = form.querySelector(".newsletter-btn");
-    const originalText = submitBtn.querySelector(".btn-text").textContent;
+    const email = form.querySelector('.newsletter-input').value;
+    const submitBtn = form.querySelector('.newsletter-btn');
+    const originalText = submitBtn.querySelector('.btn-text').textContent;
 
     // Validate email
     if (!this.isValidEmail(email)) {
-      this.showErrorMessage("Please enter a valid email address");
+      this.showErrorMessage('Please enter a valid email address');
       return;
     }
 
     // Change button state
     this.typewriterEffect(
-      submitBtn.querySelector(".btn-text"),
-      "SUBSCRIBING...",
+      submitBtn.querySelector('.btn-text'),
+      'SUBSCRIBING...',
       () => {
         // Simulate API call
         setTimeout(() => {
           this.typewriterEffect(
-            submitBtn.querySelector(".btn-text"),
-            "SUBSCRIBED!",
+            submitBtn.querySelector('.btn-text'),
+            'SUBSCRIBED!',
             () => {
               form.reset();
               this.showConfirmationMessage(
-                "Welcome! Check your email for the React cheatsheet."
+                'Welcome! Check your email for the React cheatsheet.'
               );
 
               setTimeout(() => {
                 this.typewriterEffect(
-                  submitBtn.querySelector(".btn-text"),
+                  submitBtn.querySelector('.btn-text'),
                   originalText
                 );
               }, 2000);
@@ -614,17 +614,17 @@ class BrutalistFooter {
           );
 
           // Track subscription
-          this.trackConversion("newsletter_signup", "footer");
+          this.trackConversion('newsletter_signup', 'footer');
         }, 1500);
       }
     );
   }
 
   setupResourceDownloads() {
-    const downloadBtns = document.querySelectorAll(".resource-download-btn");
+    const downloadBtns = document.querySelectorAll('.resource-download-btn');
 
     downloadBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
         this.handleResourceDownload(btn);
       });
@@ -632,25 +632,25 @@ class BrutalistFooter {
   }
 
   handleResourceDownload(btn) {
-    const resourceItem = btn.closest(".resource-item");
+    const resourceItem = btn.closest('.resource-item');
     const resourceType = resourceItem.dataset.resource;
-    const originalText = btn.querySelector(".btn-text").textContent;
+    const originalText = btn.querySelector('.btn-text').textContent;
 
     this.typewriterEffect(
-      btn.querySelector(".btn-text"),
-      "PREPARING...",
+      btn.querySelector('.btn-text'),
+      'PREPARING...',
       () => {
         setTimeout(() => {
           this.typewriterEffect(
-            btn.querySelector(".btn-text"),
-            "DOWNLOADED!",
+            btn.querySelector('.btn-text'),
+            'DOWNLOADED!',
             () => {
               // Simulate download
               this.simulateDownload(resourceType);
 
               setTimeout(() => {
                 this.typewriterEffect(
-                  btn.querySelector(".btn-text"),
+                  btn.querySelector('.btn-text'),
                   originalText
                 );
               }, 2000);
@@ -658,7 +658,7 @@ class BrutalistFooter {
           );
 
           // Track download
-          this.trackConversion("resource_download", resourceType);
+          this.trackConversion('resource_download', resourceType);
         }, 1000);
       }
     );
@@ -666,8 +666,8 @@ class BrutalistFooter {
 
   simulateDownload(resourceType) {
     // Create download notification
-    const notification = document.createElement("div");
-    notification.className = "download-notification";
+    const notification = document.createElement('div');
+    notification.className = 'download-notification';
     notification.innerHTML = `
       <div class="notification-content">
         <span class="notification-icon">📥</span>
@@ -676,7 +676,7 @@ class BrutalistFooter {
     `;
 
     // Add notification styles
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       .download-notification {
         position: fixed;
@@ -708,39 +708,39 @@ class BrutalistFooter {
 
     // Remove notification after 3 seconds
     setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.3s ease-out";
+      notification.style.animation = 'slideOutRight 0.3s ease-out';
       setTimeout(() => notification.remove(), 300);
     }, 3000);
   }
 
   setupSocialTracking() {
-    const socialBtns = document.querySelectorAll(".platform-follow-btn");
+    const socialBtns = document.querySelectorAll('.platform-follow-btn');
 
     socialBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const platform = btn.closest(".social-platform").dataset.platform;
+        const platform = btn.closest('.social-platform').dataset.platform;
         this.handleSocialFollow(btn, platform);
       });
     });
   }
 
   handleSocialFollow(btn, platform) {
-    const originalText = btn.querySelector(".btn-text").textContent;
+    const originalText = btn.querySelector('.btn-text').textContent;
 
-    this.typewriterEffect(btn.querySelector(".btn-text"), "OPENING...", () => {
+    this.typewriterEffect(btn.querySelector('.btn-text'), 'OPENING...', () => {
       // Simulate opening social platform
       setTimeout(() => {
         this.typewriterEffect(
-          btn.querySelector(".btn-text"),
-          "FOLLOWED!",
+          btn.querySelector('.btn-text'),
+          'FOLLOWED!',
           () => {
             // Update follower count
             this.updateFollowerCount(platform);
 
             setTimeout(() => {
               this.typewriterEffect(
-                btn.querySelector(".btn-text"),
+                btn.querySelector('.btn-text'),
                 originalText
               );
             }, 2000);
@@ -748,7 +748,7 @@ class BrutalistFooter {
         );
 
         // Track social follow
-        this.trackConversion("social_follow", platform);
+        this.trackConversion('social_follow', platform);
       }, 800);
     });
   }
@@ -757,7 +757,7 @@ class BrutalistFooter {
     const platformElement = document.querySelector(
       `[data-platform="${platform}"]`
     );
-    const statsElement = platformElement?.querySelector(".platform-stats");
+    const statsElement = platformElement?.querySelector('.platform-stats');
 
     if (statsElement) {
       const currentCount = parseInt(statsElement.textContent.match(/\d+/)[0]);
@@ -768,41 +768,41 @@ class BrutalistFooter {
       );
 
       // Add pulse effect
-      statsElement.style.animation = "pulse 0.5s ease-out";
+      statsElement.style.animation = 'pulse 0.5s ease-out';
     }
   }
 
   setupBackToTop() {
-    this.backToTopBtn?.addEventListener("click", () => {
+    this.backToTopBtn?.addEventListener('click', () => {
       this.scrollToTop();
     });
 
     // Show/hide back to top button based on scroll position
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 500) {
-        this.backToTopBtn?.classList.add("visible");
+        this.backToTopBtn?.classList.add('visible');
       } else {
-        this.backToTopBtn?.classList.remove("visible");
+        this.backToTopBtn?.classList.remove('visible');
       }
     });
   }
 
   scrollToTop() {
     const originalText =
-      this.backToTopBtn.querySelector(".btn-text").textContent;
+      this.backToTopBtn.querySelector('.btn-text').textContent;
 
     this.typewriterEffect(
-      this.backToTopBtn.querySelector(".btn-text"),
-      "ASCENDING...",
+      this.backToTopBtn.querySelector('.btn-text'),
+      'ASCENDING...',
       () => {
         window.scrollTo({
           top: 0,
-          behavior: "smooth",
+          behavior: 'smooth',
         });
 
         setTimeout(() => {
           this.typewriterEffect(
-            this.backToTopBtn.querySelector(".btn-text"),
+            this.backToTopBtn.querySelector('.btn-text'),
             originalText
           );
         }, 1000);
@@ -815,8 +815,8 @@ class BrutalistFooter {
 
     // Create floating particles
     for (let i = 0; i < 20; i++) {
-      const particle = document.createElement("div");
-      particle.className = "footer-particle";
+      const particle = document.createElement('div');
+      particle.className = 'footer-particle';
       particle.style.cssText = `
         position: absolute;
         width: ${Math.random() * 4 + 2}px;
@@ -836,7 +836,7 @@ class BrutalistFooter {
     }
 
     // Add particle animation
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       @keyframes footerParticleFloat {
         0% { transform: translateY(0) rotate(0deg); }
@@ -851,10 +851,10 @@ class BrutalistFooter {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations
-            if (entry.target.classList.contains("ultimate-cta")) {
+            if (entry.target.classList.contains('ultimate-cta')) {
               this.animateUltimateCTA();
             }
           }
@@ -864,7 +864,7 @@ class BrutalistFooter {
     );
 
     // Observe footer sections
-    const sections = [".ultimate-cta", ".footer-content", ".footer-bottom"];
+    const sections = ['.ultimate-cta', '.footer-content', '.footer-bottom'];
     sections.forEach((selector) => {
       const element = document.querySelector(selector);
       if (element) observer.observe(element);
@@ -874,16 +874,16 @@ class BrutalistFooter {
   animateUltimateCTA() {
     // Animate CTA title with glitch effect
     if (this.ultimateCtaTitle) {
-      this.ultimateCtaTitle.style.animation = "textGlitch 0.5s ease-out";
+      this.ultimateCtaTitle.style.animation = 'textGlitch 0.5s ease-out';
     }
 
     // Stagger animate CTA buttons
-    const ctaButtons = document.querySelectorAll(".ultimate-btn");
+    const ctaButtons = document.querySelectorAll('.ultimate-btn');
     ctaButtons.forEach((btn, index) => {
       setTimeout(() => {
-        btn.style.transform = "scale(1.05)";
+        btn.style.transform = 'scale(1.05)';
         setTimeout(() => {
-          btn.style.transform = "scale(1)";
+          btn.style.transform = 'scale(1)';
         }, 200);
       }, index * 200);
     });
@@ -894,7 +894,7 @@ class BrutalistFooter {
 
     // Create typing effect for CTA title
     const originalText = this.ultimateCtaTitle.textContent;
-    this.ultimateCtaTitle.textContent = "";
+    this.ultimateCtaTitle.textContent = '';
 
     let charIndex = 0;
     const typeInterval = setInterval(() => {
@@ -909,7 +909,7 @@ class BrutalistFooter {
 
   startFooterAnimations() {
     // Add footer-specific CSS animations
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       @keyframes textGlitch {
         0% { transform: translate(0); }
@@ -963,8 +963,8 @@ class BrutalistFooter {
 
     // Add new particles
     for (let i = 0; i < 5; i++) {
-      const particle = document.createElement("div");
-      particle.className = "footer-particle";
+      const particle = document.createElement('div');
+      particle.className = 'footer-particle';
       particle.style.cssText = `
         position: absolute;
         width: ${Math.random() * 4 + 2}px;
@@ -1014,17 +1014,17 @@ class BrutalistFooter {
   }
 
   triggerButtonHoverEffect(button) {
-    button.style.transform = "scale(1.05) translateY(-2px)";
+    button.style.transform = 'scale(1.05) translateY(-2px)';
 
     // Add random glitch effect
     if (Math.random() > 0.7) {
-      button.style.animation = "textGlitch 0.3s ease-out";
+      button.style.animation = 'textGlitch 0.3s ease-out';
     }
   }
 
   resetButtonHoverEffect(button) {
-    button.style.transform = "scale(1) translateY(0)";
-    button.style.animation = "";
+    button.style.transform = 'scale(1) translateY(0)';
+    button.style.animation = '';
   }
 
   isValidEmail(email) {
@@ -1033,8 +1033,8 @@ class BrutalistFooter {
   }
 
   showConfirmationMessage(message) {
-    const notification = document.createElement("div");
-    notification.className = "confirmation-notification";
+    const notification = document.createElement('div');
+    notification.className = 'confirmation-notification';
     notification.innerHTML = `
       <div class="notification-content">
         <span class="notification-icon">✅</span>
@@ -1042,7 +1042,7 @@ class BrutalistFooter {
       </div>
     `;
 
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       .confirmation-notification {
         position: fixed;
@@ -1071,14 +1071,14 @@ class BrutalistFooter {
     document.body.appendChild(notification);
 
     setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.3s ease-out";
+      notification.style.animation = 'slideOutRight 0.3s ease-out';
       setTimeout(() => notification.remove(), 300);
     }, 4000);
   }
 
   showErrorMessage(message) {
-    const notification = document.createElement("div");
-    notification.className = "error-notification";
+    const notification = document.createElement('div');
+    notification.className = 'error-notification';
     notification.innerHTML = `
       <div class="notification-content">
         <span class="notification-icon">❌</span>
@@ -1086,7 +1086,7 @@ class BrutalistFooter {
       </div>
     `;
 
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       .error-notification {
         position: fixed;
@@ -1115,7 +1115,7 @@ class BrutalistFooter {
     document.body.appendChild(notification);
 
     setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.3s ease-out";
+      notification.style.animation = 'slideOutRight 0.3s ease-out';
       setTimeout(() => notification.remove(), 300);
     }, 3000);
   }
@@ -1136,17 +1136,17 @@ class BrutalistFooter {
   }
 
   getSessionId() {
-    let sessionId = sessionStorage.getItem("footer_session_id");
+    let sessionId = sessionStorage.getItem('footer_session_id');
     if (!sessionId) {
       sessionId =
-        "session_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
-      sessionStorage.setItem("footer_session_id", sessionId);
+        'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      sessionStorage.setItem('footer_session_id', sessionId);
     }
     return sessionId;
   }
 }
 
 // Initialize Footer Component
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistFooter();
 });

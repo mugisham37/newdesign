@@ -1,20 +1,20 @@
 // Brutalist Results Component
 class BrutalistResults {
   constructor() {
-    this.resultsSection = document.getElementById("resultsSection");
-    this.resultsTitle = document.getElementById("resultsTitle");
-    this.successParticles = document.getElementById("successParticles");
-    this.achievementStreams = document.getElementById("achievementStreams");
-    this.achievementTrack = document.getElementById("achievementTrack");
-    this.resultsCta = document.getElementById("resultsCta");
+    this.resultsSection = document.getElementById('resultsSection');
+    this.resultsTitle = document.getElementById('resultsTitle');
+    this.successParticles = document.getElementById('successParticles');
+    this.achievementStreams = document.getElementById('achievementStreams');
+    this.achievementTrack = document.getElementById('achievementTrack');
+    this.resultsCta = document.getElementById('resultsCta');
 
     this.counterMetrics = document.querySelectorAll(
-      ".counter-metric .counter-number"
+      '.counter-metric .counter-number'
     );
-    this.revenueAmounts = document.querySelectorAll(".category-amount");
-    this.comparisonCards = document.querySelectorAll(".comparison-card");
+    this.revenueAmounts = document.querySelectorAll('.category-amount');
+    this.comparisonCards = document.querySelectorAll('.comparison-card');
     this.achievementMedallions = document.querySelectorAll(
-      ".achievement-medallion"
+      '.achievement-medallion'
     );
 
     this.isAnimating = false;
@@ -55,7 +55,7 @@ class BrutalistResults {
   triggerEntranceAnimations() {
     // Animate title
     if (this.resultsTitle) {
-      this.resultsTitle.style.animation = "slideInUp 1s ease-out forwards";
+      this.resultsTitle.style.animation = 'slideInUp 1s ease-out forwards';
     }
 
     // Animate counter metrics with stagger
@@ -78,8 +78,8 @@ class BrutalistResults {
     setTimeout(() => {
       this.comparisonCards.forEach((card, index) => {
         setTimeout(() => {
-          card.style.animation = "slideInUp 0.8s ease-out forwards";
-          card.style.opacity = "1";
+          card.style.animation = 'slideInUp 0.8s ease-out forwards';
+          card.style.opacity = '1';
         }, index * 200);
       });
     }, 1500);
@@ -88,17 +88,17 @@ class BrutalistResults {
   setupCounterAnimations() {
     // Set initial state
     this.counterMetrics.forEach((counter) => {
-      counter.textContent = "0";
+      counter.textContent = '0';
     });
 
     this.revenueAmounts.forEach((amount) => {
       const target = parseFloat(amount.dataset.target);
-      if (amount.textContent.includes("$")) {
-        amount.textContent = "$0";
-      } else if (amount.textContent.includes("%")) {
-        amount.textContent = "0%";
+      if (amount.textContent.includes('$')) {
+        amount.textContent = '$0';
+      } else if (amount.textContent.includes('%')) {
+        amount.textContent = '0%';
       } else {
-        amount.textContent = "0";
+        amount.textContent = '0';
       }
     });
   }
@@ -134,7 +134,7 @@ class BrutalistResults {
         }
 
         // Add success effect
-        element.style.animation = "counterSuccess 0.5s ease-out";
+        element.style.animation = 'counterSuccess 0.5s ease-out';
       }
     };
 
@@ -145,8 +145,8 @@ class BrutalistResults {
     const target = parseFloat(element.dataset.target);
     const duration = 2500;
     const startTime = performance.now();
-    const isPercentage = element.textContent.includes("%");
-    const isCurrency = element.textContent.includes("$");
+    const isPercentage = element.textContent.includes('%');
+    const isCurrency = element.textContent.includes('$');
 
     const updateCounter = (currentTime) => {
       const elapsed = currentTime - startTime;
@@ -156,14 +156,14 @@ class BrutalistResults {
       const current = target * easeOutQuart;
 
       if (isPercentage) {
-        element.textContent = Math.floor(current) + "%";
+        element.textContent = Math.floor(current) + '%';
       } else if (isCurrency) {
         if (target >= 1000000) {
-          element.textContent = "$" + (current / 1000000).toFixed(1) + "M";
+          element.textContent = '$' + (current / 1000000).toFixed(1) + 'M';
         } else if (target >= 1000) {
-          element.textContent = "$" + (current / 1000).toFixed(0) + "K";
+          element.textContent = '$' + (current / 1000).toFixed(0) + 'K';
         } else {
-          element.textContent = "$" + Math.floor(current).toLocaleString();
+          element.textContent = '$' + Math.floor(current).toLocaleString();
         }
       } else {
         element.textContent = Math.floor(current).toLocaleString();
@@ -174,18 +174,18 @@ class BrutalistResults {
       } else {
         // Final formatting
         if (isPercentage) {
-          element.textContent = target + "%";
+          element.textContent = target + '%';
         } else if (isCurrency) {
           if (target >= 1000000) {
-            element.textContent = "$" + (target / 1000000).toFixed(1) + "M";
+            element.textContent = '$' + (target / 1000000).toFixed(1) + 'M';
           } else if (target >= 1000) {
-            element.textContent = "$" + (target / 1000).toFixed(0) + "K";
+            element.textContent = '$' + (target / 1000).toFixed(0) + 'K';
           } else {
-            element.textContent = "$" + target.toLocaleString();
+            element.textContent = '$' + target.toLocaleString();
           }
         }
 
-        element.style.animation = "goldGlow 0.8s ease-out";
+        element.style.animation = 'goldGlow 0.8s ease-out';
       }
     };
 
@@ -194,49 +194,49 @@ class BrutalistResults {
 
   setupComparisonInteractions() {
     this.comparisonCards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
+      card.addEventListener('mouseenter', () => {
         this.triggerComparisonHover(card);
       });
 
-      card.addEventListener("mouseleave", () => {
+      card.addEventListener('mouseleave', () => {
         this.resetComparisonHover(card);
       });
 
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         this.triggerComparisonClick(card);
       });
     });
   }
 
   triggerComparisonHover(card) {
-    const arrow = card.querySelector(".arrow-icon");
-    const impactHighlight = card.querySelector(".impact-highlight");
+    const arrow = card.querySelector('.arrow-icon');
+    const impactHighlight = card.querySelector('.impact-highlight');
 
     if (arrow) {
-      arrow.style.animation = "arrowPulse 0.5s ease-in-out infinite";
+      arrow.style.animation = 'arrowPulse 0.5s ease-in-out infinite';
     }
 
     if (impactHighlight) {
-      impactHighlight.style.animation = "goldGlow 1s ease-in-out infinite";
+      impactHighlight.style.animation = 'goldGlow 1s ease-in-out infinite';
     }
 
     // Add subtle glow effect
-    card.style.boxShadow = "0 0 30px rgba(255, 215, 0, 0.2)";
+    card.style.boxShadow = '0 0 30px rgba(255, 215, 0, 0.2)';
   }
 
   resetComparisonHover(card) {
-    const arrow = card.querySelector(".arrow-icon");
-    const impactHighlight = card.querySelector(".impact-highlight");
+    const arrow = card.querySelector('.arrow-icon');
+    const impactHighlight = card.querySelector('.impact-highlight');
 
     if (arrow) {
-      arrow.style.animation = "arrowPulse 2s ease-in-out infinite";
+      arrow.style.animation = 'arrowPulse 2s ease-in-out infinite';
     }
 
     if (impactHighlight) {
-      impactHighlight.style.animation = "";
+      impactHighlight.style.animation = '';
     }
 
-    card.style.boxShadow = "";
+    card.style.boxShadow = '';
   }
 
   triggerComparisonClick(card) {
@@ -247,8 +247,8 @@ class BrutalistResults {
   }
 
   showComparisonDetails(type, card) {
-    const overlay = document.createElement("div");
-    overlay.className = "comparison-detail-overlay";
+    const overlay = document.createElement('div');
+    overlay.className = 'comparison-detail-overlay';
     overlay.style.cssText = `
       position: fixed;
       top: 0;
@@ -272,8 +272,8 @@ class BrutalistResults {
       position: relative;
     `;
 
-    const closeButton = document.createElement("button");
-    closeButton.innerHTML = "✕";
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '✕';
     closeButton.style.cssText = `
       position: absolute;
       top: 1rem;
@@ -289,14 +289,14 @@ class BrutalistResults {
       z-index: 10001;
     `;
 
-    closeButton.addEventListener("click", () => {
-      overlay.style.opacity = "0";
+    closeButton.addEventListener('click', () => {
+      overlay.style.opacity = '0';
       setTimeout(() => overlay.remove(), 300);
     });
 
-    overlay.addEventListener("click", (e) => {
+    overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
-        overlay.style.opacity = "0";
+        overlay.style.opacity = '0';
         setTimeout(() => overlay.remove(), 300);
       }
     });
@@ -307,21 +307,21 @@ class BrutalistResults {
 
     // Animate in
     setTimeout(() => {
-      overlay.style.opacity = "1";
+      overlay.style.opacity = '1';
     }, 10);
   }
 
   setupTimelineInteractions() {
     this.achievementMedallions.forEach((medallion, index) => {
-      medallion.addEventListener("mouseenter", () => {
+      medallion.addEventListener('mouseenter', () => {
         this.triggerMedallionHover(medallion);
       });
 
-      medallion.addEventListener("mouseleave", () => {
+      medallion.addEventListener('mouseleave', () => {
         this.resetMedallionHover(medallion);
       });
 
-      medallion.addEventListener("click", () => {
+      medallion.addEventListener('click', () => {
         this.triggerMedallionClick(medallion, index);
       });
     });
@@ -331,102 +331,102 @@ class BrutalistResults {
   }
 
   triggerMedallionHover(medallion) {
-    const icon = medallion.querySelector(".medallion-icon");
-    const year = medallion.querySelector(".medallion-year");
+    const icon = medallion.querySelector('.medallion-icon');
+    const year = medallion.querySelector('.medallion-year');
 
     if (icon) {
-      icon.style.animation = "medallionGlow 0.5s ease-in-out infinite";
+      icon.style.animation = 'medallionGlow 0.5s ease-in-out infinite';
     }
 
     if (year) {
-      year.style.textShadow = "0 0 10px #ffd700";
+      year.style.textShadow = '0 0 10px #ffd700';
     }
   }
 
   resetMedallionHover(medallion) {
-    const icon = medallion.querySelector(".medallion-icon");
-    const year = medallion.querySelector(".medallion-year");
+    const icon = medallion.querySelector('.medallion-icon');
+    const year = medallion.querySelector('.medallion-year');
 
     if (icon) {
-      icon.style.animation = "medallionGlow 3s ease-in-out infinite";
+      icon.style.animation = 'medallionGlow 3s ease-in-out infinite';
     }
 
     if (year) {
-      year.style.textShadow = "";
+      year.style.textShadow = '';
     }
   }
 
   triggerMedallionClick(medallion, index) {
     // Highlight clicked medallion
-    this.achievementMedallions.forEach((m) => m.classList.remove("active"));
-    medallion.classList.add("active");
+    this.achievementMedallions.forEach((m) => m.classList.remove('active'));
+    medallion.classList.add('active');
 
     // Create achievement detail popup
     this.showAchievementDetails(medallion, index);
   }
 
   showAchievementDetails(medallion, index) {
-    const year = medallion.querySelector(".medallion-year").textContent;
-    const title = medallion.querySelector(".medallion-title").textContent;
+    const year = medallion.querySelector('.medallion-year').textContent;
+    const title = medallion.querySelector('.medallion-title').textContent;
     const description = medallion.querySelector(
-      ".medallion-description"
+      '.medallion-description'
     ).textContent;
 
     const achievements = {
       0: {
         details:
           "Delivered a comprehensive enterprise solution that transformed the client's entire workflow, resulting in 40% efficiency gains.",
-        impact: "$100,000 project value",
-        technologies: ["React", "Node.js", "PostgreSQL", "AWS"],
+        impact: '$100,000 project value',
+        technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
       },
       1: {
         details:
-          "Achieved AWS Solutions Architect Professional certification, demonstrating expertise in cloud architecture and scalable systems.",
-        impact: "Professional certification",
-        technologies: ["AWS", "Cloud Architecture", "DevOps", "Security"],
+          'Achieved AWS Solutions Architect Professional certification, demonstrating expertise in cloud architecture and scalable systems.',
+        impact: 'Professional certification',
+        technologies: ['AWS', 'Cloud Architecture', 'DevOps', 'Security'],
       },
       2: {
         details:
-          "Established independent consultancy practice, focusing on high-impact web applications for growing businesses.",
-        impact: "Business milestone",
+          'Established independent consultancy practice, focusing on high-impact web applications for growing businesses.',
+        impact: 'Business milestone',
         technologies: [
-          "Full-Stack Development",
-          "Consulting",
-          "Project Management",
+          'Full-Stack Development',
+          'Consulting',
+          'Project Management',
         ],
       },
       3: {
         details:
-          "Exceeded $1M in total revenue generated for clients through optimized applications and improved business processes.",
-        impact: "$1,000,000+ client revenue",
+          'Exceeded $1M in total revenue generated for clients through optimized applications and improved business processes.',
+        impact: '$1,000,000+ client revenue',
         technologies: [
-          "Performance Optimization",
-          "Business Intelligence",
-          "Analytics",
+          'Performance Optimization',
+          'Business Intelligence',
+          'Analytics',
         ],
       },
       4: {
         details:
-          "Open source project gained significant traction with 1,000+ GitHub stars and active community contributions.",
-        impact: "1,000+ GitHub stars",
-        technologies: ["Open Source", "Community Building", "Documentation"],
+          'Open source project gained significant traction with 1,000+ GitHub stars and active community contributions.',
+        impact: '1,000+ GitHub stars',
+        technologies: ['Open Source', 'Community Building', 'Documentation'],
       },
       5: {
         details:
-          "Maintained perfect client satisfaction rate with 99.9% project success rate and zero client churn.",
-        impact: "99.9% satisfaction rate",
+          'Maintained perfect client satisfaction rate with 99.9% project success rate and zero client churn.',
+        impact: '99.9% satisfaction rate',
         technologies: [
-          "Client Relations",
-          "Quality Assurance",
-          "Project Delivery",
+          'Client Relations',
+          'Quality Assurance',
+          'Project Delivery',
         ],
       },
     };
 
     const achievement = achievements[index] || achievements[0];
 
-    const popup = document.createElement("div");
-    popup.className = "achievement-popup";
+    const popup = document.createElement('div');
+    popup.className = 'achievement-popup';
     popup.style.cssText = `
       position: fixed;
       top: 50%;
@@ -458,7 +458,7 @@ class BrutalistResults {
               (tech) =>
                 `<span style="background: rgba(255, 215, 0, 0.1); color: #ffd700; padding: 0.25rem 0.5rem; font-size: 0.75rem; border: 1px solid rgba(255, 215, 0, 0.3);">${tech}</span>`
             )
-            .join("")}
+            .join('')}
         </div>
         <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 1.5rem; background: #ffd700; color: #000; border: none; padding: 0.5rem 1rem; cursor: pointer; font-family: inherit;">CLOSE</button>
       </div>
@@ -501,38 +501,38 @@ class BrutalistResults {
   setupCTAInteractions() {
     if (!this.resultsCta) return;
 
-    this.resultsCta.addEventListener("click", () => {
+    this.resultsCta.addEventListener('click', () => {
       this.triggerCTAAction();
     });
 
-    this.resultsCta.addEventListener("mouseenter", () => {
-      this.resultsCta.style.transform = "translateY(-5px) scale(1.05)";
+    this.resultsCta.addEventListener('mouseenter', () => {
+      this.resultsCta.style.transform = 'translateY(-5px) scale(1.05)';
     });
 
-    this.resultsCta.addEventListener("mouseleave", () => {
-      this.resultsCta.style.transform = "translateY(0) scale(1)";
+    this.resultsCta.addEventListener('mouseleave', () => {
+      this.resultsCta.style.transform = 'translateY(0) scale(1)';
     });
   }
 
   triggerCTAAction() {
-    const originalText = this.resultsCta.querySelector(".cta-text").textContent;
-    const ctaText = this.resultsCta.querySelector(".cta-text");
+    const originalText = this.resultsCta.querySelector('.cta-text').textContent;
+    const ctaText = this.resultsCta.querySelector('.cta-text');
 
     // Change text with animation
-    ctaText.textContent = "INITIATING CONTACT...";
+    ctaText.textContent = 'INITIATING CONTACT...';
     this.resultsCta.style.background =
-      "linear-gradient(45deg, #10b981, #ffd700)";
+      'linear-gradient(45deg, #10b981, #ffd700)';
 
     setTimeout(() => {
-      ctaText.textContent = "MESSAGE SENT!";
+      ctaText.textContent = 'MESSAGE SENT!';
       this.resultsCta.style.background =
-        "linear-gradient(45deg, #00ff00, #ffd700)";
+        'linear-gradient(45deg, #00ff00, #ffd700)';
     }, 1500);
 
     setTimeout(() => {
       ctaText.textContent = originalText;
       this.resultsCta.style.background =
-        "linear-gradient(45deg, #ffd700, #10b981)";
+        'linear-gradient(45deg, #ffd700, #10b981)';
     }, 3000);
 
     // Create success notification
@@ -540,7 +540,7 @@ class BrutalistResults {
   }
 
   showSuccessNotification() {
-    const notification = document.createElement("div");
+    const notification = document.createElement('div');
     notification.style.cssText = `
       position: fixed;
       top: 2rem;
@@ -559,7 +559,7 @@ class BrutalistResults {
     document.body.appendChild(notification);
 
     setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.5s ease-in";
+      notification.style.animation = 'slideOutRight 0.5s ease-in';
       setTimeout(() => notification.remove(), 500);
     }, 4000);
   }
@@ -574,7 +574,7 @@ class BrutalistResults {
 
     // Create floating success particles
     for (let i = 0; i < 20; i++) {
-      const particle = document.createElement("div");
+      const particle = document.createElement('div');
       particle.style.cssText = `
         position: absolute;
         width: ${Math.random() * 4 + 2}px;
@@ -597,7 +597,7 @@ class BrutalistResults {
 
     // Create flowing achievement streams
     for (let i = 0; i < 5; i++) {
-      const stream = document.createElement("div");
+      const stream = document.createElement('div');
       stream.style.cssText = `
         position: absolute;
         width: 2px;
@@ -616,21 +616,21 @@ class BrutalistResults {
 
   setupROICalculator() {
     // Simple ROI calculator functionality
-    const revenueCategories = document.querySelectorAll(".revenue-category");
+    const revenueCategories = document.querySelectorAll('.revenue-category');
 
     revenueCategories.forEach((category) => {
-      category.addEventListener("click", () => {
+      category.addEventListener('click', () => {
         this.showROIBreakdown(category);
       });
     });
   }
 
   showROIBreakdown(category) {
-    const title = category.querySelector(".category-title").textContent;
-    const amount = category.querySelector(".category-amount").textContent;
-    const details = category.querySelector(".category-details").textContent;
+    const title = category.querySelector('.category-title').textContent;
+    const amount = category.querySelector('.category-amount').textContent;
+    const details = category.querySelector('.category-details').textContent;
 
-    const breakdown = document.createElement("div");
+    const breakdown = document.createElement('div');
     breakdown.style.cssText = `
       position: fixed;
       bottom: 2rem;
@@ -654,8 +654,8 @@ class BrutalistResults {
       </div>
     `;
 
-    breakdown.addEventListener("click", () => {
-      breakdown.style.animation = "slideOutDown 0.5s ease-in";
+    breakdown.addEventListener('click', () => {
+      breakdown.style.animation = 'slideOutDown 0.5s ease-in';
       setTimeout(() => breakdown.remove(), 500);
     });
 
@@ -664,7 +664,7 @@ class BrutalistResults {
     // Auto-remove after 8 seconds
     setTimeout(() => {
       if (breakdown.parentElement) {
-        breakdown.style.animation = "slideOutDown 0.5s ease-in";
+        breakdown.style.animation = 'slideOutDown 0.5s ease-in';
         setTimeout(() => breakdown.remove(), 500);
       }
     }, 8000);
@@ -690,27 +690,27 @@ class BrutalistResults {
           Math.floor(Math.random() * this.counterMetrics.length)
         ];
       const currentValue = parseInt(
-        randomMetric.textContent.replace(/[^\d]/g, "")
+        randomMetric.textContent.replace(/[^\d]/g, '')
       );
       const newValue = currentValue + Math.floor(Math.random() * 3) + 1;
 
       randomMetric.textContent = newValue.toLocaleString();
-      randomMetric.style.animation = "counterSuccess 0.5s ease-out";
+      randomMetric.style.animation = 'counterSuccess 0.5s ease-out';
     }
   }
 
   updateTerminalLine() {
     const terminalLine = document.querySelector(
-      ".terminal-success-line .success-text"
+      '.terminal-success-line .success-text'
     );
     if (!terminalLine) return;
 
     const messages = [
-      ">> compiling_results... SUCCESS",
-      ">> analyzing_impact... COMPLETE",
-      ">> calculating_roi... OPTIMIZED",
-      ">> generating_value... MAXIMIZED",
-      ">> client_satisfaction... 99.9%",
+      '>> compiling_results... SUCCESS',
+      '>> analyzing_impact... COMPLETE',
+      '>> calculating_roi... OPTIMIZED',
+      '>> generating_value... MAXIMIZED',
+      '>> client_satisfaction... 99.9%',
     ];
 
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -795,16 +795,16 @@ const resultsAnimations = `
 `;
 
 // Inject animations
-const styleSheet = document.createElement("style");
+const styleSheet = document.createElement('style');
 styleSheet.textContent = resultsAnimations;
 document.head.appendChild(styleSheet);
 
 // Initialize the component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistResults();
 });
 
 // Export for use in other components
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistResults;
 }

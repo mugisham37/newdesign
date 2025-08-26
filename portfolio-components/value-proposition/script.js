@@ -1,16 +1,16 @@
 // Brutalist Value Proposition Component
 class BrutalistValueProposition {
   constructor() {
-    this.valueSection = document.getElementById("valueSection");
-    this.valueTitle = document.getElementById("valueTitle");
-    this.titleUnderline = document.getElementById("titleUnderline");
-    this.valueColumns = document.querySelectorAll(".value-column");
-    this.metricNumbers = document.querySelectorAll(".metric-number");
-    this.valueCta = document.getElementById("valueCta");
-    this.ctaText = document.getElementById("ctaText");
-    this.ctaProgressBar = document.getElementById("ctaProgressBar");
-    this.scrollArrow = document.getElementById("scrollArrow");
-    this.valueParticles = document.getElementById("valueParticles");
+    this.valueSection = document.getElementById('valueSection');
+    this.valueTitle = document.getElementById('valueTitle');
+    this.titleUnderline = document.getElementById('titleUnderline');
+    this.valueColumns = document.querySelectorAll('.value-column');
+    this.metricNumbers = document.querySelectorAll('.metric-number');
+    this.valueCta = document.getElementById('valueCta');
+    this.ctaText = document.getElementById('ctaText');
+    this.ctaProgressBar = document.getElementById('ctaProgressBar');
+    this.scrollArrow = document.getElementById('scrollArrow');
+    this.valueParticles = document.getElementById('valueParticles');
 
     this.isAnimating = false;
     this.metricsAnimated = false;
@@ -35,13 +35,13 @@ class BrutalistValueProposition {
 
     // Create floating particles for background effect
     for (let i = 0; i < 30; i++) {
-      const particle = document.createElement("div");
+      const particle = document.createElement('div');
       particle.style.cssText = `
         position: absolute;
         width: ${Math.random() * 3 + 1}px;
         height: ${Math.random() * 3 + 1}px;
         background: ${
-          Math.random() > 0.5 ? "var(--accent-cyan)" : "var(--accent-purple)"
+          Math.random() > 0.5 ? 'var(--accent-cyan)' : 'var(--accent-purple)'
         };
         border-radius: 50%;
         left: ${Math.random() * 100}%;
@@ -63,7 +63,7 @@ class BrutalistValueProposition {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations based on element
             if (entry.target === this.valueSection && !this.metricsAnimated) {
@@ -88,7 +88,7 @@ class BrutalistValueProposition {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               setTimeout(() => {
-                entry.target.classList.add("column-visible");
+                entry.target.classList.add('column-visible');
                 this.triggerColumnAnimation(entry.target);
               }, index * 200);
             }
@@ -103,26 +103,26 @@ class BrutalistValueProposition {
   setupColumnInteractions() {
     this.valueColumns.forEach((column) => {
       const columnType = column.dataset.column;
-      const icon = column.querySelector(".column-icon");
-      const metricNumber = column.querySelector(".metric-number");
+      const icon = column.querySelector('.column-icon');
+      const metricNumber = column.querySelector('.metric-number');
 
       // Enhanced hover effects
-      column.addEventListener("mouseenter", () => {
+      column.addEventListener('mouseenter', () => {
         this.triggerColumnHover(column, columnType);
       });
 
-      column.addEventListener("mouseleave", () => {
+      column.addEventListener('mouseleave', () => {
         this.resetColumnHover(column, columnType);
       });
 
       // Click interactions for mobile
-      column.addEventListener("click", () => {
+      column.addEventListener('click', () => {
         this.triggerColumnClick(column, columnType);
       });
 
       // Icon-specific interactions
       if (icon) {
-        icon.addEventListener("click", (e) => {
+        icon.addEventListener('click', (e) => {
           e.stopPropagation();
           this.triggerIconInteraction(icon, columnType);
         });
@@ -131,21 +131,21 @@ class BrutalistValueProposition {
   }
 
   triggerColumnHover(column, columnType) {
-    const icon = column.querySelector(".column-icon");
-    const metricNumber = column.querySelector(".metric-number");
+    const icon = column.querySelector('.column-icon');
+    const metricNumber = column.querySelector('.metric-number');
 
     // Add hover class for CSS animations
-    column.classList.add("column-hovered");
+    column.classList.add('column-hovered');
 
     // Specific effects based on column type
     switch (columnType) {
-      case "business":
+      case 'business':
         this.triggerBusinessEffect(column);
         break;
-      case "speed":
+      case 'speed':
         this.triggerSpeedEffect(column);
         break;
-      case "architecture":
+      case 'architecture':
         this.triggerArchitectureEffect(column);
         break;
     }
@@ -157,28 +157,28 @@ class BrutalistValueProposition {
   }
 
   resetColumnHover(column, columnType) {
-    column.classList.remove("column-hovered");
+    column.classList.remove('column-hovered');
   }
 
   triggerColumnClick(column, columnType) {
     // Mobile-friendly interaction
     if (window.innerWidth <= 768) {
-      column.classList.toggle("column-active");
+      column.classList.toggle('column-active');
 
       // Scroll column into better view
       column.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        behavior: 'smooth',
+        block: 'center',
       });
     }
   }
 
   triggerBusinessEffect(column) {
-    const icon = column.querySelector(".business-icon");
+    const icon = column.querySelector('.business-icon');
     if (icon) {
       // Create profit indicator effect
-      const profitIndicator = document.createElement("div");
-      profitIndicator.textContent = "+$$$";
+      const profitIndicator = document.createElement('div');
+      profitIndicator.textContent = '+$$$';
       profitIndicator.style.cssText = `
         position: absolute;
         top: -20px;
@@ -201,11 +201,11 @@ class BrutalistValueProposition {
   }
 
   triggerSpeedEffect(column) {
-    const icon = column.querySelector(".speed-icon");
+    const icon = column.querySelector('.speed-icon');
     if (icon) {
       // Create speed burst effect
       for (let i = 0; i < 5; i++) {
-        const speedLine = document.createElement("div");
+        const speedLine = document.createElement('div');
         speedLine.style.cssText = `
           position: absolute;
           width: 30px;
@@ -229,13 +229,13 @@ class BrutalistValueProposition {
   }
 
   triggerArchitectureEffect(column) {
-    const icon = column.querySelector(".architecture-icon");
+    const icon = column.querySelector('.architecture-icon');
     if (icon) {
       // Create network expansion effect
-      const networkNodes = icon.querySelectorAll("circle");
+      const networkNodes = icon.querySelectorAll('circle');
       networkNodes.forEach((node, index) => {
         setTimeout(() => {
-          node.style.animation = "networkNodePulse 0.5s ease-out";
+          node.style.animation = 'networkNodePulse 0.5s ease-out';
         }, index * 100);
       });
     }
@@ -243,7 +243,7 @@ class BrutalistValueProposition {
 
   triggerIconInteraction(icon, columnType) {
     // Create ripple effect
-    const ripple = document.createElement("div");
+    const ripple = document.createElement('div');
     ripple.style.cssText = `
       position: absolute;
       width: 100%;
@@ -264,15 +264,15 @@ class BrutalistValueProposition {
   setupCTAInteractions() {
     if (!this.valueCta) return;
 
-    this.valueCta.addEventListener("click", () => {
+    this.valueCta.addEventListener('click', () => {
       this.triggerCTAAction();
     });
 
-    this.valueCta.addEventListener("mouseenter", () => {
+    this.valueCta.addEventListener('mouseenter', () => {
       this.startCTAHoverEffect();
     });
 
-    this.valueCta.addEventListener("mouseleave", () => {
+    this.valueCta.addEventListener('mouseleave', () => {
       this.stopCTAHoverEffect();
     });
   }
@@ -284,12 +284,12 @@ class BrutalistValueProposition {
     const originalText = this.ctaText.textContent;
 
     // Animate button text change
-    this.typewriterEffect(this.ctaText, "LOADING RESULTS...", () => {
+    this.typewriterEffect(this.ctaText, 'LOADING RESULTS...', () => {
       // Simulate loading
       this.animateProgressBar();
 
       setTimeout(() => {
-        this.typewriterEffect(this.ctaText, "RESULTS READY!", () => {
+        this.typewriterEffect(this.ctaText, 'RESULTS READY!', () => {
           setTimeout(() => {
             this.typewriterEffect(this.ctaText, originalText, () => {
               this.isAnimating = false;
@@ -305,13 +305,13 @@ class BrutalistValueProposition {
 
   startCTAHoverEffect() {
     if (this.ctaProgressBar) {
-      this.ctaProgressBar.style.width = "100%";
+      this.ctaProgressBar.style.width = '100%';
     }
   }
 
   stopCTAHoverEffect() {
     if (this.ctaProgressBar) {
-      this.ctaProgressBar.style.width = "0%";
+      this.ctaProgressBar.style.width = '0%';
     }
   }
 
@@ -334,7 +334,7 @@ class BrutalistValueProposition {
     if (!button) return;
 
     for (let i = 0; i < 10; i++) {
-      const particle = document.createElement("div");
+      const particle = document.createElement('div');
       particle.style.cssText = `
         position: absolute;
         width: 4px;
@@ -380,8 +380,8 @@ class BrutalistValueProposition {
   animateMetrics() {
     this.metricNumbers.forEach((metric, index) => {
       const target = parseInt(metric.dataset.target) || 0;
-      const isPercentage = metric.parentElement.textContent.includes("%");
-      const isMultiplier = metric.parentElement.textContent.includes("x");
+      const isPercentage = metric.parentElement.textContent.includes('%');
+      const isMultiplier = metric.parentElement.textContent.includes('x');
 
       setTimeout(() => {
         this.animateCounter(
@@ -424,7 +424,7 @@ class BrutalistValueProposition {
         requestAnimationFrame(updateCounter);
       } else {
         // Add completion effect
-        element.style.animation = "metricComplete 0.5s ease-out";
+        element.style.animation = 'metricComplete 0.5s ease-out';
       }
     };
 
@@ -435,7 +435,7 @@ class BrutalistValueProposition {
     if (!metricElement) return;
 
     // Create floating number effect
-    const floatingNumber = document.createElement("div");
+    const floatingNumber = document.createElement('div');
     const currentValue = metricElement.textContent;
     floatingNumber.textContent = `+${Math.floor(Math.random() * 50 + 10)}`;
     floatingNumber.style.cssText = `
@@ -462,7 +462,7 @@ class BrutalistValueProposition {
   setupScrollArrow() {
     if (!this.scrollArrow) return;
 
-    this.scrollArrow.addEventListener("click", () => {
+    this.scrollArrow.addEventListener('click', () => {
       // Simulate scroll to next section
       this.triggerScrollEffect();
     });
@@ -472,30 +472,30 @@ class BrutalistValueProposition {
   }
 
   triggerScrollEffect() {
-    const arrowIcon = this.scrollArrow.querySelector(".arrow-icon");
-    const arrowText = this.scrollArrow.querySelector(".arrow-text");
+    const arrowIcon = this.scrollArrow.querySelector('.arrow-icon');
+    const arrowText = this.scrollArrow.querySelector('.arrow-text');
 
     if (arrowIcon && arrowText) {
-      arrowText.textContent = "Scrolling...";
-      arrowIcon.style.animation = "scrollPulse 0.5s ease-out";
+      arrowText.textContent = 'Scrolling...';
+      arrowIcon.style.animation = 'scrollPulse 0.5s ease-out';
 
       setTimeout(() => {
-        arrowText.textContent = "Results section loading...";
-        arrowIcon.style.animation = "bounce 2s ease-in-out infinite";
+        arrowText.textContent = 'Results section loading...';
+        arrowIcon.style.animation = 'bounce 2s ease-in-out infinite';
       }, 1000);
     }
   }
 
   updateScrollArrowText() {
-    const arrowText = this.scrollArrow?.querySelector(".arrow-text");
+    const arrowText = this.scrollArrow?.querySelector('.arrow-text');
     if (!arrowText) return;
 
     // Simulate dynamic text updates
     const messages = [
-      "Results section loading...",
-      "Preparing case studies...",
-      "Loading success metrics...",
-      "Ready to show impact...",
+      'Results section loading...',
+      'Preparing case studies...',
+      'Loading success metrics...',
+      'Ready to show impact...',
     ];
 
     let messageIndex = 0;
@@ -506,27 +506,27 @@ class BrutalistValueProposition {
   }
 
   triggerColumnAnimation(column) {
-    const icon = column.querySelector(".column-icon");
-    const title = column.querySelector(".column-title");
-    const description = column.querySelector(".column-description");
+    const icon = column.querySelector('.column-icon');
+    const title = column.querySelector('.column-title');
+    const description = column.querySelector('.column-description');
 
     // Staggered animation for column elements
     if (icon) {
       setTimeout(() => {
-        icon.style.animation = "iconEntrance 0.6s ease-out forwards";
+        icon.style.animation = 'iconEntrance 0.6s ease-out forwards';
       }, 100);
     }
 
     if (title) {
       setTimeout(() => {
-        title.style.animation = "titleSlideIn 0.6s ease-out forwards";
+        title.style.animation = 'titleSlideIn 0.6s ease-out forwards';
       }, 200);
     }
 
     if (description) {
       setTimeout(() => {
         description.style.animation =
-          "descriptionFadeIn 0.6s ease-out forwards";
+          'descriptionFadeIn 0.6s ease-out forwards';
       }, 300);
     }
   }
@@ -569,7 +569,7 @@ class BrutalistValueProposition {
       this.particles.forEach((particle) => {
         if (Math.random() > 0.98) {
           particle.style.background =
-            Math.random() > 0.5 ? "var(--accent-cyan)" : "var(--accent-purple)";
+            Math.random() > 0.5 ? 'var(--accent-cyan)' : 'var(--accent-purple)';
         }
       });
     }, 2000);
@@ -579,7 +579,7 @@ class BrutalistValueProposition {
   }
 
   addComponentAnimations() {
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       @keyframes particleFloat {
         0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -660,8 +660,8 @@ class BrutalistValueProposition {
 
   setupErrorHandling() {
     // Graceful degradation for missing elements
-    window.addEventListener("error", (e) => {
-      console.warn("Value Proposition Component Error:", e.message);
+    window.addEventListener('error', (e) => {
+      console.warn('Value Proposition Component Error:', e.message);
       // Continue functioning with available elements
     });
 
@@ -675,13 +675,13 @@ class BrutalistValueProposition {
 }
 
 // Initialize the component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   try {
     new BrutalistValueProposition();
   } catch (error) {
-    console.error("Failed to initialize Value Proposition component:", error);
+    console.error('Failed to initialize Value Proposition component:', error);
     // Provide fallback functionality
-    document.querySelectorAll(".metric-number").forEach((metric) => {
+    document.querySelectorAll('.metric-number').forEach((metric) => {
       const target = metric.dataset.target;
       if (target) {
         metric.textContent = target;
@@ -691,6 +691,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Export for module usage
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistValueProposition;
 }

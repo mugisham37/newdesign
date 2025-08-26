@@ -1,17 +1,17 @@
 // Brutalist Contact Hub System
 class BrutalistContactHub {
   constructor() {
-    this.contactSection = document.getElementById("contactHubSection");
-    this.calendarContainer = document.getElementById("calendarContainer");
-    this.inquiryForm = document.getElementById("inquiryForm");
-    this.conversionParticles = document.getElementById("conversionParticles");
-    this.engagementStreams = document.getElementById("engagementStreams");
+    this.contactSection = document.getElementById('contactHubSection');
+    this.calendarContainer = document.getElementById('calendarContainer');
+    this.inquiryForm = document.getElementById('inquiryForm');
+    this.conversionParticles = document.getElementById('conversionParticles');
+    this.engagementStreams = document.getElementById('engagementStreams');
 
     // Calendar state
     this.currentDate = new Date();
     this.selectedDate = null;
     this.selectedTime = null;
-    this.selectedMeetingType = "discovery";
+    this.selectedMeetingType = 'discovery';
 
     // Form state
     this.currentStep = 1;
@@ -37,33 +37,33 @@ class BrutalistContactHub {
 
   setupCalendarWidget() {
     // Meeting type selection
-    const meetingTypes = document.querySelectorAll(".meeting-type");
+    const meetingTypes = document.querySelectorAll('.meeting-type');
     meetingTypes.forEach((type) => {
-      type.addEventListener("click", () => {
-        meetingTypes.forEach((t) => t.classList.remove("active"));
-        type.classList.add("active");
+      type.addEventListener('click', () => {
+        meetingTypes.forEach((t) => t.classList.remove('active'));
+        type.classList.add('active');
         this.selectedMeetingType = type.dataset.type;
         this.updateCalendarDisplay();
       });
     });
 
     // Calendar navigation
-    const prevMonth = document.getElementById("prevMonth");
-    const nextMonth = document.getElementById("nextMonth");
+    const prevMonth = document.getElementById('prevMonth');
+    const nextMonth = document.getElementById('nextMonth');
 
-    prevMonth?.addEventListener("click", () => {
+    prevMonth?.addEventListener('click', () => {
       this.currentDate.setMonth(this.currentDate.getMonth() - 1);
       this.generateCalendar();
     });
 
-    nextMonth?.addEventListener("click", () => {
+    nextMonth?.addEventListener('click', () => {
       this.currentDate.setMonth(this.currentDate.getMonth() + 1);
       this.generateCalendar();
     });
 
     // Book meeting button
-    const bookMeetingBtn = document.getElementById("bookMeetingBtn");
-    bookMeetingBtn?.addEventListener("click", () => {
+    const bookMeetingBtn = document.getElementById('bookMeetingBtn');
+    bookMeetingBtn?.addEventListener('click', () => {
       this.handleMeetingBooking();
     });
 
@@ -73,38 +73,38 @@ class BrutalistContactHub {
   }
 
   generateCalendar() {
-    const calendarGrid = document.getElementById("calendarGrid");
-    const calendarMonth = document.getElementById("calendarMonth");
+    const calendarGrid = document.getElementById('calendarGrid');
+    const calendarMonth = document.getElementById('calendarMonth');
 
     if (!calendarGrid || !calendarMonth) return;
 
     // Update month display
     const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     calendarMonth.textContent = `${
       monthNames[this.currentDate.getMonth()]
     } ${this.currentDate.getFullYear()}`;
 
     // Clear existing calendar
-    calendarGrid.innerHTML = "";
+    calendarGrid.innerHTML = '';
 
     // Add day headers
-    const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     dayHeaders.forEach((day) => {
-      const dayHeader = document.createElement("div");
-      dayHeader.className = "calendar-day-header";
+      const dayHeader = document.createElement('div');
+      dayHeader.className = 'calendar-day-header';
       dayHeader.textContent = day;
       dayHeader.style.cssText = `
         font-family: "JetBrains Mono", monospace;
@@ -133,15 +133,15 @@ class BrutalistContactHub {
 
     // Add empty cells for days before month starts
     for (let i = 0; i < startDate; i++) {
-      const emptyDay = document.createElement("div");
-      emptyDay.className = "calendar-day disabled";
+      const emptyDay = document.createElement('div');
+      emptyDay.className = 'calendar-day disabled';
       calendarGrid.appendChild(emptyDay);
     }
 
     // Add days of the month
     for (let day = 1; day <= daysInMonth; day++) {
-      const dayElement = document.createElement("div");
-      dayElement.className = "calendar-day";
+      const dayElement = document.createElement('div');
+      dayElement.className = 'calendar-day';
       dayElement.textContent = day;
 
       const dayDate = new Date(
@@ -153,13 +153,13 @@ class BrutalistContactHub {
 
       // Disable past dates
       if (dayDate < today) {
-        dayElement.classList.add("disabled");
+        dayElement.classList.add('disabled');
       } else {
-        dayElement.addEventListener("click", () => {
+        dayElement.addEventListener('click', () => {
           document
-            .querySelectorAll(".calendar-day")
-            .forEach((d) => d.classList.remove("selected"));
-          dayElement.classList.add("selected");
+            .querySelectorAll('.calendar-day')
+            .forEach((d) => d.classList.remove('selected'));
+          dayElement.classList.add('selected');
           this.selectedDate = dayDate;
           this.updateTimeSlots();
         });
@@ -170,12 +170,12 @@ class BrutalistContactHub {
   }
 
   setupTimeSlots() {
-    const timeSlots = document.querySelectorAll(".time-slot");
+    const timeSlots = document.querySelectorAll('.time-slot');
     timeSlots.forEach((slot) => {
-      if (slot.classList.contains("available")) {
-        slot.addEventListener("click", () => {
-          timeSlots.forEach((s) => s.classList.remove("selected"));
-          slot.classList.add("selected");
+      if (slot.classList.contains('available')) {
+        slot.addEventListener('click', () => {
+          timeSlots.forEach((s) => s.classList.remove('selected'));
+          slot.classList.add('selected');
           this.selectedTime = slot.dataset.time;
           this.updateBookingButton();
         });
@@ -185,15 +185,15 @@ class BrutalistContactHub {
 
   updateTimeSlots() {
     // Simulate different availability based on selected date
-    const timeSlots = document.querySelectorAll(".time-slot");
+    const timeSlots = document.querySelectorAll('.time-slot');
     timeSlots.forEach((slot) => {
-      slot.classList.remove("booked", "available", "selected");
+      slot.classList.remove('booked', 'available', 'selected');
 
       // Random availability simulation
       if (Math.random() > 0.3) {
-        slot.classList.add("available");
+        slot.classList.add('available');
       } else {
-        slot.classList.add("booked");
+        slot.classList.add('booked');
       }
     });
 
@@ -201,39 +201,39 @@ class BrutalistContactHub {
   }
 
   updateBookingButton() {
-    const bookMeetingBtn = document.getElementById("bookMeetingBtn");
+    const bookMeetingBtn = document.getElementById('bookMeetingBtn');
     if (this.selectedDate && this.selectedTime) {
       bookMeetingBtn.disabled = false;
-      bookMeetingBtn.style.opacity = "1";
+      bookMeetingBtn.style.opacity = '1';
     } else {
       bookMeetingBtn.disabled = true;
-      bookMeetingBtn.style.opacity = "0.6";
+      bookMeetingBtn.style.opacity = '0.6';
     }
   }
 
   handleMeetingBooking() {
     if (!this.selectedDate || !this.selectedTime) {
-      this.showNotification("Please select a date and time", "error");
+      this.showNotification('Please select a date and time', 'error');
       return;
     }
 
-    const bookMeetingBtn = document.getElementById("bookMeetingBtn");
-    const originalText = bookMeetingBtn.querySelector(".btn-text").textContent;
+    const bookMeetingBtn = document.getElementById('bookMeetingBtn');
+    const originalText = bookMeetingBtn.querySelector('.btn-text').textContent;
 
     // Show booking animation
-    bookMeetingBtn.querySelector(".btn-text").textContent = "BOOKING...";
+    bookMeetingBtn.querySelector('.btn-text').textContent = 'BOOKING...';
     bookMeetingBtn.disabled = true;
 
     // Simulate booking process
     setTimeout(() => {
-      bookMeetingBtn.querySelector(".btn-text").textContent = "✓ BOOKED!";
+      bookMeetingBtn.querySelector('.btn-text').textContent = '✓ BOOKED!';
       this.showNotification(
-        "Meeting booked successfully! Calendar invite sent.",
-        "success"
+        'Meeting booked successfully! Calendar invite sent.',
+        'success'
       );
 
       setTimeout(() => {
-        bookMeetingBtn.querySelector(".btn-text").textContent = originalText;
+        bookMeetingBtn.querySelector('.btn-text').textContent = originalText;
         bookMeetingBtn.disabled = false;
         this.resetCalendarSelection();
       }, 2000);
@@ -242,43 +242,43 @@ class BrutalistContactHub {
 
   resetCalendarSelection() {
     document
-      .querySelectorAll(".calendar-day")
-      .forEach((d) => d.classList.remove("selected"));
+      .querySelectorAll('.calendar-day')
+      .forEach((d) => d.classList.remove('selected'));
     document
-      .querySelectorAll(".time-slot")
-      .forEach((s) => s.classList.remove("selected"));
+      .querySelectorAll('.time-slot')
+      .forEach((s) => s.classList.remove('selected'));
     this.selectedDate = null;
     this.selectedTime = null;
     this.updateBookingButton();
   }
 
   setupInquiryForm() {
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const submitBtn = document.getElementById("submitBtn");
-    const budgetSlider = document.getElementById("budgetSlider");
-    const budgetAmount = document.getElementById("budgetAmount");
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const budgetSlider = document.getElementById('budgetSlider');
+    const budgetAmount = document.getElementById('budgetAmount');
 
     // Form navigation
-    nextBtn?.addEventListener("click", () => this.nextStep());
-    prevBtn?.addEventListener("click", () => this.prevStep());
-    submitBtn?.addEventListener("click", (e) => {
+    nextBtn?.addEventListener('click', () => this.nextStep());
+    prevBtn?.addEventListener('click', () => this.prevStep());
+    submitBtn?.addEventListener('click', (e) => {
       e.preventDefault();
       this.submitInquiry();
     });
 
     // Budget slider
-    budgetSlider?.addEventListener("input", (e) => {
+    budgetSlider?.addEventListener('input', (e) => {
       const value = parseInt(e.target.value);
       budgetAmount.textContent = `$${value.toLocaleString()}`;
     });
 
     // Project type selection
-    const projectTypes = document.querySelectorAll(".project-type");
+    const projectTypes = document.querySelectorAll('.project-type');
     projectTypes.forEach((type) => {
-      type.addEventListener("click", () => {
-        projectTypes.forEach((t) => t.classList.remove("selected"));
-        type.classList.add("selected");
+      type.addEventListener('click', () => {
+        projectTypes.forEach((t) => t.classList.remove('selected'));
+        type.classList.add('selected');
         this.formData.projectType = type.dataset.type;
       });
     });
@@ -287,16 +287,16 @@ class BrutalistContactHub {
     const textarea = document.querySelector(
       'textarea[name="projectDescription"]'
     );
-    const counter = document.querySelector(".character-counter");
+    const counter = document.querySelector('.character-counter');
 
-    textarea?.addEventListener("input", (e) => {
+    textarea?.addEventListener('input', (e) => {
       const length = e.target.value.length;
       counter.textContent = `${length}/500`;
 
       if (length > 450) {
-        counter.style.color = "#ff4444";
+        counter.style.color = '#ff4444';
       } else {
-        counter.style.color = "rgba(255, 255, 255, 0.5)";
+        counter.style.color = 'rgba(255, 255, 255, 0.5)';
       }
     });
 
@@ -308,39 +308,39 @@ class BrutalistContactHub {
     const form = this.inquiryForm;
     if (!form) return;
 
-    const inputs = form.querySelectorAll("input, textarea, select");
+    const inputs = form.querySelectorAll('input, textarea, select');
     inputs.forEach((input) => {
-      input.addEventListener("blur", () => this.validateField(input));
-      input.addEventListener("input", () => this.clearFieldError(input));
+      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('input', () => this.clearFieldError(input));
     });
   }
 
   validateField(field) {
     const value = field.value.trim();
     let isValid = true;
-    let errorMessage = "";
+    let errorMessage = '';
 
     // Required field validation
-    if (field.hasAttribute("required") && !value) {
+    if (field.hasAttribute('required') && !value) {
       isValid = false;
-      errorMessage = "This field is required";
+      errorMessage = 'This field is required';
     }
 
     // Email validation
-    if (field.type === "email" && value) {
+    if (field.type === 'email' && value) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
         isValid = false;
-        errorMessage = "Please enter a valid email address";
+        errorMessage = 'Please enter a valid email address';
       }
     }
 
     // Phone validation
-    if (field.type === "tel" && value) {
+    if (field.type === 'tel' && value) {
       const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-      if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ""))) {
+      if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
         isValid = false;
-        errorMessage = "Please enter a valid phone number";
+        errorMessage = 'Please enter a valid phone number';
       }
     }
 
@@ -350,16 +350,16 @@ class BrutalistContactHub {
 
   showFieldValidation(field, isValid, errorMessage) {
     // Remove existing error
-    const existingError = field.parentNode.querySelector(".field-error");
+    const existingError = field.parentNode.querySelector('.field-error');
     if (existingError) {
       existingError.remove();
     }
 
     if (!isValid) {
-      field.style.borderColor = "#ff4444";
+      field.style.borderColor = '#ff4444';
 
-      const errorElement = document.createElement("div");
-      errorElement.className = "field-error";
+      const errorElement = document.createElement('div');
+      errorElement.className = 'field-error';
       errorElement.textContent = errorMessage;
       errorElement.style.cssText = `
         font-family: "JetBrains Mono", monospace;
@@ -369,13 +369,13 @@ class BrutalistContactHub {
       `;
       field.parentNode.appendChild(errorElement);
     } else {
-      field.style.borderColor = "var(--accent-green)";
+      field.style.borderColor = 'var(--accent-green)';
     }
   }
 
   clearFieldError(field) {
-    field.style.borderColor = "rgba(255, 255, 255, 0.3)";
-    const errorElement = field.parentNode.querySelector(".field-error");
+    field.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+    const errorElement = field.parentNode.querySelector('.field-error');
     if (errorElement) {
       errorElement.remove();
     }
@@ -403,7 +403,7 @@ class BrutalistContactHub {
       `.form-step[data-step="${this.currentStep}"]`
     );
     const requiredFields = currentStepElement.querySelectorAll(
-      "input[required], textarea[required]"
+      'input[required], textarea[required]'
     );
 
     let isValid = true;
@@ -416,10 +416,10 @@ class BrutalistContactHub {
     // Step-specific validation
     if (this.currentStep === 1) {
       const selectedProjectType = document.querySelector(
-        ".project-type.selected"
+        '.project-type.selected'
       );
       if (!selectedProjectType) {
-        this.showNotification("Please select a project type", "error");
+        this.showNotification('Please select a project type', 'error');
         isValid = false;
       }
     }
@@ -429,32 +429,32 @@ class BrutalistContactHub {
 
   updateFormStep() {
     // Hide all steps
-    document.querySelectorAll(".form-step").forEach((step) => {
-      step.classList.remove("active");
+    document.querySelectorAll('.form-step').forEach((step) => {
+      step.classList.remove('active');
     });
 
     // Show current step
     const currentStepElement = document.querySelector(
       `.form-step[data-step="${this.currentStep}"]`
     );
-    currentStepElement.classList.add("active");
+    currentStepElement.classList.add('active');
 
     // Update progress
     this.updateFormProgress();
 
     // Update navigation buttons
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const submitBtn = document.getElementById("submitBtn");
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
-    prevBtn.style.display = this.currentStep === 1 ? "none" : "block";
+    prevBtn.style.display = this.currentStep === 1 ? 'none' : 'block';
 
     if (this.currentStep === this.totalSteps) {
-      nextBtn.style.display = "none";
-      submitBtn.style.display = "block";
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'block';
     } else {
-      nextBtn.style.display = "block";
-      submitBtn.style.display = "none";
+      nextBtn.style.display = 'block';
+      submitBtn.style.display = 'none';
     }
 
     // Animate step transition
@@ -462,17 +462,17 @@ class BrutalistContactHub {
   }
 
   updateFormProgress() {
-    const progressFill = document.getElementById("progressFill");
-    const progressSteps = document.querySelectorAll(".progress-step");
+    const progressFill = document.getElementById('progressFill');
+    const progressSteps = document.querySelectorAll('.progress-step');
 
     const progressPercentage = (this.currentStep / this.totalSteps) * 100;
     progressFill.style.width = `${progressPercentage}%`;
 
     progressSteps.forEach((step, index) => {
       if (index < this.currentStep) {
-        step.classList.add("active");
+        step.classList.add('active');
       } else {
-        step.classList.remove("active");
+        step.classList.remove('active');
       }
     });
   }
@@ -481,13 +481,13 @@ class BrutalistContactHub {
     const currentStepElement = document.querySelector(
       `.form-step[data-step="${this.currentStep}"]`
     );
-    currentStepElement.style.opacity = "0";
-    currentStepElement.style.transform = "translateX(20px)";
+    currentStepElement.style.opacity = '0';
+    currentStepElement.style.transform = 'translateX(20px)';
 
     setTimeout(() => {
-      currentStepElement.style.transition = "all 0.3s ease";
-      currentStepElement.style.opacity = "1";
-      currentStepElement.style.transform = "translateX(0)";
+      currentStepElement.style.transition = 'all 0.3s ease';
+      currentStepElement.style.opacity = '1';
+      currentStepElement.style.transform = 'translateX(0)';
     }, 50);
   }
 
@@ -496,27 +496,27 @@ class BrutalistContactHub {
       return;
     }
 
-    const submitBtn = document.getElementById("submitBtn");
-    const originalText = submitBtn.querySelector(".btn-text").textContent;
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.querySelector('.btn-text').textContent;
 
     // Collect form data
     this.collectFormData();
 
     // Show submission animation
-    submitBtn.querySelector(".btn-text").textContent = "SUBMITTING...";
+    submitBtn.querySelector('.btn-text').textContent = 'SUBMITTING...';
     submitBtn.disabled = true;
 
     // Simulate submission process
     setTimeout(() => {
-      submitBtn.querySelector(".btn-text").textContent = "✓ SUBMITTED!";
+      submitBtn.querySelector('.btn-text').textContent = '✓ SUBMITTED!';
       this.showNotification(
         "Inquiry submitted successfully! We'll respond within 48 hours.",
-        "success"
+        'success'
       );
 
       setTimeout(() => {
         this.resetForm();
-        submitBtn.querySelector(".btn-text").textContent = originalText;
+        submitBtn.querySelector('.btn-text').textContent = originalText;
         submitBtn.disabled = false;
       }, 3000);
     }, 2000);
@@ -524,10 +524,10 @@ class BrutalistContactHub {
 
   collectFormData() {
     const formElements = this.inquiryForm.querySelectorAll(
-      "input, textarea, select"
+      'input, textarea, select'
     );
     formElements.forEach((element) => {
-      if (element.type === "checkbox" || element.type === "radio") {
+      if (element.type === 'checkbox' || element.type === 'radio') {
         if (element.checked) {
           if (!this.formData[element.name]) {
             this.formData[element.name] = [];
@@ -539,7 +539,7 @@ class BrutalistContactHub {
       }
     });
 
-    console.log("Form Data Collected:", this.formData);
+    console.log('Form Data Collected:', this.formData);
   }
 
   resetForm() {
@@ -550,96 +550,96 @@ class BrutalistContactHub {
 
     // Reset selections
     document
-      .querySelectorAll(".project-type")
-      .forEach((t) => t.classList.remove("selected"));
+      .querySelectorAll('.project-type')
+      .forEach((t) => t.classList.remove('selected'));
     document
-      .querySelectorAll(".progress-step")
-      .forEach((s) => s.classList.remove("active"));
+      .querySelectorAll('.progress-step')
+      .forEach((s) => s.classList.remove('active'));
     document
       .querySelector(".progress-step[data-step='1']")
-      .classList.add("active");
+      .classList.add('active');
   }
 
   setupContactMethods() {
-    const contactMethods = document.querySelectorAll(".contact-method");
+    const contactMethods = document.querySelectorAll('.contact-method');
 
     contactMethods.forEach((method) => {
-      const methodBtn = method.querySelector(".method-btn");
+      const methodBtn = method.querySelector('.method-btn');
 
-      methodBtn?.addEventListener("click", () => {
+      methodBtn?.addEventListener('click', () => {
         const action = methodBtn.dataset.action;
         this.handleContactMethod(action, methodBtn);
       });
 
       // Hover effects
-      method.addEventListener("mouseenter", () => {
-        method.style.transform = "translateY(-5px) scale(1.02)";
+      method.addEventListener('mouseenter', () => {
+        method.style.transform = 'translateY(-5px) scale(1.02)';
       });
 
-      method.addEventListener("mouseleave", () => {
-        method.style.transform = "translateY(0) scale(1)";
+      method.addEventListener('mouseleave', () => {
+        method.style.transform = 'translateY(0) scale(1)';
       });
     });
   }
 
   handleContactMethod(action, button) {
-    const originalText = button.querySelector(".btn-text").textContent;
+    const originalText = button.querySelector('.btn-text').textContent;
 
     switch (action) {
-      case "whatsapp":
-        button.querySelector(".btn-text").textContent = "OPENING WHATSAPP...";
+      case 'whatsapp':
+        button.querySelector('.btn-text').textContent = 'OPENING WHATSAPP...';
         setTimeout(() => {
-          window.open("https://wa.me/1234567890", "_blank");
-          button.querySelector(".btn-text").textContent = originalText;
+          window.open('https://wa.me/1234567890', '_blank');
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1000);
         break;
 
-      case "email":
-        button.querySelector(".btn-text").textContent = "OPENING EMAIL...";
+      case 'email':
+        button.querySelector('.btn-text').textContent = 'OPENING EMAIL...';
         setTimeout(() => {
           window.location.href =
-            "mailto:contact@example.com?subject=Project Inquiry";
-          button.querySelector(".btn-text").textContent = originalText;
+            'mailto:contact@example.com?subject=Project Inquiry';
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1000);
         break;
 
-      case "linkedin":
-        button.querySelector(".btn-text").textContent = "OPENING LINKEDIN...";
+      case 'linkedin':
+        button.querySelector('.btn-text').textContent = 'OPENING LINKEDIN...';
         setTimeout(() => {
-          window.open("https://linkedin.com/in/example", "_blank");
-          button.querySelector(".btn-text").textContent = originalText;
+          window.open('https://linkedin.com/in/example', '_blank');
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1000);
         break;
 
-      case "telegram":
-        button.querySelector(".btn-text").textContent = "OPENING TELEGRAM...";
+      case 'telegram':
+        button.querySelector('.btn-text').textContent = 'OPENING TELEGRAM...';
         setTimeout(() => {
-          window.open("https://t.me/example", "_blank");
-          button.querySelector(".btn-text").textContent = originalText;
+          window.open('https://t.me/example', '_blank');
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1000);
         break;
 
-      case "phone":
-        button.querySelector(".btn-text").textContent =
-          "INITIATING CALLBACK...";
+      case 'phone':
+        button.querySelector('.btn-text').textContent =
+          'INITIATING CALLBACK...';
         setTimeout(() => {
           this.showNotification(
             "Callback scheduled! We'll call you within 30 minutes.",
-            "success"
+            'success'
           );
-          button.querySelector(".btn-text").textContent = originalText;
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1500);
         break;
 
-      case "emergency":
-        button.querySelector(".btn-text").textContent =
-          "PRIORITY ALERT SENT...";
+      case 'emergency':
+        button.querySelector('.btn-text').textContent =
+          'PRIORITY ALERT SENT...';
         setTimeout(() => {
           this.showNotification(
-            "Emergency support activated! Response within 1 hour.",
-            "success"
+            'Emergency support activated! Response within 1 hour.',
+            'success'
           );
-          button.querySelector(".btn-text").textContent = originalText;
+          button.querySelector('.btn-text').textContent = originalText;
         }, 1500);
         break;
     }
@@ -656,22 +656,22 @@ class BrutalistContactHub {
   }
 
   updateCurrentTime() {
-    const currentTimeElement = document.querySelector(".current-time");
+    const currentTimeElement = document.querySelector('.current-time');
     if (!currentTimeElement) return;
 
     const now = new Date();
-    const timeString = now.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      timeZoneName: "short",
+    const timeString = now.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZoneName: 'short',
     });
 
     currentTimeElement.textContent = `Currently ${timeString} in New York`;
   }
 
   updateWorkloadIndicator() {
-    const workloadFill = document.querySelector(".workload-fill");
-    const workloadText = document.querySelector(".workload-text");
+    const workloadFill = document.querySelector('.workload-fill');
+    const workloadText = document.querySelector('.workload-text');
 
     if (!workloadFill || !workloadText) return;
 
@@ -679,11 +679,11 @@ class BrutalistContactHub {
     const workload = Math.floor(Math.random() * 30) + 60; // 60-90%
     workloadFill.style.width = `${workload}%`;
 
-    let status = "Accepting new projects";
+    let status = 'Accepting new projects';
     if (workload > 85) {
-      status = "Limited availability";
+      status = 'Limited availability';
     } else if (workload > 95) {
-      status = "Fully booked";
+      status = 'Fully booked';
     }
 
     workloadText.textContent = `${workload}% capacity • ${status}`;
@@ -699,13 +699,13 @@ class BrutalistContactHub {
 
     // Create floating particles
     for (let i = 0; i < 30; i++) {
-      const particle = document.createElement("div");
+      const particle = document.createElement('div');
       particle.style.cssText = `
         position: absolute;
         width: ${Math.random() * 4 + 2}px;
         height: ${Math.random() * 4 + 2}px;
         background: ${
-          Math.random() > 0.5 ? "var(--accent-cyan)" : "var(--accent-purple)"
+          Math.random() > 0.5 ? 'var(--accent-cyan)' : 'var(--accent-purple)'
         };
         border-radius: 50%;
         left: ${Math.random() * 100}%;
@@ -727,7 +727,7 @@ class BrutalistContactHub {
 
     // Create flowing data streams
     for (let i = 0; i < 5; i++) {
-      const stream = document.createElement("div");
+      const stream = document.createElement('div');
       stream.style.cssText = `
         position: absolute;
         width: 2px;
@@ -748,13 +748,13 @@ class BrutalistContactHub {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations
-            if (entry.target.classList.contains("contact-methods")) {
+            if (entry.target.classList.contains('contact-methods')) {
               this.animateContactMethods();
             } else if (
-              entry.target.classList.contains("availability-display")
+              entry.target.classList.contains('availability-display')
             ) {
               this.animateAvailabilityDisplay();
             }
@@ -766,10 +766,10 @@ class BrutalistContactHub {
 
     // Observe key elements
     const elementsToObserve = [
-      ".calendar-widget",
-      ".inquiry-form",
-      ".contact-methods",
-      ".availability-display",
+      '.calendar-widget',
+      '.inquiry-form',
+      '.contact-methods',
+      '.availability-display',
     ];
 
     elementsToObserve.forEach((selector) => {
@@ -779,23 +779,23 @@ class BrutalistContactHub {
   }
 
   animateContactMethods() {
-    const methods = document.querySelectorAll(".contact-method");
+    const methods = document.querySelectorAll('.contact-method');
     methods.forEach((method, index) => {
       setTimeout(() => {
-        method.style.transform = "translateY(0)";
-        method.style.opacity = "1";
+        method.style.transform = 'translateY(0)';
+        method.style.opacity = '1';
       }, index * 100);
     });
   }
 
   animateAvailabilityDisplay() {
-    const workloadFill = document.querySelector(".workload-fill");
+    const workloadFill = document.querySelector('.workload-fill');
     if (workloadFill) {
       const targetWidth = workloadFill.style.width;
-      workloadFill.style.width = "0%";
+      workloadFill.style.width = '0%';
 
       setTimeout(() => {
-        workloadFill.style.transition = "width 2s ease-out";
+        workloadFill.style.transition = 'width 2s ease-out';
         workloadFill.style.width = targetWidth;
       }, 500);
     }
@@ -817,13 +817,13 @@ class BrutalistContactHub {
     this.particles.forEach((particle) => {
       if (Math.random() > 0.98) {
         particle.style.background =
-          Math.random() > 0.5 ? "var(--accent-cyan)" : "var(--accent-purple)";
+          Math.random() > 0.5 ? 'var(--accent-cyan)' : 'var(--accent-purple)';
       }
     });
   }
 
-  showNotification(message, type = "info") {
-    const notification = document.createElement("div");
+  showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
     notification.style.cssText = `
@@ -831,14 +831,14 @@ class BrutalistContactHub {
       top: 20px;
       right: 20px;
       background: ${
-        type === "error"
-          ? "#ff4444"
-          : type === "success"
-            ? "#00ff00"
-            : "var(--accent-cyan)"
+        type === 'error'
+          ? '#ff4444'
+          : type === 'success'
+            ? '#00ff00'
+            : 'var(--accent-cyan)'
       };
       color: ${
-        type === "success" ? "var(--primary-black)" : "var(--primary-white)"
+        type === 'success' ? 'var(--primary-black)' : 'var(--primary-white)'
       };
       padding: 1rem 2rem;
       font-family: "JetBrains Mono", monospace;
@@ -852,7 +852,7 @@ class BrutalistContactHub {
     document.body.appendChild(notification);
 
     setTimeout(() => {
-      notification.style.animation = "slideOutRight 0.3s ease-out";
+      notification.style.animation = 'slideOutRight 0.3s ease-out';
       setTimeout(() => {
         notification.remove();
       }, 300);
@@ -861,7 +861,7 @@ class BrutalistContactHub {
 }
 
 // Add required CSS animations
-const style = document.createElement("style");
+const style = document.createElement('style');
 style.textContent = `
   @keyframes particleFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -897,6 +897,6 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Initialize the contact hub when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistContactHub();
 });

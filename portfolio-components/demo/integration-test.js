@@ -12,7 +12,7 @@ class IntegrationTestSuite {
   }
 
   async runAllTests() {
-    console.log("🚀 Starting Integration Test Suite...");
+    console.log('🚀 Starting Integration Test Suite...');
 
     try {
       // Wait for page to fully load
@@ -30,36 +30,36 @@ class IntegrationTestSuite {
       // Generate report
       this.generateTestReport();
     } catch (error) {
-      console.error("❌ Test suite failed:", error);
+      console.error('❌ Test suite failed:', error);
       this.errors.push(`Test suite failure: ${error.message}`);
     }
   }
 
   async waitForPageLoad() {
     return new Promise((resolve) => {
-      if (document.readyState === "complete") {
+      if (document.readyState === 'complete') {
         resolve();
       } else {
-        window.addEventListener("load", resolve);
+        window.addEventListener('load', resolve);
       }
     });
   }
 
   async testComponentLoading() {
-    console.log("📦 Testing component loading...");
+    console.log('📦 Testing component loading...');
 
     const expectedComponents = [
-      "navigation",
-      "hero",
-      "trust",
-      "value-proposition",
-      "project-showcase",
-      "tech-capabilities",
-      "results",
-      "process",
-      "social-proof",
-      "contact-hub",
-      "footer",
+      'navigation',
+      'hero',
+      'trust',
+      'value-proposition',
+      'project-showcase',
+      'tech-capabilities',
+      'results',
+      'process',
+      'social-proof',
+      'contact-hub',
+      'footer',
     ];
 
     const loadedComponents = [];
@@ -77,7 +77,7 @@ class IntegrationTestSuite {
     });
 
     this.testResults.push({
-      category: "Component Loading",
+      category: 'Component Loading',
       passed: missingComponents.length === 0,
       details: {
         loaded: loadedComponents.length,
@@ -88,19 +88,19 @@ class IntegrationTestSuite {
   }
 
   async testSharedResourceUsage() {
-    console.log("🔗 Testing shared resource usage...");
+    console.log('🔗 Testing shared resource usage...');
 
     // Test CSS variables availability
-    const testElement = document.createElement("div");
+    const testElement = document.createElement('div');
     document.body.appendChild(testElement);
 
     const cssVariables = [
-      "--primary-black",
-      "--primary-white",
-      "--accent-cyan",
-      "--font-mono",
-      "--spacing-md",
-      "--nav-height",
+      '--primary-black',
+      '--primary-white',
+      '--accent-cyan',
+      '--font-mono',
+      '--spacing-md',
+      '--nav-height',
     ];
 
     const availableVariables = [];
@@ -121,7 +121,7 @@ class IntegrationTestSuite {
     document.body.removeChild(testElement);
 
     // Test shared JavaScript utilities
-    const sharedUtilities = ["BrutalistUtils"];
+    const sharedUtilities = ['BrutalistUtils'];
     const availableUtilities = [];
     const missingUtilities = [];
 
@@ -136,7 +136,7 @@ class IntegrationTestSuite {
     });
 
     this.testResults.push({
-      category: "Shared Resources",
+      category: 'Shared Resources',
       passed: missingVariables.length === 0,
       details: {
         cssVariables: {
@@ -152,7 +152,7 @@ class IntegrationTestSuite {
   }
 
   async testCSSConflicts() {
-    console.log("🎨 Testing CSS conflicts...");
+    console.log('🎨 Testing CSS conflicts...');
 
     const conflicts = [];
     const duplicateClasses = new Map();
@@ -200,7 +200,7 @@ class IntegrationTestSuite {
     }
 
     this.testResults.push({
-      category: "CSS Conflicts",
+      category: 'CSS Conflicts',
       passed: conflicts.length === 0,
       details: {
         conflicts: conflicts.length,
@@ -210,30 +210,30 @@ class IntegrationTestSuite {
   }
 
   async testJavaScriptErrors() {
-    console.log("🔧 Testing JavaScript errors...");
+    console.log('🔧 Testing JavaScript errors...');
 
     const jsErrors = [];
     const originalConsoleError = console.error;
 
     // Capture console errors
     console.error = (...args) => {
-      jsErrors.push(args.join(" "));
+      jsErrors.push(args.join(' '));
       originalConsoleError.apply(console, args);
     };
 
     // Test component initialization
     const componentClasses = [
-      "BrutalistNavigation",
-      "BrutalistHero",
-      "BrutalistTrust",
-      "BrutalistValueProposition",
-      "BrutalistProjectShowcase",
-      "BrutalistTechCapabilities",
-      "BrutalistResults",
-      "BrutalistProcess",
-      "BrutalistSocialProof",
-      "BrutalistContactHub",
-      "BrutalistFooter",
+      'BrutalistNavigation',
+      'BrutalistHero',
+      'BrutalistTrust',
+      'BrutalistValueProposition',
+      'BrutalistProjectShowcase',
+      'BrutalistTechCapabilities',
+      'BrutalistResults',
+      'BrutalistProcess',
+      'BrutalistSocialProof',
+      'BrutalistContactHub',
+      'BrutalistFooter',
     ];
 
     const initializedComponents = [];
@@ -259,7 +259,7 @@ class IntegrationTestSuite {
     console.error = originalConsoleError;
 
     this.testResults.push({
-      category: "JavaScript Errors",
+      category: 'JavaScript Errors',
       passed: jsErrors.length === 0 && failedComponents.length === 0,
       details: {
         errors: jsErrors,
@@ -270,14 +270,14 @@ class IntegrationTestSuite {
   }
 
   async testCrossComponentInteractions() {
-    console.log("🔄 Testing cross-component interactions...");
+    console.log('🔄 Testing cross-component interactions...');
 
     const interactions = [];
 
     // Test navigation to section scrolling
     try {
-      const navItems = document.querySelectorAll("[data-section]");
-      const sections = document.querySelectorAll(".component-section");
+      const navItems = document.querySelectorAll('[data-section]');
+      const sections = document.querySelectorAll('.component-section');
 
       this.logSuccess(
         `✅ Found ${navItems.length} navigation items and ${sections.length} sections`
@@ -286,14 +286,14 @@ class IntegrationTestSuite {
       // Test smooth scrolling functionality
       if (navItems.length > 0) {
         const firstNavItem = navItems[0];
-        const sectionName = firstNavItem.getAttribute("data-section");
+        const sectionName = firstNavItem.getAttribute('data-section');
 
         // Simulate click (without actually scrolling)
-        const clickEvent = new Event("click", { bubbles: true });
+        const clickEvent = new Event('click', { bubbles: true });
         firstNavItem.dispatchEvent(clickEvent);
 
         interactions.push({
-          type: "navigation-scroll",
+          type: 'navigation-scroll',
           success: true,
           details: `Navigation item for ${sectionName} responds to clicks`,
         });
@@ -302,7 +302,7 @@ class IntegrationTestSuite {
       }
     } catch (error) {
       interactions.push({
-        type: "navigation-scroll",
+        type: 'navigation-scroll',
         success: false,
         error: error.message,
       });
@@ -317,7 +317,7 @@ class IntegrationTestSuite {
       this.logSuccess(`✅ Found ${animatedElements.length} animated elements`);
 
       interactions.push({
-        type: "animations",
+        type: 'animations',
         success: true,
         details: `${animatedElements.length} animated elements detected`,
       });
@@ -326,14 +326,14 @@ class IntegrationTestSuite {
     }
 
     this.testResults.push({
-      category: "Cross-Component Interactions",
+      category: 'Cross-Component Interactions',
       passed: interactions.every((i) => i.success),
       details: { interactions },
     });
   }
 
   async testAnimationPerformance() {
-    console.log("⚡ Testing animation performance...");
+    console.log('⚡ Testing animation performance...');
 
     const performanceMetrics = {
       animationFrames: 0,
@@ -380,7 +380,7 @@ class IntegrationTestSuite {
           }
 
           this.testResults.push({
-            category: "Animation Performance",
+            category: 'Animation Performance',
             passed: performanceGood,
             details: performanceMetrics,
           });
@@ -394,13 +394,13 @@ class IntegrationTestSuite {
   }
 
   async testResponsiveIntegration() {
-    console.log("📱 Testing responsive integration...");
+    console.log('📱 Testing responsive integration...');
 
     const breakpoints = [
-      { name: "mobile", width: 375 },
-      { name: "tablet", width: 768 },
-      { name: "desktop", width: 1024 },
-      { name: "large", width: 1440 },
+      { name: 'mobile', width: 375 },
+      { name: 'tablet', width: 768 },
+      { name: 'desktop', width: 1024 },
+      { name: 'large', width: 1440 },
     ];
 
     const responsiveTests = [];
@@ -438,14 +438,14 @@ class IntegrationTestSuite {
     }
 
     this.testResults.push({
-      category: "Responsive Integration",
+      category: 'Responsive Integration',
       passed: responsiveTests.every((test) => !test.error),
       details: { breakpointTests: responsiveTests },
     });
   }
 
   logSuccess(message) {
-    console.log(`%c${message}`, "color: #00ff00");
+    console.log(`%c${message}`, 'color: #00ff00');
   }
 
   logWarning(message) {
@@ -466,46 +466,46 @@ class IntegrationTestSuite {
     const totalTests = this.testResults.length;
     const successRate = Math.round((passedTests / totalTests) * 100);
 
-    console.log("\n" + "=".repeat(60));
-    console.log("📊 INTEGRATION TEST REPORT");
-    console.log("=".repeat(60));
+    console.log('\n' + '='.repeat(60));
+    console.log('📊 INTEGRATION TEST REPORT');
+    console.log('='.repeat(60));
     console.log(`⏱️  Duration: ${duration}ms`);
     console.log(`✅ Passed: ${passedTests}/${totalTests} (${successRate}%)`);
     console.log(`⚠️  Warnings: ${this.warnings.length}`);
     console.log(`❌ Errors: ${this.errors.length}`);
-    console.log("=".repeat(60));
+    console.log('='.repeat(60));
 
     // Detailed results
     this.testResults.forEach((result) => {
-      const status = result.passed ? "✅" : "❌";
+      const status = result.passed ? '✅' : '❌';
       console.log(`${status} ${result.category}`);
       if (result.details) {
-        console.log("   Details:", result.details);
+        console.log('   Details:', result.details);
       }
     });
 
     if (this.warnings.length > 0) {
-      console.log("\n⚠️  WARNINGS:");
+      console.log('\n⚠️  WARNINGS:');
       this.warnings.forEach((warning) => console.log(`   ${warning}`));
     }
 
     if (this.errors.length > 0) {
-      console.log("\n❌ ERRORS:");
+      console.log('\n❌ ERRORS:');
       this.errors.forEach((error) => console.log(`   ${error}`));
     }
 
     // Overall assessment
-    console.log("\n" + "=".repeat(60));
+    console.log('\n' + '='.repeat(60));
     if (successRate >= 90) {
       console.log(
-        "🎉 INTEGRATION TEST PASSED - Components are well integrated!"
+        '🎉 INTEGRATION TEST PASSED - Components are well integrated!'
       );
     } else if (successRate >= 70) {
-      console.log("⚠️  INTEGRATION TEST PARTIAL - Some issues need attention");
+      console.log('⚠️  INTEGRATION TEST PARTIAL - Some issues need attention');
     } else {
-      console.log("❌ INTEGRATION TEST FAILED - Significant issues detected");
+      console.log('❌ INTEGRATION TEST FAILED - Significant issues detected');
     }
-    console.log("=".repeat(60));
+    console.log('='.repeat(60));
 
     // Store results for external access
     window.integrationTestResults = {
@@ -520,7 +520,7 @@ class IntegrationTestSuite {
 }
 
 // Auto-run tests when script is loaded
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.IntegrationTestSuite = IntegrationTestSuite;
 
   // Run tests after a short delay to ensure all components are loaded
@@ -531,6 +531,6 @@ if (typeof window !== "undefined") {
 }
 
 // Export for Node.js environments
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = IntegrationTestSuite;
 }

@@ -1,14 +1,14 @@
 // Brutalist Social Proof Component
 class BrutalistSocialProof {
   constructor() {
-    this.socialProofSection = document.getElementById("socialProofSection");
-    this.networkParticles = document.getElementById("networkParticles");
-    this.connectionStreams = document.getElementById("connectionStreams");
-    this.recommendationsGrid = document.getElementById("recommendationsGrid");
+    this.socialProofSection = document.getElementById('socialProofSection');
+    this.networkParticles = document.getElementById('networkParticles');
+    this.connectionStreams = document.getElementById('connectionStreams');
+    this.recommendationsGrid = document.getElementById('recommendationsGrid');
     this.logoTracks = {
-      enterprise: document.getElementById("enterpriseTrack"),
-      growth: document.getElementById("growthTrack"),
-      startup: document.getElementById("startupTrack"),
+      enterprise: document.getElementById('enterpriseTrack'),
+      growth: document.getElementById('growthTrack'),
+      startup: document.getElementById('startupTrack'),
     };
 
     this.particles = [];
@@ -35,8 +35,8 @@ class BrutalistSocialProof {
 
     // Create 30 network particles
     for (let i = 0; i < 30; i++) {
-      const particle = document.createElement("div");
-      particle.className = "network-particle";
+      const particle = document.createElement('div');
+      particle.className = 'network-particle';
       particle.style.cssText = `
                 position: absolute;
                 width: ${Math.random() * 4 + 2}px;
@@ -69,8 +69,8 @@ class BrutalistSocialProof {
     // Create flowing connection lines
     setInterval(() => {
       if (this.isVisible && Math.random() > 0.7) {
-        const stream = document.createElement("div");
-        stream.className = "connection-stream";
+        const stream = document.createElement('div');
+        stream.className = 'connection-stream';
         stream.style.cssText = `
                     position: absolute;
                     width: 2px;
@@ -96,7 +96,7 @@ class BrutalistSocialProof {
 
   setupRecommendationInteractions() {
     const recommendationCards = document.querySelectorAll(
-      ".recommendation-card"
+      '.recommendation-card'
     );
 
     recommendationCards.forEach((card, index) => {
@@ -104,18 +104,18 @@ class BrutalistSocialProof {
       card.style.animationDelay = `${index * 0.1}s`;
 
       // Add hover effects
-      card.addEventListener("mouseenter", () => {
+      card.addEventListener('mouseenter', () => {
         this.triggerRecommendationHover(card);
       });
 
-      card.addEventListener("mouseleave", () => {
+      card.addEventListener('mouseleave', () => {
         this.resetRecommendationHover(card);
       });
 
       // Add click interaction for LinkedIn links
-      const linkedinLink = card.querySelector(".view-linkedin");
+      const linkedinLink = card.querySelector('.view-linkedin');
       if (linkedinLink) {
-        linkedinLink.addEventListener("click", (e) => {
+        linkedinLink.addEventListener('click', (e) => {
           e.preventDefault();
           this.triggerLinkedInEffect(card);
         });
@@ -125,40 +125,40 @@ class BrutalistSocialProof {
 
   triggerRecommendationHover(card) {
     // Add glitch effect to quote marks
-    const quoteMark = card.querySelector(".quote-marks");
+    const quoteMark = card.querySelector('.quote-marks');
     if (quoteMark) {
-      quoteMark.style.animation = "textGlitch 0.3s ease-out";
+      quoteMark.style.animation = 'textGlitch 0.3s ease-out';
     }
 
     // Animate profile photo
-    const profilePhoto = card.querySelector(".profile-photo");
+    const profilePhoto = card.querySelector('.profile-photo');
     if (profilePhoto) {
-      profilePhoto.style.transform = "scale(1.1) rotate(5deg)";
-      profilePhoto.style.filter = "brightness(1.2)";
+      profilePhoto.style.transform = 'scale(1.1) rotate(5deg)';
+      profilePhoto.style.filter = 'brightness(1.2)';
     }
 
     // Add typing effect to recommendation text
-    const recommendationText = card.querySelector(".recommendation-text");
+    const recommendationText = card.querySelector('.recommendation-text');
     if (recommendationText && !card.dataset.animated) {
-      card.dataset.animated = "true";
+      card.dataset.animated = 'true';
       this.addTypingCursor(recommendationText);
     }
   }
 
   resetRecommendationHover(card) {
-    const profilePhoto = card.querySelector(".profile-photo");
+    const profilePhoto = card.querySelector('.profile-photo');
     if (profilePhoto) {
-      profilePhoto.style.transform = "scale(1) rotate(0deg)";
-      profilePhoto.style.filter = "brightness(1)";
+      profilePhoto.style.transform = 'scale(1) rotate(0deg)';
+      profilePhoto.style.filter = 'brightness(1)';
     }
 
     this.removeTypingCursor(card);
   }
 
   addTypingCursor(textElement) {
-    const cursor = document.createElement("span");
-    cursor.className = "typing-cursor";
-    cursor.textContent = "|";
+    const cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    cursor.textContent = '|';
     cursor.style.cssText = `
             color: var(--accent-cyan);
             animation: blink 1s step-end infinite;
@@ -168,7 +168,7 @@ class BrutalistSocialProof {
   }
 
   removeTypingCursor(card) {
-    const cursor = card.querySelector(".typing-cursor");
+    const cursor = card.querySelector('.typing-cursor');
     if (cursor) {
       cursor.remove();
     }
@@ -176,8 +176,8 @@ class BrutalistSocialProof {
 
   triggerLinkedInEffect(card) {
     // Create LinkedIn verification animation
-    const verification = document.createElement("div");
-    verification.className = "linkedin-verification";
+    const verification = document.createElement('div');
+    verification.className = 'linkedin-verification';
     verification.innerHTML = `
             <div class="verification-popup">
                 <div class="verification-icon">✓</div>
@@ -193,11 +193,11 @@ class BrutalistSocialProof {
             pointer-events: none;
         `;
 
-    card.style.position = "relative";
+    card.style.position = 'relative';
     card.appendChild(verification);
 
     // Animate verification popup
-    const popup = verification.querySelector(".verification-popup");
+    const popup = verification.querySelector('.verification-popup');
     popup.style.cssText = `
             background: var(--accent-green);
             color: var(--primary-black);
@@ -222,27 +222,27 @@ class BrutalistSocialProof {
     Object.entries(this.logoTracks).forEach(([tier, track]) => {
       if (!track) return;
 
-      const logos = track.querySelectorAll(".client-logo");
+      const logos = track.querySelectorAll('.client-logo');
 
       logos.forEach((logo) => {
-        logo.addEventListener("mouseenter", () => {
+        logo.addEventListener('mouseenter', () => {
           // Pause carousel animation on hover
-          track.style.animationPlayState = "paused";
+          track.style.animationPlayState = 'paused';
 
           // Add glow effect
-          logo.style.boxShadow = "0 0 20px var(--accent-cyan)";
+          logo.style.boxShadow = '0 0 20px var(--accent-cyan)';
         });
 
-        logo.addEventListener("mouseleave", () => {
+        logo.addEventListener('mouseleave', () => {
           // Resume carousel animation
-          track.style.animationPlayState = "running";
+          track.style.animationPlayState = 'running';
 
           // Remove glow effect
-          logo.style.boxShadow = "none";
+          logo.style.boxShadow = 'none';
         });
 
         // Add click effect
-        logo.addEventListener("click", () => {
+        logo.addEventListener('click', () => {
           this.triggerClientLogoClick(logo);
         });
       });
@@ -251,8 +251,8 @@ class BrutalistSocialProof {
 
   triggerClientLogoClick(logo) {
     // Create success notification
-    const notification = document.createElement("div");
-    notification.className = "client-notification";
+    const notification = document.createElement('div');
+    notification.className = 'client-notification';
     notification.innerHTML = `
             <div class="notification-content">
                 <div class="notification-icon">🤝</div>
@@ -267,7 +267,7 @@ class BrutalistSocialProof {
             pointer-events: none;
         `;
 
-    const content = notification.querySelector(".notification-content");
+    const content = notification.querySelector('.notification-content');
     content.style.cssText = `
             background: var(--accent-yellow);
             color: var(--primary-black);
@@ -286,34 +286,34 @@ class BrutalistSocialProof {
 
     // Remove after 3 seconds
     setTimeout(() => {
-      content.style.animation = "slideOutRight 0.5s ease-out forwards";
+      content.style.animation = 'slideOutRight 0.5s ease-out forwards';
       setTimeout(() => notification.remove(), 500);
     }, 3000);
   }
 
   setupContributionCardAnimations() {
-    const contributionCards = document.querySelectorAll(".contribution-card");
+    const contributionCards = document.querySelectorAll('.contribution-card');
 
     contributionCards.forEach((card, index) => {
-      card.addEventListener("mouseenter", () => {
+      card.addEventListener('mouseenter', () => {
         // Add code streaming effect
         this.addCodeStreamEffect(card);
       });
 
-      card.addEventListener("mouseleave", () => {
+      card.addEventListener('mouseleave', () => {
         this.removeCodeStreamEffect(card);
       });
 
       // Add click interaction for GitHub links
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         this.triggerContributionEffect(card);
       });
     });
   }
 
   addCodeStreamEffect(card) {
-    const codeStream = document.createElement("div");
-    codeStream.className = "code-stream";
+    const codeStream = document.createElement('div');
+    codeStream.className = 'code-stream';
     codeStream.innerHTML = `
             <div class="stream-line">git commit -m "feat: enhanced performance"</div>
             <div class="stream-line">git push origin main</div>
@@ -330,25 +330,25 @@ class BrutalistSocialProof {
             pointer-events: none;
         `;
 
-    card.style.position = "relative";
+    card.style.position = 'relative';
     card.appendChild(codeStream);
 
     // Animate stream lines
-    const lines = codeStream.querySelectorAll(".stream-line");
+    const lines = codeStream.querySelectorAll('.stream-line');
     lines.forEach((line, index) => {
-      line.style.opacity = "0";
-      line.style.transform = "translateY(10px)";
-      line.style.transition = "all 0.3s ease";
+      line.style.opacity = '0';
+      line.style.transform = 'translateY(10px)';
+      line.style.transition = 'all 0.3s ease';
 
       setTimeout(() => {
-        line.style.opacity = "1";
-        line.style.transform = "translateY(0)";
+        line.style.opacity = '1';
+        line.style.transform = 'translateY(0)';
       }, index * 200);
     });
   }
 
   removeCodeStreamEffect(card) {
-    const codeStream = card.querySelector(".code-stream");
+    const codeStream = card.querySelector('.code-stream');
     if (codeStream) {
       codeStream.remove();
     }
@@ -356,8 +356,8 @@ class BrutalistSocialProof {
 
   triggerContributionEffect(card) {
     // Add commit animation
-    const commitEffect = document.createElement("div");
-    commitEffect.className = "commit-effect";
+    const commitEffect = document.createElement('div');
+    commitEffect.className = 'commit-effect';
     commitEffect.innerHTML = `
             <div class="commit-message">
                 <div class="commit-icon">📝</div>
@@ -373,7 +373,7 @@ class BrutalistSocialProof {
             pointer-events: none;
         `;
 
-    const message = commitEffect.querySelector(".commit-message");
+    const message = commitEffect.querySelector('.commit-message');
     message.style.cssText = `
             background: var(--accent-green);
             color: var(--primary-black);
@@ -396,31 +396,31 @@ class BrutalistSocialProof {
   }
 
   setupAwardAnimations() {
-    const awardItems = document.querySelectorAll(".award-item");
+    const awardItems = document.querySelectorAll('.award-item');
 
     awardItems.forEach((item, index) => {
-      item.addEventListener("mouseenter", () => {
+      item.addEventListener('mouseenter', () => {
         // Add medal shine effect
-        const icon = item.querySelector(".award-icon");
+        const icon = item.querySelector('.award-icon');
         if (icon) {
-          icon.style.animation = "medallionGlow 1s ease-in-out infinite";
+          icon.style.animation = 'medallionGlow 1s ease-in-out infinite';
         }
       });
 
-      item.addEventListener("mouseleave", () => {
-        const icon = item.querySelector(".award-icon");
+      item.addEventListener('mouseleave', () => {
+        const icon = item.querySelector('.award-icon');
         if (icon) {
-          icon.style.animation = "none";
+          icon.style.animation = 'none';
         }
       });
     });
   }
 
   setupVerificationEffects() {
-    const verificationLinks = document.querySelectorAll(".verification-link");
+    const verificationLinks = document.querySelectorAll('.verification-link');
 
     verificationLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
         this.triggerVerificationEffect(link);
       });
@@ -431,18 +431,18 @@ class BrutalistSocialProof {
     const originalText = link.textContent;
 
     // Change text and style
-    link.textContent = "VERIFYING...";
-    link.style.color = "var(--accent-yellow)";
-    link.style.animation = "pulse 0.5s ease-in-out infinite";
+    link.textContent = 'VERIFYING...';
+    link.style.color = 'var(--accent-yellow)';
+    link.style.animation = 'pulse 0.5s ease-in-out infinite';
 
     setTimeout(() => {
-      link.textContent = "✓ VERIFIED";
-      link.style.color = "var(--accent-green)";
-      link.style.animation = "none";
+      link.textContent = '✓ VERIFIED';
+      link.style.color = 'var(--accent-green)';
+      link.style.animation = 'none';
 
       setTimeout(() => {
         link.textContent = originalText;
-        link.style.color = "";
+        link.style.color = '';
       }, 2000);
     }, 1500);
   }
@@ -453,17 +453,17 @@ class BrutalistSocialProof {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             this.isVisible = true;
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations based on element
-            if (entry.target.classList.contains("linkedin-recommendations")) {
+            if (entry.target.classList.contains('linkedin-recommendations')) {
               this.animateRecommendations();
             } else if (
-              entry.target.classList.contains("community-contributions")
+              entry.target.classList.contains('community-contributions')
             ) {
               this.animateContributions();
             } else if (
-              entry.target.classList.contains("industry-recognition")
+              entry.target.classList.contains('industry-recognition')
             ) {
               this.animateAwards();
             }
@@ -477,10 +477,10 @@ class BrutalistSocialProof {
 
     // Observe key sections
     const sectionsToObserve = [
-      ".linkedin-recommendations",
-      ".community-contributions",
-      ".speaking-publications",
-      ".industry-recognition",
+      '.linkedin-recommendations',
+      '.community-contributions',
+      '.speaking-publications',
+      '.industry-recognition',
     ];
 
     sectionsToObserve.forEach((selector) => {
@@ -490,37 +490,37 @@ class BrutalistSocialProof {
   }
 
   animateRecommendations() {
-    const cards = document.querySelectorAll(".recommendation-card");
+    const cards = document.querySelectorAll('.recommendation-card');
     cards.forEach((card, index) => {
       setTimeout(() => {
-        card.style.transform = "translateY(0) scale(1)";
-        card.style.opacity = "1";
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.opacity = '1';
       }, index * 100);
     });
   }
 
   animateContributions() {
-    const cards = document.querySelectorAll(".contribution-card");
+    const cards = document.querySelectorAll('.contribution-card');
     cards.forEach((card, index) => {
       setTimeout(() => {
-        card.style.animation = "slideInUp 0.6s ease-out forwards";
+        card.style.animation = 'slideInUp 0.6s ease-out forwards';
       }, index * 150);
     });
   }
 
   animateAwards() {
-    const categories = document.querySelectorAll(".award-category");
+    const categories = document.querySelectorAll('.award-category');
     categories.forEach((category, index) => {
       setTimeout(() => {
-        category.style.transform = "scale(1) rotate(0deg)";
-        category.style.opacity = "1";
+        category.style.transform = 'scale(1) rotate(0deg)';
+        category.style.opacity = '1';
 
         // Animate individual awards
-        const awards = category.querySelectorAll(".award-item");
+        const awards = category.querySelectorAll('.award-item');
         awards.forEach((award, awardIndex) => {
           setTimeout(() => {
-            award.style.transform = "translateX(0)";
-            award.style.opacity = "1";
+            award.style.transform = 'translateX(0)';
+            award.style.opacity = '1';
           }, awardIndex * 100);
         });
       }, index * 200);
@@ -529,7 +529,7 @@ class BrutalistSocialProof {
 
   startBackgroundAnimations() {
     // Add CSS animations
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
             @keyframes textGlitch {
                 0% { transform: translate(0); }
@@ -612,9 +612,9 @@ class BrutalistSocialProof {
         // Random color changes
         if (Math.random() > 0.99) {
           const colors = [
-            "var(--accent-cyan)",
-            "var(--accent-purple)",
-            "var(--accent-yellow)",
+            'var(--accent-cyan)',
+            'var(--accent-purple)',
+            'var(--accent-yellow)',
           ];
           particle.element.style.background =
             colors[Math.floor(Math.random() * colors.length)];
@@ -625,11 +625,11 @@ class BrutalistSocialProof {
 }
 
 // Initialize the social proof component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistSocialProof();
 });
 
 // Export for use in other modules
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistSocialProof;
 }

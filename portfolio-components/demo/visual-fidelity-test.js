@@ -13,7 +13,7 @@ class VisualFidelityTestSuite {
   }
 
   async runVisualTests() {
-    console.log("🎨 Starting Visual Fidelity Test Suite...");
+    console.log('🎨 Starting Visual Fidelity Test Suite...');
 
     try {
       await this.testLayoutStructure();
@@ -27,25 +27,25 @@ class VisualFidelityTestSuite {
 
       this.generateVisualReport();
     } catch (error) {
-      console.error("❌ Visual fidelity test suite failed:", error);
+      console.error('❌ Visual fidelity test suite failed:', error);
     }
   }
 
   async testLayoutStructure() {
-    console.log("📐 Testing layout structure...");
+    console.log('📐 Testing layout structure...');
 
     const expectedSections = [
-      { id: "navigation-component", name: "Navigation" },
-      { id: "hero-component", name: "Hero" },
-      { id: "trust-component", name: "Trust" },
-      { id: "value-proposition-component", name: "Value Proposition" },
-      { id: "project-showcase-component", name: "Project Showcase" },
-      { id: "tech-capabilities-component", name: "Tech Capabilities" },
-      { id: "results-component", name: "Results" },
-      { id: "process-component", name: "Process" },
-      { id: "social-proof-component", name: "Social Proof" },
-      { id: "contact-hub-component", name: "Contact Hub" },
-      { id: "footer-component", name: "Footer" },
+      { id: 'navigation-component', name: 'Navigation' },
+      { id: 'hero-component', name: 'Hero' },
+      { id: 'trust-component', name: 'Trust' },
+      { id: 'value-proposition-component', name: 'Value Proposition' },
+      { id: 'project-showcase-component', name: 'Project Showcase' },
+      { id: 'tech-capabilities-component', name: 'Tech Capabilities' },
+      { id: 'results-component', name: 'Results' },
+      { id: 'process-component', name: 'Process' },
+      { id: 'social-proof-component', name: 'Social Proof' },
+      { id: 'contact-hub-component', name: 'Contact Hub' },
+      { id: 'footer-component', name: 'Footer' },
     ];
 
     const layoutIssues = [];
@@ -83,7 +83,7 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Layout Structure",
+      category: 'Layout Structure',
       passed: layoutIssues.length === 0,
       details: {
         sectionsFound: presentSections.length,
@@ -95,10 +95,10 @@ class VisualFidelityTestSuite {
   }
 
   async testTypography() {
-    console.log("🔤 Testing typography...");
+    console.log('🔤 Testing typography...');
 
     const typographyTests = [];
-    const expectedFonts = ["Space Mono", "JetBrains Mono"];
+    const expectedFonts = ['Space Mono', 'JetBrains Mono'];
 
     // Test font loading
     const fontTests = expectedFonts.map(async (fontFamily) => {
@@ -106,8 +106,8 @@ class VisualFidelityTestSuite {
         const fontFace = new FontFace(
           fontFamily,
           `url(https://fonts.googleapis.com/css2?family=${fontFamily.replace(
-            " ",
-            "+"
+            ' ',
+            '+'
           )}`
         );
         await fontFace.load();
@@ -125,18 +125,18 @@ class VisualFidelityTestSuite {
 
     // Test typography elements
     const typographyElements = [
-      { selector: "h1", expectedFont: "Space Mono", expectedWeight: "900" },
-      { selector: "h2", expectedFont: "Space Mono", expectedWeight: "700" },
-      { selector: "h3", expectedFont: "Space Mono", expectedWeight: "700" },
+      { selector: 'h1', expectedFont: 'Space Mono', expectedWeight: '900' },
+      { selector: 'h2', expectedFont: 'Space Mono', expectedWeight: '700' },
+      { selector: 'h3', expectedFont: 'Space Mono', expectedWeight: '700' },
       {
-        selector: ".code-content",
-        expectedFont: "JetBrains Mono",
-        expectedWeight: "400",
+        selector: '.code-content',
+        expectedFont: 'JetBrains Mono',
+        expectedWeight: '400',
       },
       {
-        selector: ".nav-text",
-        expectedFont: "Space Mono",
-        expectedWeight: "700",
+        selector: '.nav-text',
+        expectedFont: 'Space Mono',
+        expectedWeight: '700',
       },
     ];
 
@@ -148,12 +148,12 @@ class VisualFidelityTestSuite {
         const fontWeight = computedStyle.fontWeight;
 
         const fontMatch =
-          fontFamily.includes(test.expectedFont.replace(" ", "")) ||
+          fontFamily.includes(test.expectedFont.replace(' ', '')) ||
           fontFamily.includes(test.expectedFont);
         const weightMatch =
           fontWeight === test.expectedWeight ||
-          (fontWeight === "bold" && test.expectedWeight === "700") ||
-          (fontWeight === "normal" && test.expectedWeight === "400");
+          (fontWeight === 'bold' && test.expectedWeight === '700') ||
+          (fontWeight === 'normal' && test.expectedWeight === '400');
 
         if (fontMatch && weightMatch) {
           this.logSuccess(`✅ ${test.selector}[${index}] typography correct`);
@@ -166,7 +166,7 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Typography",
+      category: 'Typography',
       passed: typographyTests.length === 0,
       details: {
         fontResults,
@@ -176,20 +176,20 @@ class VisualFidelityTestSuite {
   }
 
   async testColorScheme() {
-    console.log("🎨 Testing color scheme...");
+    console.log('🎨 Testing color scheme...');
 
     const colorIssues = [];
     const expectedColors = {
-      "--primary-black": "#000000",
-      "--primary-white": "#ffffff",
-      "--accent-cyan": "#00ffff",
-      "--accent-yellow": "#ffff00",
-      "--accent-purple": "#8b5cf6",
-      "--accent-green": "#00ff00",
+      '--primary-black': '#000000',
+      '--primary-white': '#ffffff',
+      '--accent-cyan': '#00ffff',
+      '--accent-yellow': '#ffff00',
+      '--accent-purple': '#8b5cf6',
+      '--accent-green': '#00ff00',
     };
 
     // Test CSS custom properties
-    const testElement = document.createElement("div");
+    const testElement = document.createElement('div');
     document.body.appendChild(testElement);
 
     Object.entries(expectedColors).forEach(([variable, expectedValue]) => {
@@ -222,9 +222,9 @@ class VisualFidelityTestSuite {
 
     // Test key elements have correct colors
     const colorElements = [
-      { selector: "body", property: "background-color", expected: "#000000" },
-      { selector: "body", property: "color", expected: "#ffffff" },
-      { selector: ".accent-cyan", property: "color", expected: "#00ffff" },
+      { selector: 'body', property: 'background-color', expected: '#000000' },
+      { selector: 'body', property: 'color', expected: '#ffffff' },
+      { selector: '.accent-cyan', property: 'color', expected: '#00ffff' },
     ];
 
     colorElements.forEach((test) => {
@@ -246,7 +246,7 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Color Scheme",
+      category: 'Color Scheme',
       passed: colorIssues.length === 0,
       details: { colorIssues },
     });
@@ -254,13 +254,13 @@ class VisualFidelityTestSuite {
 
   normalizeColor(color) {
     // Convert rgb/rgba to hex for comparison
-    if (color.startsWith("rgb")) {
+    if (color.startsWith('rgb')) {
       const values = color.match(/\d+/g);
       if (values && values.length >= 3) {
         const hex = values
           .slice(0, 3)
-          .map((v) => parseInt(v).toString(16).padStart(2, "0"))
-          .join("");
+          .map((v) => parseInt(v).toString(16).padStart(2, '0'))
+          .join('');
         return `#${hex}`;
       }
     }
@@ -268,20 +268,20 @@ class VisualFidelityTestSuite {
   }
 
   async testSpacing() {
-    console.log("📏 Testing spacing and layout...");
+    console.log('📏 Testing spacing and layout...');
 
     const spacingIssues = [];
 
     // Test CSS spacing variables
     const expectedSpacing = {
-      "--spacing-xs": "0.25rem",
-      "--spacing-sm": "0.5rem",
-      "--spacing-md": "1rem",
-      "--spacing-lg": "1.5rem",
-      "--spacing-xl": "2rem",
+      '--spacing-xs': '0.25rem',
+      '--spacing-sm': '0.5rem',
+      '--spacing-md': '1rem',
+      '--spacing-lg': '1.5rem',
+      '--spacing-xl': '2rem',
     };
 
-    const testElement = document.createElement("div");
+    const testElement = document.createElement('div');
     document.body.appendChild(testElement);
 
     Object.entries(expectedSpacing).forEach(([variable, expectedValue]) => {
@@ -305,7 +305,7 @@ class VisualFidelityTestSuite {
     document.body.removeChild(testElement);
 
     // Test component spacing
-    const components = document.querySelectorAll(".component-section");
+    const components = document.querySelectorAll('.component-section');
     components.forEach((component, index) => {
       const rect = component.getBoundingClientRect();
       const computedStyle = getComputedStyle(component);
@@ -324,20 +324,20 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Spacing",
+      category: 'Spacing',
       passed: spacingIssues.length === 0,
       details: { spacingIssues },
     });
   }
 
   async testResponsiveBehavior() {
-    console.log("📱 Testing responsive behavior...");
+    console.log('📱 Testing responsive behavior...');
 
     const responsiveIssues = [];
     const breakpoints = [
-      { name: "mobile", maxWidth: 768 },
-      { name: "tablet", maxWidth: 1024 },
-      { name: "desktop", maxWidth: 1440 },
+      { name: 'mobile', maxWidth: 768 },
+      { name: 'tablet', maxWidth: 1024 },
+      { name: 'desktop', maxWidth: 1440 },
     ];
 
     // Test media queries
@@ -364,14 +364,14 @@ class VisualFidelityTestSuite {
     // Test viewport meta tag
     const viewportMeta = document.querySelector('meta[name="viewport"]');
     if (viewportMeta) {
-      const content = viewportMeta.getAttribute("content");
-      if (content.includes("width=device-width")) {
+      const content = viewportMeta.getAttribute('content');
+      if (content.includes('width=device-width')) {
         this.logSuccess(`✅ Viewport meta tag configured correctly`);
       } else {
-        responsiveIssues.push("Viewport meta tag missing device-width");
+        responsiveIssues.push('Viewport meta tag missing device-width');
       }
     } else {
-      responsiveIssues.push("Viewport meta tag missing");
+      responsiveIssues.push('Viewport meta tag missing');
     }
 
     // Test for horizontal scrolling issues
@@ -388,14 +388,14 @@ class VisualFidelityTestSuite {
     }
 
     this.testResults.push({
-      category: "Responsive Behavior",
+      category: 'Responsive Behavior',
       passed: responsiveIssues.length === 0,
       details: { responsiveIssues },
     });
   }
 
   async testAnimations() {
-    console.log("⚡ Testing animations...");
+    console.log('⚡ Testing animations...');
 
     const animationIssues = [];
 
@@ -415,7 +415,7 @@ class VisualFidelityTestSuite {
         const animationName = computedStyle.animationName;
         const transitionProperty = computedStyle.transitionProperty;
 
-        if (animationName !== "none" || transitionProperty !== "all") {
+        if (animationName !== 'none' || transitionProperty !== 'all') {
           this.logSuccess(
             `✅ Element ${index + 1} has animation/transition properties`
           );
@@ -435,15 +435,15 @@ class VisualFidelityTestSuite {
     const htmlElement = document.documentElement;
     const scrollBehavior = getComputedStyle(htmlElement).scrollBehavior;
 
-    if (scrollBehavior === "smooth") {
+    if (scrollBehavior === 'smooth') {
       this.logSuccess(`✅ Smooth scrolling enabled`);
     } else {
-      animationIssues.push("Smooth scrolling not enabled");
+      animationIssues.push('Smooth scrolling not enabled');
     }
 
     // Test for reduced motion preferences
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      '(prefers-reduced-motion: reduce)'
     );
     if (prefersReducedMotion.matches) {
       this.logSuccess(
@@ -452,7 +452,7 @@ class VisualFidelityTestSuite {
     }
 
     this.testResults.push({
-      category: "Animations",
+      category: 'Animations',
       passed: animationIssues.length === 0,
       details: {
         animationIssues,
@@ -462,7 +462,7 @@ class VisualFidelityTestSuite {
   }
 
   async testInteractiveElements() {
-    console.log("🖱️ Testing interactive elements...");
+    console.log('🖱️ Testing interactive elements...');
 
     const interactionIssues = [];
 
@@ -474,7 +474,7 @@ class VisualFidelityTestSuite {
       const computedStyle = getComputedStyle(button);
       const cursor = computedStyle.cursor;
 
-      if (cursor === "pointer") {
+      if (cursor === 'pointer') {
         this.logSuccess(`✅ Button ${index + 1} has pointer cursor`);
       } else {
         interactionIssues.push(`Button ${index + 1} missing pointer cursor`);
@@ -482,16 +482,16 @@ class VisualFidelityTestSuite {
 
       // Test for hover effects (check for transition properties)
       const transitionProperty = computedStyle.transitionProperty;
-      if (transitionProperty !== "none") {
+      if (transitionProperty !== 'none') {
         this.logSuccess(`✅ Button ${index + 1} has hover transition`);
       }
     });
 
     // Test links
-    const links = document.querySelectorAll("a[href]");
+    const links = document.querySelectorAll('a[href]');
     links.forEach((link, index) => {
-      const href = link.getAttribute("href");
-      if (href && href !== "#") {
+      const href = link.getAttribute('href');
+      if (href && href !== '#') {
         this.logSuccess(`✅ Link ${index + 1} has valid href`);
       } else {
         interactionIssues.push(
@@ -501,24 +501,24 @@ class VisualFidelityTestSuite {
     });
 
     // Test form elements
-    const formElements = document.querySelectorAll("input, textarea, select");
+    const formElements = document.querySelectorAll('input, textarea, select');
     formElements.forEach((element, index) => {
       const computedStyle = getComputedStyle(element);
       const outline = computedStyle.outline;
 
       // Check for focus styles (this is a basic check)
-      if (element.matches(":focus-visible")) {
+      if (element.matches(':focus-visible')) {
         this.logSuccess(`✅ Form element ${index + 1} has focus styles`);
       }
     });
 
     // Test navigation items
-    const navItems = document.querySelectorAll("[data-section]");
+    const navItems = document.querySelectorAll('[data-section]');
     navItems.forEach((item, index) => {
       const computedStyle = getComputedStyle(item);
       const cursor = computedStyle.cursor;
 
-      if (cursor === "pointer") {
+      if (cursor === 'pointer') {
         this.logSuccess(`✅ Navigation item ${index + 1} has pointer cursor`);
       } else {
         interactionIssues.push(
@@ -528,7 +528,7 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Interactive Elements",
+      category: 'Interactive Elements',
       passed: interactionIssues.length === 0,
       details: {
         interactionIssues,
@@ -540,10 +540,10 @@ class VisualFidelityTestSuite {
   }
 
   async testImageAssets() {
-    console.log("🖼️ Testing image assets...");
+    console.log('🖼️ Testing image assets...');
 
     const imageIssues = [];
-    const images = document.querySelectorAll("img");
+    const images = document.querySelectorAll('img');
 
     const imageTests = Array.from(images).map(async (img, index) => {
       return new Promise((resolve) => {
@@ -580,7 +580,7 @@ class VisualFidelityTestSuite {
 
     // Test for alt attributes
     images.forEach((img, index) => {
-      const alt = img.getAttribute("alt");
+      const alt = img.getAttribute('alt');
       if (alt && alt.trim()) {
         this.logSuccess(`✅ Image ${index + 1} has alt text`);
       } else {
@@ -589,7 +589,7 @@ class VisualFidelityTestSuite {
     });
 
     this.testResults.push({
-      category: "Image Assets",
+      category: 'Image Assets',
       passed: imageIssues.length === 0,
       details: {
         imageIssues,
@@ -600,7 +600,7 @@ class VisualFidelityTestSuite {
   }
 
   logSuccess(message) {
-    console.log(`%c${message}`, "color: #00ff00");
+    console.log(`%c${message}`, 'color: #00ff00');
   }
 
   logWarning(message) {
@@ -621,41 +621,41 @@ class VisualFidelityTestSuite {
     const totalTests = this.testResults.length;
     const fidelityScore = Math.round((passedTests / totalTests) * 100);
 
-    console.log("\n" + "=".repeat(60));
-    console.log("🎨 VISUAL FIDELITY TEST REPORT");
-    console.log("=".repeat(60));
+    console.log('\n' + '='.repeat(60));
+    console.log('🎨 VISUAL FIDELITY TEST REPORT');
+    console.log('='.repeat(60));
     console.log(`⏱️  Duration: ${duration}ms`);
     console.log(`🎯 Fidelity Score: ${fidelityScore}%`);
     console.log(`✅ Passed: ${passedTests}/${totalTests}`);
     console.log(`⚠️  Visual Issues: ${this.visualDifferences.length}`);
-    console.log("=".repeat(60));
+    console.log('='.repeat(60));
 
     // Detailed results
     this.testResults.forEach((result) => {
-      const status = result.passed ? "✅" : "❌";
+      const status = result.passed ? '✅' : '❌';
       console.log(`${status} ${result.category}`);
       if (result.details && Object.keys(result.details).length > 0) {
-        console.log("   Details:", result.details);
+        console.log('   Details:', result.details);
       }
     });
 
     if (this.visualDifferences.length > 0) {
-      console.log("\n⚠️  VISUAL DIFFERENCES:");
+      console.log('\n⚠️  VISUAL DIFFERENCES:');
       this.visualDifferences.forEach((diff) => console.log(`   ${diff}`));
     }
 
     // Overall assessment
-    console.log("\n" + "=".repeat(60));
+    console.log('\n' + '='.repeat(60));
     if (fidelityScore >= 95) {
-      console.log("🎉 VISUAL FIDELITY EXCELLENT - Pixel-perfect match!");
+      console.log('🎉 VISUAL FIDELITY EXCELLENT - Pixel-perfect match!');
     } else if (fidelityScore >= 85) {
-      console.log("✅ VISUAL FIDELITY GOOD - Minor differences detected");
+      console.log('✅ VISUAL FIDELITY GOOD - Minor differences detected');
     } else if (fidelityScore >= 70) {
-      console.log("⚠️  VISUAL FIDELITY FAIR - Some issues need attention");
+      console.log('⚠️  VISUAL FIDELITY FAIR - Some issues need attention');
     } else {
-      console.log("❌ VISUAL FIDELITY POOR - Significant differences detected");
+      console.log('❌ VISUAL FIDELITY POOR - Significant differences detected');
     }
-    console.log("=".repeat(60));
+    console.log('='.repeat(60));
 
     // Store results for external access
     window.visualFidelityResults = {
@@ -669,7 +669,7 @@ class VisualFidelityTestSuite {
 }
 
 // Auto-run visual tests when script is loaded
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   window.VisualFidelityTestSuite = VisualFidelityTestSuite;
 
   // Run tests after components are loaded
@@ -680,6 +680,6 @@ if (typeof window !== "undefined") {
 }
 
 // Export for Node.js environments
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = VisualFidelityTestSuite;
 }

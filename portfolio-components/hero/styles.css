@@ -8,8 +8,8 @@
   --accent-yellow: #ffff00;
   --accent-purple: #8b5cf6;
   --accent-green: #00ff00;
-  --font-mono: "Space Mono", monospace;
-  --font-code: "JetBrains Mono", monospace;
+  --font-mono: 'Space Mono', monospace;
+  --font-code: 'JetBrains Mono', monospace;
   --brutal-shadow: 8px 8px 0;
   --brutal-border: 6px solid;
   --brutal-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -32,7 +32,7 @@
 }
 
 .hero-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
@@ -47,7 +47,7 @@
 }
 
 .hero-section::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background:
@@ -386,7 +386,7 @@
 }
 
 .headline-line.highlight::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--accent-yellow);

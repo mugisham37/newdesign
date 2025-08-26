@@ -1,7 +1,7 @@
 /* Font Loading and Definitions */
 
 /* Google Fonts Import */
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap');
 
 /* Font Face Declarations for Local Fonts (if needed in the future) */
 /*
@@ -42,11 +42,11 @@
 }
 
 .fonts-loaded .font-mono {
-  font-family: "Space Mono", monospace;
+  font-family: 'Space Mono', monospace;
 }
 
 .fonts-loaded .font-code {
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Font Display Utilities */

@@ -19,8 +19,8 @@
   --nav-height-mobile: 70px;
 
   /* Typography */
-  --font-mono: "Space Mono", monospace;
-  --font-code: "JetBrains Mono", monospace;
+  --font-mono: 'Space Mono', monospace;
+  --font-code: 'JetBrains Mono', monospace;
 
   /* Spacing Scale */
   --spacing-xs: 0.25rem;

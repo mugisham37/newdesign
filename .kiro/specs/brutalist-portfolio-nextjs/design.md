@@ -172,7 +172,7 @@ src/
 
 ```typescript
 interface ThemeContextType {
-  currentTheme: "extreme-brutalist" | "refined-brutalist";
+  currentTheme: 'extreme-brutalist' | 'refined-brutalist';
   isTransitioning: boolean;
   transitionProgress: number;
   setTheme: (theme: ThemeType) => void;
@@ -499,75 +499,75 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 interface ThemeConfiguration {
   extreme: {
     colors: {
-      primary: "#000000";
-      secondary: "#ffffff";
-      accent: "#ffff00";
-      highlight: "#00ffff";
-      success: "#00ff00";
+      primary: '#000000';
+      secondary: '#ffffff';
+      accent: '#ffff00';
+      highlight: '#00ffff';
+      success: '#00ff00';
     };
     typography: {
-      primary: "Space Mono, monospace";
-      code: "JetBrains Mono, monospace";
+      primary: 'Space Mono, monospace';
+      code: 'JetBrains Mono, monospace';
       sizes: {
-        xs: "0.75rem";
-        sm: "0.875rem";
-        base: "1rem";
-        lg: "1.125rem";
-        xl: "1.25rem";
-        "2xl": "1.5rem";
-        "3xl": "1.875rem";
-        "4xl": "2.25rem";
-        "5xl": "3rem";
-        "6xl": "3.75rem";
+        xs: '0.75rem';
+        sm: '0.875rem';
+        base: '1rem';
+        lg: '1.125rem';
+        xl: '1.25rem';
+        '2xl': '1.5rem';
+        '3xl': '1.875rem';
+        '4xl': '2.25rem';
+        '5xl': '3rem';
+        '6xl': '3.75rem';
       };
     };
     borders: {
-      width: "8px";
-      style: "solid";
-      radius: "0px";
+      width: '8px';
+      style: 'solid';
+      radius: '0px';
     };
     shadows: {
-      brutal: "8px 8px 0";
-      double: "8px 8px 0 #ffff00, 16px 16px 0 #ffffff";
-      triple: "8px 8px 0 #ffff00, 16px 16px 0 #ffffff, 24px 24px 0 #000000";
+      brutal: '8px 8px 0';
+      double: '8px 8px 0 #ffff00, 16px 16px 0 #ffffff';
+      triple: '8px 8px 0 #ffff00, 16px 16px 0 #ffffff, 24px 24px 0 #000000';
     };
     animations: {
-      duration: "0.3s";
-      easing: "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
-      glitch: "brutalGlitch 0.3s ease-out";
-      pulse: "brutalPulse 2s ease-in-out infinite";
+      duration: '0.3s';
+      easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      glitch: 'brutalGlitch 0.3s ease-out';
+      pulse: 'brutalPulse 2s ease-in-out infinite';
     };
   };
   refined: {
     colors: {
-      primary: "#1a1a1a";
-      secondary: "#f5f5f5";
-      accent: "#8b5cf6";
-      highlight: "#06b6d4";
-      success: "#10b981";
+      primary: '#1a1a1a';
+      secondary: '#f5f5f5';
+      accent: '#8b5cf6';
+      highlight: '#06b6d4';
+      success: '#10b981';
     };
     typography: {
-      primary: "Inter, sans-serif";
-      code: "JetBrains Mono, monospace";
+      primary: 'Inter, sans-serif';
+      code: 'JetBrains Mono, monospace';
       sizes: {
         // Same size scale
       };
     };
     borders: {
-      width: "2px";
-      style: "solid";
-      radius: "8px";
+      width: '2px';
+      style: 'solid';
+      radius: '8px';
     };
     shadows: {
-      subtle: "4px 4px 12px rgba(0, 0, 0, 0.3)";
-      elevated: "0 10px 30px rgba(0, 0, 0, 0.2)";
-      glow: "0 0 20px rgba(139, 92, 246, 0.3)";
+      subtle: '4px 4px 12px rgba(0, 0, 0, 0.3)';
+      elevated: '0 10px 30px rgba(0, 0, 0, 0.2)';
+      glow: '0 0 20px rgba(139, 92, 246, 0.3)';
     };
     animations: {
-      duration: "0.4s";
-      easing: "cubic-bezier(0.4, 0, 0.2, 1)";
-      smooth: "smoothTransition 0.4s ease";
-      float: "gentleFloat 6s ease-in-out infinite";
+      duration: '0.4s';
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)';
+      smooth: 'smoothTransition 0.4s ease';
+      float: 'gentleFloat 6s ease-in-out infinite';
     };
   };
 }
@@ -583,12 +583,12 @@ interface PortfolioData {
     metrics: Array<{
       value: number | string;
       label: string;
-      format?: "number" | "currency" | "percentage";
+      format?: 'number' | 'currency' | 'percentage';
     }>;
     valueProposition: string;
     ctaButtons: Array<{
       text: string;
-      variant: "primary" | "secondary";
+      variant: 'primary' | 'secondary';
       action: string;
     }>;
   };
@@ -597,7 +597,7 @@ interface PortfolioData {
     clients: Array<{
       name: string;
       logo: string;
-      tier: "enterprise" | "growth" | "startup";
+      tier: 'enterprise' | 'growth' | 'startup';
       project: {
         description: string;
         value: string;
@@ -734,27 +734,27 @@ const usePerformanceMonitoring = () => {
     // Monitor Core Web Vitals
     const observer = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        if (entry.entryType === "largest-contentful-paint") {
-          console.log("LCP:", entry.startTime);
+        if (entry.entryType === 'largest-contentful-paint') {
+          console.log('LCP:', entry.startTime);
           if (entry.startTime > 2500) {
-            console.warn("LCP threshold exceeded");
+            console.warn('LCP threshold exceeded');
           }
         }
 
-        if (entry.entryType === "first-input") {
-          console.log("FID:", entry.processingStart - entry.startTime);
+        if (entry.entryType === 'first-input') {
+          console.log('FID:', entry.processingStart - entry.startTime);
         }
 
-        if (entry.entryType === "layout-shift") {
+        if (entry.entryType === 'layout-shift') {
           if (!entry.hadRecentInput) {
-            console.log("CLS:", entry.value);
+            console.log('CLS:', entry.value);
           }
         }
       });
     });
 
     observer.observe({
-      entryTypes: ["largest-contentful-paint", "first-input", "layout-shift"],
+      entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'],
     });
 
     return () => observer.disconnect();

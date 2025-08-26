@@ -1,15 +1,15 @@
 // BRUTAL NAVIGATION SYSTEM - 10/10 LEVEL
 class BrutalistNavigation {
   constructor() {
-    this.nav = document.getElementById("mainNav");
-    this.navItems = document.querySelectorAll(".nav-item");
-    this.ctaButton = document.getElementById("ctaButton");
-    this.mobileToggle = document.getElementById("mobileToggle");
-    this.mobileMenu = document.getElementById("mobileMenu");
-    this.logoText = document.getElementById("logoText");
+    this.nav = document.getElementById('mainNav');
+    this.navItems = document.querySelectorAll('.nav-item');
+    this.ctaButton = document.getElementById('ctaButton');
+    this.mobileToggle = document.getElementById('mobileToggle');
+    this.mobileMenu = document.getElementById('mobileMenu');
+    this.logoText = document.getElementById('logoText');
 
     this.isAnimating = false;
-    this.currentSection = "home";
+    this.currentSection = 'home';
 
     this.init();
   }
@@ -26,7 +26,7 @@ class BrutalistNavigation {
   }
 
   setupResponsiveHandlers() {
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       this.handleResize();
     });
     this.handleResize();
@@ -34,18 +34,18 @@ class BrutalistNavigation {
 
   handleResize() {
     const screenWidth = window.innerWidth;
-    const navMenu = document.querySelector(".nav-menu");
-    const ctaSection = document.querySelector(".cta-section");
-    const mobileToggle = document.querySelector(".mobile-toggle");
+    const navMenu = document.querySelector('.nav-menu');
+    const ctaSection = document.querySelector('.cta-section');
+    const mobileToggle = document.querySelector('.mobile-toggle');
 
     if (screenWidth <= 768) {
-      if (navMenu) navMenu.style.display = "none";
-      if (ctaSection) ctaSection.style.display = "none";
-      if (mobileToggle) mobileToggle.style.display = "block";
+      if (navMenu) navMenu.style.display = 'none';
+      if (ctaSection) ctaSection.style.display = 'none';
+      if (mobileToggle) mobileToggle.style.display = 'block';
     } else {
-      if (navMenu) navMenu.style.display = "flex";
-      if (ctaSection) ctaSection.style.display = "flex";
-      if (mobileToggle) mobileToggle.style.display = "none";
+      if (navMenu) navMenu.style.display = 'flex';
+      if (ctaSection) ctaSection.style.display = 'flex';
+      if (mobileToggle) mobileToggle.style.display = 'none';
     }
   }
 
@@ -54,15 +54,15 @@ class BrutalistNavigation {
       // Add staggered entrance animation
       item.style.animationDelay = `${index * 0.1}s`;
 
-      item.addEventListener("click", () => {
+      item.addEventListener('click', () => {
         this.handleBrutalNavClick(item);
       });
 
-      item.addEventListener("mouseenter", () => {
+      item.addEventListener('mouseenter', () => {
         this.triggerBrutalHover(item);
       });
 
-      item.addEventListener("mouseleave", () => {
+      item.addEventListener('mouseleave', () => {
         this.resetBrutalHover(item);
       });
     });
@@ -73,11 +73,11 @@ class BrutalistNavigation {
 
     // Remove active state from all items
     this.navItems.forEach((navItem) => {
-      navItem.classList.remove("active");
+      navItem.classList.remove('active');
     });
 
     // Add active state to clicked item
-    item.classList.add("active");
+    item.classList.add('active');
 
     // Trigger brutal effects
     this.triggerBrutalClick(item);
@@ -93,10 +93,10 @@ class BrutalistNavigation {
   }
 
   triggerBrutalHover(item) {
-    const text = item.querySelector(".nav-text");
+    const text = item.querySelector('.nav-text');
 
     // Add typewriter effect for non-HOME items
-    if (text.textContent !== "HOME") {
+    if (text.textContent !== 'HOME') {
       const originalText = text.textContent;
       this.typewriterEffect(text, `> ${originalText.toLowerCase()}`, () => {
         setTimeout(() => {
@@ -112,19 +112,19 @@ class BrutalistNavigation {
 
   triggerBrutalClick(item) {
     // Enhanced brutal click animation
-    item.style.transform = "scale(0.95) rotate(-1deg)";
+    item.style.transform = 'scale(0.95) rotate(-1deg)';
 
     setTimeout(() => {
-      item.style.transform = "";
+      item.style.transform = '';
     }, 200);
   }
 
   triggerGlitchEffect(item) {
-    const glitch = item.querySelector(".nav-glitch");
+    const glitch = item.querySelector('.nav-glitch');
     if (glitch) {
-      glitch.style.animation = "none";
+      glitch.style.animation = 'none';
       glitch.offsetHeight; // Trigger reflow
-      glitch.style.animation = "brutalGlitch 0.3s ease-out";
+      glitch.style.animation = 'brutalGlitch 0.3s ease-out';
     }
   }
 
@@ -158,25 +158,25 @@ class BrutalistNavigation {
   }
 
   updateTerminalFeedback(section) {
-    const terminalPrompt = document.querySelector(".terminal-prompt");
-    const terminalCursor = document.querySelector(".terminal-cursor");
+    const terminalPrompt = document.querySelector('.terminal-prompt');
+    const terminalCursor = document.querySelector('.terminal-cursor');
 
     if (terminalPrompt && terminalCursor) {
       terminalPrompt.textContent = `> navigating to ${section}`;
-      terminalCursor.style.animation = "brutalBlink 0.5s step-end infinite";
+      terminalCursor.style.animation = 'brutalBlink 0.5s step-end infinite';
 
       setTimeout(() => {
-        terminalPrompt.textContent = ">";
-        terminalCursor.style.animation = "brutalBlink 1s step-end infinite";
+        terminalPrompt.textContent = '>';
+        terminalCursor.style.animation = 'brutalBlink 1s step-end infinite';
       }, 1500);
     }
   }
 
   setupBrutalEffects() {
     // Enhanced logo click effect
-    const logoBlock = document.querySelector(".logo-block");
+    const logoBlock = document.querySelector('.logo-block');
     if (logoBlock) {
-      logoBlock.addEventListener("click", () => {
+      logoBlock.addEventListener('click', () => {
         this.triggerLogoEffect();
       });
     }
@@ -193,25 +193,25 @@ class BrutalistNavigation {
     const originalText = logoText.textContent;
 
     // Brutal logo transformation
-    logoText.textContent = "BRUTAL";
-    logoText.style.color = "#ffff00";
-    logoText.style.transform = "scale(1.2) rotate(5deg)";
+    logoText.textContent = 'BRUTAL';
+    logoText.style.color = '#ffff00';
+    logoText.style.transform = 'scale(1.2) rotate(5deg)';
 
     setTimeout(() => {
       logoText.textContent = originalText;
-      logoText.style.color = "";
-      logoText.style.transform = "";
+      logoText.style.color = '';
+      logoText.style.transform = '';
     }, 1500);
   }
 
   startStatusUpdates() {
-    const statusText = document.querySelector(".status-text");
+    const statusText = document.querySelector('.status-text');
     const statusOptions = [
-      "AVAILABLE",
-      "ACTIVE",
-      "READY",
-      "ONLINE",
-      "BUILDING",
+      'AVAILABLE',
+      'ACTIVE',
+      'READY',
+      'ONLINE',
+      'BUILDING',
     ];
     let currentIndex = 0;
 
@@ -225,7 +225,7 @@ class BrutalistNavigation {
 
   simulateLiveUpdates() {
     // Update commit count randomly
-    const commitCount = document.querySelector(".commit-count");
+    const commitCount = document.querySelector('.commit-count');
     if (commitCount) {
       setInterval(() => {
         const currentCount = parseInt(commitCount.textContent);
@@ -235,22 +235,22 @@ class BrutalistNavigation {
     }
 
     // Update project badge count
-    const projectBadge = document.querySelector(".nav-badge");
+    const projectBadge = document.querySelector('.nav-badge');
     if (projectBadge) {
       setInterval(() => {
         const currentCount = parseInt(projectBadge.textContent);
         if (Math.random() > 0.7) {
           projectBadge.textContent = currentCount + 1;
-          projectBadge.style.animation = "badgeBounce 0.5s ease-out";
+          projectBadge.style.animation = 'badgeBounce 0.5s ease-out';
         }
       }, 45000); // Update every 45 seconds
     }
   }
 
   setupKeyboardShortcuts() {
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener('keydown', (e) => {
       // Alt + Number for quick navigation
-      if (e.altKey && e.key >= "1" && e.key <= "5") {
+      if (e.altKey && e.key >= '1' && e.key <= '5') {
         e.preventDefault();
         const index = parseInt(e.key) - 1;
         if (this.navItems[index]) {
@@ -259,13 +259,13 @@ class BrutalistNavigation {
       }
 
       // Ctrl + Enter for CTA
-      if (e.ctrlKey && e.key === "Enter") {
+      if (e.ctrlKey && e.key === 'Enter') {
         e.preventDefault();
         this.ctaButton.click();
       }
 
       // Escape to close mobile menu
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         this.closeMobileMenu();
       }
     });
@@ -274,16 +274,16 @@ class BrutalistNavigation {
   setupScrollEffects() {
     let lastScrollY = window.scrollY;
 
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
 
       // Hide/show nav on scroll with brutal effect
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        this.nav.style.transform = "translateY(-100%)";
-        this.nav.style.boxShadow = "none";
+        this.nav.style.transform = 'translateY(-100%)';
+        this.nav.style.boxShadow = 'none';
       } else {
-        this.nav.style.transform = "translateY(0)";
-        this.nav.style.boxShadow = "0 8px 0 #ffff00, 0 16px 0 #ffffff";
+        this.nav.style.transform = 'translateY(0)';
+        this.nav.style.boxShadow = '0 8px 0 #ffff00, 0 16px 0 #ffffff';
       }
 
       lastScrollY = currentScrollY;
@@ -293,14 +293,14 @@ class BrutalistNavigation {
   startBrutalAnimations() {
     // Add entrance animations for nav items
     this.navItems.forEach((item, index) => {
-      item.style.opacity = "0";
-      item.style.transform = "translateY(20px) rotate(5deg)";
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px) rotate(5deg)';
 
       setTimeout(() => {
         item.style.transition =
-          "all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
-        item.style.opacity = "1";
-        item.style.transform = "translateY(0) rotate(0deg)";
+          'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0) rotate(0deg)';
       }, index * 100);
     });
   }
@@ -308,21 +308,21 @@ class BrutalistNavigation {
   setupCTAButton() {
     let isAnimating = false;
 
-    this.ctaButton.addEventListener("click", () => {
+    this.ctaButton.addEventListener('click', () => {
       if (isAnimating) return;
 
       isAnimating = true;
       const originalText =
-        this.ctaButton.querySelector(".button-text").textContent;
+        this.ctaButton.querySelector('.button-text').textContent;
 
       // Change text with typewriter effect
       this.typewriterEffect(
-        this.ctaButton.querySelector(".button-text"),
+        this.ctaButton.querySelector('.button-text'),
         "LET'S BUILD IT",
         () => {
           setTimeout(() => {
             this.typewriterEffect(
-              this.ctaButton.querySelector(".button-text"),
+              this.ctaButton.querySelector('.button-text'),
               originalText,
               () => {
                 isAnimating = false;
@@ -337,22 +337,22 @@ class BrutalistNavigation {
     });
 
     // Enhanced hover effects
-    this.ctaButton.addEventListener("mouseenter", () => {
+    this.ctaButton.addEventListener('mouseenter', () => {
       this.ctaButton.style.transform =
-        "translate(-6px, -6px) rotate(-2deg) scale(1.05)";
+        'translate(-6px, -6px) rotate(-2deg) scale(1.05)';
       this.ctaButton.style.boxShadow =
-        "12px 12px 0 #ffffff, 24px 24px 0 #000000";
+        '12px 12px 0 #ffffff, 24px 24px 0 #000000';
     });
 
-    this.ctaButton.addEventListener("mouseleave", () => {
-      this.ctaButton.style.transform = "";
-      this.ctaButton.style.boxShadow = "";
+    this.ctaButton.addEventListener('mouseleave', () => {
+      this.ctaButton.style.transform = '';
+      this.ctaButton.style.boxShadow = '';
     });
   }
 
   triggerBrutalCTA() {
     // Create enhanced brutal overlay effect
-    const brutalOverlay = document.createElement("div");
+    const brutalOverlay = document.createElement('div');
     brutalOverlay.style.cssText = `
       position: fixed;
       top: 0;
@@ -374,7 +374,7 @@ class BrutalistNavigation {
       animation: brutalOverlayEnter 0.3s ease-out;
     `;
 
-    const brutalText = document.createElement("div");
+    const brutalText = document.createElement('div');
     brutalText.innerHTML = `
       <div style="border: 8px solid #ffffff; padding: 3rem; background: #ffff00; color: #000000; transform: rotate(-2deg); box-shadow: 16px 16px 0 #ffffff;">
         COMPILING PROJECT...
@@ -391,7 +391,7 @@ class BrutalistNavigation {
     document.body.appendChild(brutalOverlay);
 
     // Add CSS animation
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       @keyframes brutalOverlayEnter {
         0% { transform: scale(0) rotate(180deg); opacity: 0; }
@@ -403,31 +403,31 @@ class BrutalistNavigation {
     // Remove after 3 seconds
     setTimeout(() => {
       brutalOverlay.style.animation =
-        "brutalOverlayEnter 0.3s ease-out reverse";
+        'brutalOverlayEnter 0.3s ease-out reverse';
       setTimeout(() => {
         brutalOverlay.remove();
         style.remove();
       }, 300);
     }, 3000);
 
-    console.log("BRUTAL CTA TRIGGERED - PROJECT COMPILATION INITIATED!");
+    console.log('BRUTAL CTA TRIGGERED - PROJECT COMPILATION INITIATED!');
   }
 
   setupMobileMenu() {
-    this.mobileToggle.addEventListener("click", () => {
-      this.mobileToggle.classList.toggle("active");
-      this.mobileMenu.classList.toggle("active");
+    this.mobileToggle.addEventListener('click', () => {
+      this.mobileToggle.classList.toggle('active');
+      this.mobileMenu.classList.toggle('active');
 
       // Add body scroll lock
-      if (this.mobileMenu.classList.contains("active")) {
-        document.body.style.overflow = "hidden";
+      if (this.mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
       } else {
-        document.body.style.overflow = "";
+        document.body.style.overflow = '';
       }
     });
 
     // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (
         !this.mobileToggle.contains(e.target) &&
         !this.mobileMenu.contains(e.target)
@@ -437,9 +437,9 @@ class BrutalistNavigation {
     });
 
     // Setup mobile menu item clicks
-    const mobileNavItems = document.querySelectorAll(".mobile-nav-item");
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
     mobileNavItems.forEach((item) => {
-      item.addEventListener("click", () => {
+      item.addEventListener('click', () => {
         // Close mobile menu
         this.closeMobileMenu();
 
@@ -449,9 +449,9 @@ class BrutalistNavigation {
     });
 
     // Setup mobile CTA button
-    const mobileCTAButton = document.querySelector(".mobile-brutal-button");
+    const mobileCTAButton = document.querySelector('.mobile-brutal-button');
     if (mobileCTAButton) {
-      mobileCTAButton.addEventListener("click", () => {
+      mobileCTAButton.addEventListener('click', () => {
         this.triggerBrutalCTA();
         this.closeMobileMenu();
       });
@@ -459,9 +459,9 @@ class BrutalistNavigation {
   }
 
   closeMobileMenu() {
-    this.mobileToggle.classList.remove("active");
-    this.mobileMenu.classList.remove("active");
-    document.body.style.overflow = "";
+    this.mobileToggle.classList.remove('active');
+    this.mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   simulateNavigation(section) {
@@ -471,11 +471,11 @@ class BrutalistNavigation {
 }
 
 // Initialize navigation when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistNavigation();
 });
 
 // Export for use in other components
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistNavigation;
 }

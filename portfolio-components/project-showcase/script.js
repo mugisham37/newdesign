@@ -1,17 +1,17 @@
 // Brutalist Project Showcase Component
 class BrutalistShowcase {
   constructor() {
-    this.showcaseSection = document.getElementById("showcaseSection");
-    this.filterSystem = document.getElementById("filterSystem");
-    this.filterButtons = document.querySelectorAll(".filter-btn");
-    this.projectsGrid = document.getElementById("projectsGrid");
-    this.projectCards = document.querySelectorAll(".project-card");
-    this.featuredSpotlight = document.getElementById("featuredSpotlight");
-    this.loadMoreBtn = document.getElementById("loadMoreBtn");
-    this.showcaseParticles = document.getElementById("showcaseParticles");
-    this.matrixRain = document.getElementById("matrixRain");
+    this.showcaseSection = document.getElementById('showcaseSection');
+    this.filterSystem = document.getElementById('filterSystem');
+    this.filterButtons = document.querySelectorAll('.filter-btn');
+    this.projectsGrid = document.getElementById('projectsGrid');
+    this.projectCards = document.querySelectorAll('.project-card');
+    this.featuredSpotlight = document.getElementById('featuredSpotlight');
+    this.loadMoreBtn = document.getElementById('loadMoreBtn');
+    this.showcaseParticles = document.getElementById('showcaseParticles');
+    this.matrixRain = document.getElementById('matrixRain');
 
-    this.currentFilter = "all";
+    this.currentFilter = 'all';
     this.visibleProjects = 6;
     this.totalProjects = 12;
     this.isLoading = false;
@@ -31,7 +31,7 @@ class BrutalistShowcase {
 
   setupFilterSystem() {
     this.filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener('click', () => {
         this.handleFilterChange(btn);
       });
     });
@@ -42,10 +42,10 @@ class BrutalistShowcase {
 
   handleFilterChange(activeBtn) {
     // Remove active state from all buttons
-    this.filterButtons.forEach((btn) => btn.classList.remove("active"));
+    this.filterButtons.forEach((btn) => btn.classList.remove('active'));
 
     // Add active state to clicked button
-    activeBtn.classList.add("active");
+    activeBtn.classList.add('active');
 
     // Update current filter
     this.currentFilter = activeBtn.dataset.filter;
@@ -61,8 +61,8 @@ class BrutalistShowcase {
   }
 
   updateFilterIndicator() {
-    const indicator = document.getElementById("filterIndicator");
-    const activeBtn = document.querySelector(".filter-btn.active");
+    const indicator = document.getElementById('filterIndicator');
+    const activeBtn = document.querySelector('.filter-btn.active');
 
     if (indicator && activeBtn) {
       const btnRect = activeBtn.getBoundingClientRect();
@@ -77,17 +77,17 @@ class BrutalistShowcase {
     this.projectCards.forEach((card, index) => {
       const cardTech = card.dataset.tech;
       const shouldShow =
-        this.currentFilter === "all" || cardTech.includes(this.currentFilter);
+        this.currentFilter === 'all' || cardTech.includes(this.currentFilter);
 
       if (shouldShow) {
-        card.style.display = "block";
+        card.style.display = 'block';
         card.style.animation = `slideInUp 0.5s ease-out ${
           index * 0.1
         }s forwards`;
       } else {
-        card.style.animation = "fadeOut 0.3s ease-out forwards";
+        card.style.animation = 'fadeOut 0.3s ease-out forwards';
         setTimeout(() => {
-          card.style.display = "none";
+          card.style.display = 'none';
         }, 300);
       }
     });
@@ -97,7 +97,7 @@ class BrutalistShowcase {
   }
 
   createRippleEffect(button) {
-    const ripple = document.createElement("div");
+    const ripple = document.createElement('div');
     ripple.style.cssText = `
       position: absolute;
       border-radius: 50%;
@@ -109,12 +109,12 @@ class BrutalistShowcase {
 
     const rect = button.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
-    ripple.style.width = ripple.style.height = size + "px";
-    ripple.style.left = "50%";
-    ripple.style.top = "50%";
-    ripple.style.transform = "translate(-50%, -50%) scale(0)";
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = '50%';
+    ripple.style.top = '50%';
+    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
 
-    button.style.position = "relative";
+    button.style.position = 'relative';
     button.appendChild(ripple);
 
     setTimeout(() => ripple.remove(), 600);
@@ -123,29 +123,29 @@ class BrutalistShowcase {
   setupProjectCards() {
     this.projectCards.forEach((card) => {
       // Setup hover effects
-      card.addEventListener("mouseenter", () => {
+      card.addEventListener('mouseenter', () => {
         this.triggerCardHover(card);
       });
 
-      card.addEventListener("mouseleave", () => {
+      card.addEventListener('mouseleave', () => {
         this.resetCardHover(card);
       });
 
       // Setup play button
-      const playBtn = card.querySelector(".preview-play-btn");
-      playBtn?.addEventListener("click", () => {
+      const playBtn = card.querySelector('.preview-play-btn');
+      playBtn?.addEventListener('click', () => {
         this.playProjectDemo(card);
       });
 
       // Setup CTA button
-      const ctaBtn = card.querySelector(".card-cta");
-      ctaBtn?.addEventListener("click", () => {
+      const ctaBtn = card.querySelector('.card-cta');
+      ctaBtn?.addEventListener('click', () => {
         this.openCaseStudy(card);
       });
 
       // Setup GitHub link
-      const githubInfo = card.querySelector(".github-info");
-      githubInfo?.addEventListener("click", () => {
+      const githubInfo = card.querySelector('.github-info');
+      githubInfo?.addEventListener('click', () => {
         this.openGitHubRepo(card);
       });
     });
@@ -153,42 +153,42 @@ class BrutalistShowcase {
 
   triggerCardHover(card) {
     // Add glow effect
-    card.style.boxShadow = "0 20px 40px rgba(0, 255, 255, 0.3)";
+    card.style.boxShadow = '0 20px 40px rgba(0, 255, 255, 0.3)';
 
     // Animate tech badges
-    const techBadges = card.querySelectorAll(".tech-badge");
+    const techBadges = card.querySelectorAll('.tech-badge');
     techBadges.forEach((badge, index) => {
       setTimeout(() => {
-        badge.style.transform = "scale(1.1)";
+        badge.style.transform = 'scale(1.1)';
         badge.style.boxShadow = `0 0 15px ${badge.style.borderColor}`;
       }, index * 50);
     });
 
     // Animate metrics
-    const metrics = card.querySelectorAll(".metric");
+    const metrics = card.querySelectorAll('.metric');
     metrics.forEach((metric) => {
-      metric.style.transform = "translateX(5px)";
+      metric.style.transform = 'translateX(5px)';
     });
   }
 
   resetCardHover(card) {
-    card.style.boxShadow = "";
+    card.style.boxShadow = '';
 
-    const techBadges = card.querySelectorAll(".tech-badge");
+    const techBadges = card.querySelectorAll('.tech-badge');
     techBadges.forEach((badge) => {
-      badge.style.transform = "scale(1)";
-      badge.style.boxShadow = "";
+      badge.style.transform = 'scale(1)';
+      badge.style.boxShadow = '';
     });
 
-    const metrics = card.querySelectorAll(".metric");
+    const metrics = card.querySelectorAll('.metric');
     metrics.forEach((metric) => {
-      metric.style.transform = "translateX(0)";
+      metric.style.transform = 'translateX(0)';
     });
   }
 
   playProjectDemo(card) {
-    const overlay = card.querySelector(".preview-overlay");
-    const playBtn = card.querySelector(".preview-play-btn");
+    const overlay = card.querySelector('.preview-overlay');
+    const playBtn = card.querySelector('.preview-play-btn');
 
     // Change button to loading state
     playBtn.innerHTML = `
@@ -204,7 +204,7 @@ class BrutalistShowcase {
       `;
 
       // Hide overlay after demo starts
-      overlay.style.opacity = "0";
+      overlay.style.opacity = '0';
 
       // Reset after demo
       setTimeout(() => {
@@ -212,16 +212,16 @@ class BrutalistShowcase {
           <span class="play-icon">▶</span>
           <span class="play-text">WATCH DEMO</span>
         `;
-        overlay.style.opacity = "";
+        overlay.style.opacity = '';
       }, 5000);
     }, 2000);
   }
 
   openCaseStudy(card) {
-    const title = card.querySelector(".card-title").textContent;
+    const title = card.querySelector('.card-title').textContent;
 
     // Create case study modal
-    const modal = document.createElement("div");
+    const modal = document.createElement('div');
     modal.style.cssText = `
       position: fixed;
       top: 0;
@@ -249,7 +249,7 @@ class BrutalistShowcase {
 
   openGitHubRepo(card) {
     // Simulate GitHub link opening
-    const githubLink = card.querySelector(".github-info");
+    const githubLink = card.querySelector('.github-info');
     const originalText = githubLink.innerHTML;
 
     githubLink.innerHTML = `
@@ -260,29 +260,29 @@ class BrutalistShowcase {
     setTimeout(() => {
       githubLink.innerHTML = originalText;
       // In real app, would open GitHub repo
-      console.log("Opening GitHub repository...");
+      console.log('Opening GitHub repository...');
     }, 1500);
   }
 
   setupFeaturedSpotlight() {
-    const playDemoBtn = document.getElementById("playFeaturedDemo");
-    const primaryCta = document.getElementById("primaryShowcaseCta");
-    const secondaryCta = document.getElementById("secondaryShowcaseCta");
-    const githubLink = document.getElementById("githubShowcaseLink");
+    const playDemoBtn = document.getElementById('playFeaturedDemo');
+    const primaryCta = document.getElementById('primaryShowcaseCta');
+    const secondaryCta = document.getElementById('secondaryShowcaseCta');
+    const githubLink = document.getElementById('githubShowcaseLink');
 
-    playDemoBtn?.addEventListener("click", () => {
+    playDemoBtn?.addEventListener('click', () => {
       this.playFeaturedDemo();
     });
 
-    primaryCta?.addEventListener("click", () => {
+    primaryCta?.addEventListener('click', () => {
       this.openFeaturedCaseStudy();
     });
 
-    secondaryCta?.addEventListener("click", () => {
+    secondaryCta?.addEventListener('click', () => {
       this.openFeaturedDemo();
     });
 
-    githubLink?.addEventListener("click", () => {
+    githubLink?.addEventListener('click', () => {
       this.openFeaturedGitHub();
     });
 
@@ -291,11 +291,11 @@ class BrutalistShowcase {
   }
 
   playFeaturedDemo() {
-    const demoImage = document.getElementById("featuredDemo");
-    const playBtn = document.getElementById("playFeaturedDemo");
+    const demoImage = document.getElementById('featuredDemo');
+    const playBtn = document.getElementById('playFeaturedDemo');
 
     // Add video-like overlay
-    const videoOverlay = document.createElement("div");
+    const videoOverlay = document.createElement('div');
     videoOverlay.style.cssText = `
       position: absolute;
       top: 0;
@@ -326,7 +326,7 @@ class BrutalistShowcase {
 
   openFeaturedCaseStudy() {
     // Create featured case study modal
-    const modal = document.createElement("div");
+    const modal = document.createElement('div');
     modal.style.cssText = `
       position: fixed;
       top: 0;
@@ -354,19 +354,19 @@ class BrutalistShowcase {
 
   openFeaturedDemo() {
     // Simulate opening live demo
-    console.log("Opening live demo...");
-    window.open("https://enterprise-dashboard.live", "_blank");
+    console.log('Opening live demo...');
+    window.open('https://enterprise-dashboard.live', '_blank');
   }
 
   openFeaturedGitHub() {
     // Simulate opening GitHub repo
-    console.log("Opening GitHub repository...");
-    window.open("https://github.com/username/enterprise-dashboard", "_blank");
+    console.log('Opening GitHub repository...');
+    window.open('https://github.com/username/enterprise-dashboard', '_blank');
   }
 
   animateSpotlightMetrics() {
     const metrics = document.querySelectorAll(
-      ".spotlight-metrics .metric-number"
+      '.spotlight-metrics .metric-number'
     );
 
     const observer = new IntersectionObserver((entries) => {
@@ -382,7 +382,7 @@ class BrutalistShowcase {
     });
 
     if (metrics.length > 0) {
-      observer.observe(metrics[0].closest(".spotlight-metrics"));
+      observer.observe(metrics[0].closest('.spotlight-metrics'));
     }
   }
 
@@ -411,7 +411,7 @@ class BrutalistShowcase {
   }
 
   setupLoadMore() {
-    this.loadMoreBtn?.addEventListener("click", () => {
+    this.loadMoreBtn?.addEventListener('click', () => {
       this.loadMoreProjects();
     });
 
@@ -422,12 +422,12 @@ class BrutalistShowcase {
     if (this.isLoading) return;
 
     this.isLoading = true;
-    const loadProgress = document.getElementById("loadProgress");
-    const loadText = this.loadMoreBtn.querySelector(".load-text");
+    const loadProgress = document.getElementById('loadProgress');
+    const loadText = this.loadMoreBtn.querySelector('.load-text');
 
     // Update button state
-    loadText.textContent = "LOADING...";
-    loadProgress.style.width = "100%";
+    loadText.textContent = 'LOADING...';
+    loadProgress.style.width = '100%';
 
     // Simulate loading
     setTimeout(() => {
@@ -438,20 +438,20 @@ class BrutalistShowcase {
       this.updateProjectCounter();
 
       // Reset button
-      loadText.textContent = "LOAD MORE PROJECTS";
-      loadProgress.style.width = "0%";
+      loadText.textContent = 'LOAD MORE PROJECTS';
+      loadProgress.style.width = '0%';
       this.isLoading = false;
 
       // Hide button if all projects loaded
       if (this.visibleProjects >= this.totalProjects) {
-        this.loadMoreBtn.style.display = "none";
+        this.loadMoreBtn.style.display = 'none';
       }
     }, 2000);
   }
 
   updateProjectCounter() {
-    const currentCount = document.getElementById("currentCount");
-    const totalCount = document.getElementById("totalCount");
+    const currentCount = document.getElementById('currentCount');
+    const totalCount = document.getElementById('totalCount');
 
     if (currentCount) currentCount.textContent = this.visibleProjects;
     if (totalCount) totalCount.textContent = this.totalProjects;
@@ -462,10 +462,10 @@ class BrutalistShowcase {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations
-            if (entry.target.classList.contains("project-card")) {
+            if (entry.target.classList.contains('project-card')) {
               this.animateProjectCard(entry.target);
             }
           }
@@ -481,10 +481,10 @@ class BrutalistShowcase {
   }
 
   animateProjectCard(card) {
-    const techBadges = card.querySelectorAll(".tech-badge");
+    const techBadges = card.querySelectorAll('.tech-badge');
     techBadges.forEach((badge, index) => {
       setTimeout(() => {
-        badge.style.animation = "slideInUp 0.5s ease-out forwards";
+        badge.style.animation = 'slideInUp 0.5s ease-out forwards';
       }, index * 100);
     });
   }
@@ -494,7 +494,7 @@ class BrutalistShowcase {
 
     // Create matrix characters
     for (let i = 0; i < 20; i++) {
-      const column = document.createElement("div");
+      const column = document.createElement('div');
       column.style.cssText = `
         position: absolute;
         left: ${Math.random() * 100}%;
@@ -508,7 +508,7 @@ class BrutalistShowcase {
 
       // Add random characters
       const chars =
-        "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
       column.textContent = chars[Math.floor(Math.random() * chars.length)];
 
       this.matrixRain.appendChild(column);
@@ -517,11 +517,11 @@ class BrutalistShowcase {
 
   startShowcaseAnimations() {
     // Component is ready
-    console.log("🚀 Project Showcase Component Initialized");
+    console.log('🚀 Project Showcase Component Initialized');
 
     // Add error handling for missing elements
     if (!this.showcaseSection) {
-      console.warn("⚠️ Showcase section not found");
+      console.warn('⚠️ Showcase section not found');
       return;
     }
 
@@ -534,34 +534,34 @@ class BrutalistShowcase {
     // This method can be extended for future features
 
     // Example: Add keyboard shortcuts for filtering
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener('keydown', (e) => {
       if (e.altKey) {
         switch (e.key) {
-          case "1":
+          case '1':
             e.preventDefault();
             this.handleFilterChange(
               document.querySelector('[data-filter="all"]')
             );
             break;
-          case "2":
+          case '2':
             e.preventDefault();
             this.handleFilterChange(
               document.querySelector('[data-filter="react"]')
             );
             break;
-          case "3":
+          case '3':
             e.preventDefault();
             this.handleFilterChange(
               document.querySelector('[data-filter="nodejs"]')
             );
             break;
-          case "4":
+          case '4':
             e.preventDefault();
             this.handleFilterChange(
               document.querySelector('[data-filter="fullstack"]')
             );
             break;
-          case "5":
+          case '5':
             e.preventDefault();
             this.handleFilterChange(
               document.querySelector('[data-filter="mobile"]')
@@ -574,11 +574,11 @@ class BrutalistShowcase {
 }
 
 // Initialize the component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistShowcase();
 });
 
 // Export for use in other modules if needed
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistShowcase;
 }

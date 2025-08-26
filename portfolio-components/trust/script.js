@@ -2,13 +2,13 @@
 
 class BrutalistTrust {
   constructor() {
-    this.trustSection = document.getElementById("trustSection");
-    this.testimonialCarousel = document.getElementById("testimonialCarousel");
-    this.testimonialTrack = document.getElementById("testimonialTrack");
-    this.contributionGraph = document.getElementById("contributionGraph");
-    this.certificationsGrid = document.getElementById("certificationsGrid");
-    this.logoMarquee = document.getElementById("logoMarquee");
-    this.trustParticles = document.getElementById("trustParticles");
+    this.trustSection = document.getElementById('trustSection');
+    this.testimonialCarousel = document.getElementById('testimonialCarousel');
+    this.testimonialTrack = document.getElementById('testimonialTrack');
+    this.contributionGraph = document.getElementById('contributionGraph');
+    this.certificationsGrid = document.getElementById('certificationsGrid');
+    this.logoMarquee = document.getElementById('logoMarquee');
+    this.trustParticles = document.getElementById('trustParticles');
 
     this.currentTestimonial = 0;
     this.testimonialCount = 5;
@@ -37,11 +37,11 @@ class BrutalistTrust {
 
     // Pause on hover
     if (this.testimonialCarousel) {
-      this.testimonialCarousel.addEventListener("mouseenter", () => {
+      this.testimonialCarousel.addEventListener('mouseenter', () => {
         this.isCarouselPaused = true;
       });
 
-      this.testimonialCarousel.addEventListener("mouseleave", () => {
+      this.testimonialCarousel.addEventListener('mouseleave', () => {
         this.isCarouselPaused = false;
       });
     }
@@ -51,14 +51,14 @@ class BrutalistTrust {
   }
 
   setupTestimonialDots() {
-    const navDots = document.getElementById("navDots");
+    const navDots = document.getElementById('navDots');
     if (!navDots) return;
 
     // Create dots
     for (let i = 0; i < this.testimonialCount; i++) {
-      const dot = document.createElement("div");
-      dot.className = `nav-dot ${i === 0 ? "active" : ""}`;
-      dot.addEventListener("click", () => this.goToTestimonial(i));
+      const dot = document.createElement('div');
+      dot.className = `nav-dot ${i === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => this.goToTestimonial(i));
       navDots.appendChild(dot);
     }
   }
@@ -76,16 +76,16 @@ class BrutalistTrust {
 
   updateTestimonialDisplay() {
     // Update dots
-    const dots = document.querySelectorAll(".nav-dot");
+    const dots = document.querySelectorAll('.nav-dot');
     dots.forEach((dot, index) => {
-      dot.classList.toggle("active", index === this.currentTestimonial);
+      dot.classList.toggle('active', index === this.currentTestimonial);
     });
 
     // Trigger glitch effect on active testimonial
-    const testimonials = document.querySelectorAll(".testimonial-card");
+    const testimonials = document.querySelectorAll('.testimonial-card');
     if (testimonials[this.currentTestimonial]) {
       testimonials[this.currentTestimonial].style.animation =
-        "testimonialGlitch 0.3s ease-out";
+        'testimonialGlitch 0.3s ease-out';
     }
   }
 
@@ -101,10 +101,10 @@ class BrutalistTrust {
     if (!this.contributionGraph) return;
 
     // Clear loading text
-    this.contributionGraph.innerHTML = "";
+    this.contributionGraph.innerHTML = '';
 
     // Create contribution grid (simplified)
-    const grid = document.createElement("div");
+    const grid = document.createElement('div');
     grid.style.cssText = `
             display: grid;
             grid-template-columns: repeat(53, 1fr);
@@ -116,14 +116,14 @@ class BrutalistTrust {
 
     // Generate 365 days of contributions
     for (let i = 0; i < 365; i++) {
-      const day = document.createElement("div");
+      const day = document.createElement('div');
       const intensity = Math.random();
-      let color = "rgba(255, 255, 255, 0.1)";
+      let color = 'rgba(255, 255, 255, 0.1)';
 
-      if (intensity > 0.8) color = "#00ff00";
-      else if (intensity > 0.6) color = "#00cc00";
-      else if (intensity > 0.4) color = "#009900";
-      else if (intensity > 0.2) color = "#006600";
+      if (intensity > 0.8) color = '#00ff00';
+      else if (intensity > 0.6) color = '#00cc00';
+      else if (intensity > 0.4) color = '#009900';
+      else if (intensity > 0.2) color = '#006600';
 
       day.style.cssText = `
                 width: 100%;
@@ -133,14 +133,14 @@ class BrutalistTrust {
                 transition: all 0.3s ease;
             `;
 
-      day.addEventListener("mouseenter", () => {
-        day.style.transform = "scale(1.5)";
-        day.style.zIndex = "10";
+      day.addEventListener('mouseenter', () => {
+        day.style.transform = 'scale(1.5)';
+        day.style.zIndex = '10';
       });
 
-      day.addEventListener("mouseleave", () => {
-        day.style.transform = "scale(1)";
-        day.style.zIndex = "1";
+      day.addEventListener('mouseleave', () => {
+        day.style.transform = 'scale(1)';
+        day.style.zIndex = '1';
       });
 
       grid.appendChild(day);
@@ -150,8 +150,8 @@ class BrutalistTrust {
   }
 
   updateProjectProgress() {
-    const progressFill = document.querySelector(".progress-fill");
-    const progressPercentage = document.querySelector(".progress-percentage");
+    const progressFill = document.querySelector('.progress-fill');
+    const progressPercentage = document.querySelector('.progress-percentage');
 
     if (progressFill && progressPercentage) {
       let currentProgress = 78;
@@ -170,16 +170,16 @@ class BrutalistTrust {
   }
 
   setupCertifications() {
-    const certCards = this.certificationsGrid?.querySelectorAll(".cert-card");
+    const certCards = this.certificationsGrid?.querySelectorAll('.cert-card');
 
     certCards?.forEach((card) => {
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         this.triggerCertificationFlip(card);
       });
 
       // Add verification button functionality
-      const verifyBtn = card.querySelector(".verify-btn");
-      verifyBtn?.addEventListener("click", (e) => {
+      const verifyBtn = card.querySelector('.verify-btn');
+      verifyBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         this.triggerVerificationEffect(verifyBtn);
       });
@@ -188,43 +188,43 @@ class BrutalistTrust {
 
   triggerCertificationFlip(card) {
     // Add extra rotation effect
-    card.style.transform = "rotateY(180deg) scale(1.05)";
+    card.style.transform = 'rotateY(180deg) scale(1.05)';
     setTimeout(() => {
-      card.style.transform = "rotateY(180deg) scale(1)";
+      card.style.transform = 'rotateY(180deg) scale(1)';
     }, 300);
   }
 
   triggerVerificationEffect(button) {
     const originalText = button.textContent;
-    button.textContent = "VERIFYING...";
-    button.style.background = "#ffff00";
-    button.style.color = "#000";
+    button.textContent = 'VERIFYING...';
+    button.style.background = '#ffff00';
+    button.style.color = '#000';
 
     setTimeout(() => {
-      button.textContent = "✓ VERIFIED";
-      button.style.background = "#00ff00";
+      button.textContent = '✓ VERIFIED';
+      button.style.background = '#00ff00';
 
       setTimeout(() => {
         button.textContent = originalText;
-        button.style.background = "";
-        button.style.color = "";
+        button.style.background = '';
+        button.style.color = '';
       }, 2000);
     }, 1500);
   }
 
   setupLogoMarquee() {
     // Add hover effects to platform logos
-    const platformLogos = document.querySelectorAll(".platform-logo");
+    const platformLogos = document.querySelectorAll('.platform-logo');
 
     platformLogos.forEach((logo) => {
-      logo.addEventListener("mouseenter", () => {
-        logo.style.transform = "scale(1.2) rotate(5deg)";
-        logo.style.filter = "brightness(1.5)";
+      logo.addEventListener('mouseenter', () => {
+        logo.style.transform = 'scale(1.2) rotate(5deg)';
+        logo.style.filter = 'brightness(1.5)';
       });
 
-      logo.addEventListener("mouseleave", () => {
-        logo.style.transform = "scale(1) rotate(0deg)";
-        logo.style.filter = "brightness(1)";
+      logo.addEventListener('mouseleave', () => {
+        logo.style.transform = 'scale(1) rotate(0deg)';
+        logo.style.filter = 'brightness(1)';
       });
     });
   }
@@ -234,12 +234,12 @@ class BrutalistTrust {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
+            entry.target.classList.add('animate-in');
 
             // Trigger specific animations based on element
-            if (entry.target.classList.contains("github-section")) {
+            if (entry.target.classList.contains('github-section')) {
               this.animateGitHubSection();
-            } else if (entry.target.classList.contains("certifications-grid")) {
+            } else if (entry.target.classList.contains('certifications-grid')) {
               this.animateCertifications();
             }
           }
@@ -250,9 +250,9 @@ class BrutalistTrust {
 
     // Observe key elements
     const elementsToObserve = [
-      ".github-section",
-      ".certifications-grid",
-      ".media-recognition",
+      '.github-section',
+      '.certifications-grid',
+      '.media-recognition',
     ];
 
     elementsToObserve.forEach((selector) => {
@@ -263,19 +263,19 @@ class BrutalistTrust {
 
   animateGitHubSection() {
     // Animate contribution count
-    const statNumber = document.querySelector(".stat-number");
+    const statNumber = document.querySelector('.stat-number');
     if (statNumber) {
       this.animateCounter(statNumber, 0, 1847, 2000);
     }
   }
 
   animateCertifications() {
-    const certCards = this.certificationsGrid.querySelectorAll(".cert-card");
+    const certCards = this.certificationsGrid.querySelectorAll('.cert-card');
     certCards.forEach((card, index) => {
       setTimeout(() => {
-        card.style.transform = "rotateY(360deg)";
+        card.style.transform = 'rotateY(360deg)';
         setTimeout(() => {
-          card.style.transform = "rotateY(0deg)";
+          card.style.transform = 'rotateY(0deg)';
         }, 600);
       }, index * 100);
     });
@@ -302,17 +302,17 @@ class BrutalistTrust {
   setupLiveDataSimulation() {
     // Simulate live GitHub activity
     setInterval(() => {
-      const commitCount = document.querySelector(".commit-count");
+      const commitCount = document.querySelector('.commit-count');
       if (commitCount && Math.random() > 0.8) {
         const current = Number.parseInt(commitCount.textContent);
         commitCount.textContent = current + 1;
-        commitCount.style.animation = "pulse 0.5s ease-out";
+        commitCount.style.animation = 'pulse 0.5s ease-out';
       }
     }, 60000); // Every minute
 
     // Update project timeline
     setInterval(() => {
-      const timeline = document.querySelector(".project-timeline");
+      const timeline = document.querySelector('.project-timeline');
       if (timeline) {
         const days = Number.parseInt(timeline.textContent.match(/\d+/)[0]);
         if (days > 1) {
@@ -324,7 +324,7 @@ class BrutalistTrust {
 
   startTrustAnimations() {
     // Add trust-specific CSS animations
-    const style = document.createElement("style");
+    const style = document.createElement('style');
     style.textContent = `
       @keyframes trustParticleFloat {
         0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -360,11 +360,11 @@ class BrutalistTrust {
 }
 
 // Initialize the trust component when DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   new BrutalistTrust();
 });
 
 // Export for use in other modules
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = BrutalistTrust;
 }

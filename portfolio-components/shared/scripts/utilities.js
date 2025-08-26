@@ -63,8 +63,8 @@ export const AnimationUtils = {
     start,
     end,
     duration = 2000,
-    prefix = "",
-    suffix = ""
+    prefix = '',
+    suffix = ''
   ) {
     const startTime = performance.now();
     const isDecimal = end % 1 !== 0;
@@ -97,12 +97,12 @@ export const AnimationUtils = {
    * @param {number} duration - Effect duration in ms
    */
   triggerGlitchEffect(element, duration = 300) {
-    element.style.animation = "none";
+    element.style.animation = 'none';
     element.offsetHeight; // Trigger reflow
     element.style.animation = `glitch ${duration}ms ease-out`;
 
     setTimeout(() => {
-      element.style.animation = "";
+      element.style.animation = '';
     }, duration);
   },
 
@@ -111,8 +111,8 @@ export const AnimationUtils = {
    * @param {HTMLElement} element - Target element
    */
   createShimmerEffect(element) {
-    const shimmer = document.createElement("div");
-    shimmer.className = "shimmer-overlay";
+    const shimmer = document.createElement('div');
+    shimmer.className = 'shimmer-overlay';
     shimmer.style.cssText = `
       position: absolute;
       top: 0;
@@ -124,8 +124,8 @@ export const AnimationUtils = {
       pointer-events: none;
     `;
 
-    element.style.position = "relative";
-    element.style.overflow = "hidden";
+    element.style.position = 'relative';
+    element.style.overflow = 'hidden';
     element.appendChild(shimmer);
   },
 };
@@ -174,7 +174,7 @@ export const DOMUtils = {
    * @param {string} content - Inner content
    * @returns {HTMLElement}
    */
-  createElement(tag, attributes = {}, styles = {}, content = "") {
+  createElement(tag, attributes = {}, styles = {}, content = '') {
     const element = document.createElement(tag);
 
     Object.entries(attributes).forEach(([key, value]) => {
@@ -227,13 +227,13 @@ export const ObserverUtils = {
    * @param {string|NodeList} elements - Elements to observe
    * @param {string} animationClass - CSS class to add
    */
-  observeForAnimation(elements, animationClass = "animate-in") {
+  observeForAnimation(elements, animationClass = 'animate-in') {
     const observer = this.createAnimationObserver((element) => {
       element.classList.add(animationClass);
     });
 
     const elementList =
-      typeof elements === "string"
+      typeof elements === 'string'
         ? document.querySelectorAll(elements)
         : elements;
 
@@ -253,7 +253,7 @@ export const ParticleUtils = {
   createParticleSystem(container, config = {}) {
     const defaultConfig = {
       count: 50,
-      colors: ["#00ffff", "#8b5cf6", "#ffff00"],
+      colors: ['#00ffff', '#8b5cf6', '#ffff00'],
       minSize: 2,
       maxSize: 6,
       speed: 0.5,
@@ -276,7 +276,7 @@ export const ParticleUtils = {
    * @param {Object} config - Particle configuration
    */
   createParticle(container, config) {
-    const particle = document.createElement("div");
+    const particle = document.createElement('div');
     const size =
       Math.random() * (config.maxSize - config.minSize) + config.minSize;
     const color =
@@ -324,8 +324,8 @@ export const StarUtils = {
    * @param {HTMLElement} container - Container element
    */
   createStar(container) {
-    const star = document.createElement("div");
-    const sizes = ["small", "medium", "large"];
+    const star = document.createElement('div');
+    const sizes = ['small', 'medium', 'large'];
     const size = sizes[Math.floor(Math.random() * sizes.length)];
 
     star.className = `star ${size}`;
@@ -350,7 +350,7 @@ export const ErrorUtils = {
    * @param {*} fallback - Fallback value
    * @param {string} context - Error context
    */
-  safeExecute(fn, fallback = null, context = "Unknown") {
+  safeExecute(fn, fallback = null, context = 'Unknown') {
     try {
       return fn();
     } catch (error) {
@@ -380,7 +380,7 @@ export const ErrorUtils = {
    * @param {Function} fallback - Fallback function
    */
   gracefulAnimation(element, animationName, fallback = null) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (fallback) fallback(element);
       return;
     }
@@ -388,7 +388,7 @@ export const ErrorUtils = {
     try {
       element.style.animation = animationName;
     } catch (error) {
-      console.warn("Animation failed:", error);
+      console.warn('Animation failed:', error);
       if (fallback) fallback(element);
     }
   },
@@ -405,7 +405,7 @@ export const StorageUtils = {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      console.warn("Failed to save to localStorage:", error);
+      console.warn('Failed to save to localStorage:', error);
     }
   },
 
@@ -419,7 +419,7 @@ export const StorageUtils = {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : defaultValue;
     } catch (error) {
-      console.warn("Failed to read from localStorage:", error);
+      console.warn('Failed to read from localStorage:', error);
       return defaultValue;
     }
   },
@@ -432,7 +432,7 @@ export const StorageUtils = {
     try {
       localStorage.removeItem(key);
     } catch (error) {
-      console.warn("Failed to remove from localStorage:", error);
+      console.warn('Failed to remove from localStorage:', error);
     }
   },
 };
@@ -445,12 +445,12 @@ export const ResponsiveUtils = {
    */
   getCurrentBreakpoint() {
     const width = window.innerWidth;
-    if (width < 640) return "xs";
-    if (width < 768) return "sm";
-    if (width < 1024) return "md";
-    if (width < 1280) return "lg";
-    if (width < 1536) return "xl";
-    return "2xl";
+    if (width < 640) return 'xs';
+    if (width < 768) return 'sm';
+    if (width < 1024) return 'md';
+    if (width < 1280) return 'lg';
+    if (width < 1536) return 'xl';
+    return '2xl';
   },
 
   /**
@@ -469,7 +469,7 @@ export const ResponsiveUtils = {
   onResize(callback, debounce = 250) {
     let timeoutId;
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(callback, debounce);
     });

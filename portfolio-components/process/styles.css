@@ -8,8 +8,8 @@
   --accent-yellow: #ffff00;
   --accent-purple: #8b5cf6;
   --accent-green: #00ff00;
-  --font-mono: "Space Mono", monospace;
-  --font-code: "JetBrains Mono", monospace;
+  --font-mono: 'Space Mono', monospace;
+  --font-code: 'JetBrains Mono', monospace;
   --brutal-shadow: 16px 16px 0;
   --brutal-border: 8px solid;
   --brutal-transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -37,7 +37,7 @@
 }
 
 .process-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
@@ -52,7 +52,7 @@
 }
 
 .process-section::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background:
@@ -159,7 +159,7 @@
 }
 
 .process-header::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -177,7 +177,7 @@
 }
 
 .process-header::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-purple);
@@ -243,7 +243,7 @@
 }
 
 .satisfaction-badge::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -344,7 +344,7 @@
 }
 
 .step-container::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -362,7 +362,7 @@
 }
 
 .step-container::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-purple);
@@ -441,7 +441,7 @@
 }
 
 .step-icon::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -497,7 +497,7 @@
 }
 
 .step-title::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -8px;
   left: 0;
@@ -530,7 +530,7 @@
 }
 
 .step-details::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -557,7 +557,7 @@
 }
 
 .detail-item::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -598,7 +598,7 @@
 }
 
 .step-outcome::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -650,7 +650,7 @@
 }
 
 .outcome-list li::before {
-  content: "▶";
+  content: '▶';
   color: var(--accent-green);
   position: absolute;
   left: 0.5rem;
@@ -659,7 +659,7 @@
 }
 
 .outcome-list li::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -737,7 +737,7 @@
 }
 
 .timeline-pricing-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -755,7 +755,7 @@
 }
 
 .timeline-pricing-section::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-cyan);
@@ -796,7 +796,7 @@
 }
 
 .section-title::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -806,7 +806,7 @@
 }
 
 .section-title::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -845,7 +845,7 @@
 }
 
 .timeline-bar::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -894,7 +894,7 @@
 }
 
 .bar-visual::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -952,7 +952,7 @@
 }
 
 .pricing-tier::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -970,7 +970,7 @@
 }
 
 .pricing-tier::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-purple);
@@ -1022,7 +1022,7 @@
 }
 
 .tier-price::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -8px;
   left: 0;
@@ -1050,7 +1050,7 @@
 }
 
 .tier-description::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1085,7 +1085,7 @@
 }
 
 .communication-section::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1146,7 +1146,7 @@
 }
 
 .tool-item::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1164,7 +1164,7 @@
 }
 
 .tool-item::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -4px;
   border: 3px solid var(--accent-purple);
@@ -1235,7 +1235,7 @@
 }
 
 .tool-purpose::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1270,7 +1270,7 @@
 }
 
 .process-ctas::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1307,7 +1307,7 @@
 }
 
 .primary-process-cta::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1325,7 +1325,7 @@
 }
 
 .primary-process-cta::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: -6px;
   border: 4px solid var(--accent-yellow);
@@ -1424,7 +1424,7 @@
 }
 
 .invitation-card::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);
@@ -1483,7 +1483,7 @@
 }
 
 .invitation-btn::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: var(--primary-black);

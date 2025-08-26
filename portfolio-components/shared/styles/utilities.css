@@ -724,7 +724,7 @@ body {
 }
 
 .scan-lines::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(

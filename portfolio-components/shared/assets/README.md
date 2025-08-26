@@ -21,7 +21,7 @@ shared/assets/
 Images are stored in the `images/` directory and can be accessed using the asset manifest:
 
 ```javascript
-import { getImagePath, IMAGES } from "./shared/assets/manifest.js";
+import { getImagePath, IMAGES } from './shared/assets/manifest.js';
 
 // Get hero portrait path
 const portraitPath = getImagePath(IMAGES.heroPortrait.jpg);
@@ -37,7 +37,7 @@ Fonts are currently loaded from Google Fonts via CDN. The `fonts.css` file conta
 
 ```css
 /* Import in your component CSS */
-@import url("./shared/assets/fonts.css");
+@import url('./shared/assets/fonts.css');
 ```
 
 ### Asset Manifest
@@ -50,13 +50,13 @@ The `manifest.js` file provides:
 - Responsive image handling
 
 ```javascript
-import AssetManifest from "./shared/assets/manifest.js";
+import AssetManifest from './shared/assets/manifest.js';
 
 // Preload critical images
-AssetManifest.preloadImages(["hero-portrait.jpg"]);
+AssetManifest.preloadImages(['hero-portrait.jpg']);
 
 // Load Google Fonts
-AssetManifest.loadGoogleFonts(["spaceMono", "jetBrainsMono"]);
+AssetManifest.loadGoogleFonts(['spaceMono', 'jetBrainsMono']);
 ```
 
 ## Path Updates
@@ -70,7 +70,7 @@ When using assets in components, use relative paths from the component location:
 
 ```css
 /* From a component CSS file */
-background-image: url("../shared/assets/images/hero-portrait.jpg");
+background-image: url('../shared/assets/images/hero-portrait.jpg');
 ```
 
 ## Adding New Assets
