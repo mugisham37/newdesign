@@ -8,6 +8,7 @@
 import React from 'react';
 import { ScrollThemeProvider } from './ScrollThemeProvider';
 import { NavigationLogo } from '@/components/sections/Navigation/NavigationLogo';
+import { NavigationMenu } from '@/components/sections/Navigation/NavigationMenu';
 
 export const ThemeTestPage: React.FC = () => {
   return (
@@ -37,6 +38,16 @@ export const ThemeTestPage: React.FC = () => {
                 <NavigationLogo />
                 <NavigationLogo text="CUSTOM.DEV" />
                 <NavigationLogo showStatus={false} />
+              </div>
+            </div>
+
+            {/* NavigationMenu Test */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-bold mb-4">
+                NavigationMenu Component:
+              </h3>
+              <div className="flex justify-center">
+                <NavigationMenu />
               </div>
             </div>
 
@@ -85,6 +96,16 @@ export const ThemeTestPage: React.FC = () => {
               <div className="flex flex-wrap gap-4 justify-center">
                 <NavigationLogo text="REFINED.DEV" statusText="LIVE" />
                 <NavigationLogo text="PORTFOLIO" showStatus={false} />
+              </div>
+            </div>
+
+            {/* NavigationMenu Test in Refined Theme */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                NavigationMenu in Refined Theme:
+              </h3>
+              <div className="flex justify-center">
+                <NavigationMenu />
               </div>
             </div>
 
