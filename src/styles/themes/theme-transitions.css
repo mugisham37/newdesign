@@ -99,7 +99,17 @@
 
 /* Navigation transitions */
 .navigation {
-  @apply theme-transition-all;
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    transform var(--theme-transition-duration) var(--theme-transition-easing),
+    opacity var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 .navigation__logo {
@@ -109,12 +119,26 @@
 }
 
 .navigation__menu-item {
-  @apply theme-transition-colors;
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 /* Button transitions */
 .brutal-button {
-  @apply theme-transition-all;
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    transform var(--theme-transition-duration) var(--theme-transition-easing),
+    opacity var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 .brutal-button::before,
@@ -127,12 +151,31 @@
 
 /* Card transitions */
 .brutal-card {
-  @apply theme-transition-all;
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    transform var(--theme-transition-duration) var(--theme-transition-easing),
+    opacity var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 /* Text transitions */
 .theme-text {
-  @apply theme-transition-colors theme-transition-typography;
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    font-family var(--theme-transition-duration) var(--theme-transition-easing),
+    font-size var(--theme-transition-duration) var(--theme-transition-easing),
+    font-weight var(--theme-transition-duration) var(--theme-transition-easing),
+    letter-spacing var(--theme-transition-duration)
+      var(--theme-transition-easing);
 }
 
 /* Background transitions */

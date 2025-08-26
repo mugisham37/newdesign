@@ -5,7 +5,7 @@
 'use client';
 
 import React from 'react';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/hooks/useTheme';
 
 export const ThemeDemo: React.FC = () => {
   const {

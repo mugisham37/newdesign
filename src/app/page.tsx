@@ -1,4 +1,4 @@
-import { ThemeDemo, ThemeVerification } from '@/components/theme';
+import { ThemeUtilsDemo } from '@/components/theme/ThemeUtilsDemo';
 
 export default function Home() {
   return (
@@ -20,8 +20,7 @@ export default function Home() {
           Next.js 14 project with dual-theme brutalist architecture
         </p>
 
-        <ThemeDemo />
-        <ThemeVerification />
+        <ThemeUtilsDemo />
       </div>
     </main>
   );

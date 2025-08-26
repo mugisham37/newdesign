@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { runThemeVerification } from '@/utils/theme-verification';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/hooks/useTheme';
 
 export const ThemeVerification: React.FC = () => {
   const [verificationResults, setVerificationResults] = useState<string[]>([]);

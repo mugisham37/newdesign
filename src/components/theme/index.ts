@@ -1,13 +1,37 @@
 /**
- * Barrel export for theme components
+ * Barrel export for theme components and utilities
  */
 
+// Core theme components
 export { ThemeProvider } from './ThemeProvider';
-export { ThemeDemo } from './ThemeDemo';
-export { ThemeVerification } from './ThemeVerification';
-export { useTheme } from '@/contexts/ThemeContext';
+export {
+  ThemeRenderer,
+  ConditionalThemeRenderer,
+  ThemeWrapper,
+  withThemeRenderer,
+} from './ThemeRenderer';
 
-// Future theme components will be exported here as they are created
-// export { ThemeTransition } from './ThemeTransition';
-// export { ThemeDetector } from './ThemeDetector';
-// export { ThemeRenderer } from './ThemeRenderer';
+// Higher-order components
+export {
+  withTheme,
+  withThemeColors,
+  withThemeConfig,
+  withThemeUtils,
+  createThemedComponent,
+} from './withTheme';
+
+// Type exports
+export type {
+  ThemeRenderProps,
+  ThemeRendererProps,
+  ConditionalThemeRendererProps,
+  ThemeWrapperProps,
+} from './ThemeRenderer';
+
+export type {
+  WithThemeProps,
+  WithThemeOptions,
+  WithThemeColorsProps,
+  WithThemeConfigProps,
+  WithThemeUtilsProps,
+} from './withTheme';

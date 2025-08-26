@@ -3,6 +3,7 @@
  */
 
 // Theme and scroll hooks
+export { useTheme } from './useTheme';
 export { useScrollProgress } from './useScrollProgress';
 export { useThemeTransition } from './useThemeTransition';
 export {

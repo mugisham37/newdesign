@@ -1,172 +1,300 @@
-# Scroll-Based Theme Detection System
+# Theme-Aware Component Utilities
 
-This system provides smooth theme transitions based on scroll position and section visibility. It consists of several interconnected components and hooks that work together to create a seamless user experience.
+This directory contains comprehensive theme-aware utilities for the brutalist portfolio application. These utilities provide flexible ways to create components that respond to theme changes and access theme configuration.
 
-## Components
+## Overview
 
-### ScrollThemeProvider
+The theme system supports two themes:
 
-The main provider component that orchestrates theme detection and transitions.
+- **Extreme Brutalist**: Raw, aggressive, terminal-inspired design
+- **Refined Brutalist**: Professional, polished, business-appropriate design
 
-```tsx
-import { ScrollThemeProvider } from '@/components/theme/ScrollThemeProvider';
+## Core Utilities
 
-<ScrollThemeProvider
-  transitionDuration={600}
-  scrollThreshold={0.4}
-  onThemeChange={(theme) => console.log('Theme changed to:', theme)}
->
-  <YourApp />
-</ScrollThemeProvider>;
-```
+### 1. useTheme Hook
 
-### ThemeDetector
-
-Uses Intersection Observer to detect which sections are visible and determine the appropriate theme.
+The primary hook for accessing theme context with additional utilities.
 
 ```tsx
-import { ThemeDetector } from '@/components/theme/ThemeDetector';
+import { useTheme } from '@/hooks/useTheme';
 
-const sections = [
-  { id: 'hero', theme: 'extreme-brutalist' },
-  { id: 'about', theme: 'refined-brutalist' },
-];
+const MyComponent = () => {
+  const {
+    currentTheme, // 'extreme-brutalist' | 'refined-brutalist'
+    isExtreme, // boolean
+    isRefined, // boolean
+    colors, // Theme colors object
+    typography, // Typography configuration
+    borders, // Border configuration
+    shadows, // Shadow configuration
+    animations, // Animation configuration
+    getThemeClass, // Function to generate theme-aware classes
+    getThemeStyles, // Function to generate theme-aware styles
+    toggleTheme, // Function to toggle between themes
+    setTheme, // Function to set specific theme
+  } = useTheme();
 
-<ThemeDetector
-  sections={sections}
-  onThemeChange={(theme, sectionId) => {
-    console.log(`Theme changed to ${theme} due to section ${sectionId}`);
-  }}
->
-  <YourContent />
-</ThemeDetector>;
+  return (
+    <div className={getThemeClass('my-component')} style={getThemeStyles()}>
+      <p>Current theme: {currentTheme}</p>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div>
+  );
+};
 ```
 
-## Hooks
+### 2. ThemeRenderer (Render Props)
 
-### useScrollProgress
-
-Tracks scroll position with performance optimization.
+Provides theme context through render props pattern.
 
 ```tsx
-import { useScrollProgress } from '@/hooks/useScrollProgress';
+import { ThemeRenderer } from '@/components/theme';
 
-const { scrollY, scrollProgress, isScrolling } = useScrollProgress({
-  throttleMs: 16, // Throttle updates to 60fps
-  includeScrollDirection: true,
-});
+const MyComponent = () => (
+  <ThemeRenderer>
+    {({ theme, config, isExtreme, getThemeClass }) => (
+      <div className={getThemeClass('render-props-example')}>
+        <h3>Current theme: {theme}</h3>
+        <p>Primary font: {config.typography.primary}</p>
+        {isExtreme ? (
+          <span style={{ color: config.colors.accent }}>EXTREME MODE!</span>
+        ) : (
+          <span style={{ color: config.colors.highlight }}>Refined Mode</span>
+        )}
+      </div>
+    )}
+  </ThemeRenderer>
+);
 ```
 
-### useThemeTransition
+### 3. ConditionalThemeRenderer
 
-Manages theme transitions with hysteresis to prevent rapid switching.
+Renders different content based on the current theme.
 
 ```tsx
-import { useThemeTransition } from '@/hooks/useThemeTransition';
+import { ConditionalThemeRenderer } from '@/components/theme';
 
-const { currentTheme, targetTheme, isTransitioning, transitionProgress } =
-  useThemeTransition({
-    thresholds: [
-      { progress: 0, theme: 'extreme-brutalist' },
-      { progress: 0.4, theme: 'refined-brutalist' },
-    ],
-    transitionDuration: 600,
-  });
+const MyComponent = () => (
+  <ConditionalThemeRenderer
+    extreme={
+      <div className="extreme-design">
+        <strong>EXTREME BRUTALIST DESIGN</strong>
+      </div>
+    }
+    refined={
+      <div className="refined-design">
+        <strong>Professional Design</strong>
+      </div>
+    }
+    fallback={<div>Loading theme...</div>}
+  />
+);
 ```
 
-### useIntersectionObserver
+### 4. ThemeWrapper
 
-Detects element visibility for animations and theme detection.
+Automatically applies theme classes and styles to any element.
 
 ```tsx
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { ThemeWrapper } from '@/components/theme';
 
-const ref = useRef<HTMLDivElement>(null);
-const { isIntersecting, intersectionRatio } = useIntersectionObserver(ref, {
-  threshold: 0.5,
-  rootMargin: '-20% 0px',
-  triggerOnce: true,
-});
+const MyComponent = () => (
+  <ThemeWrapper
+    as="section"
+    baseClass="my-section"
+    className="additional-classes"
+    applyThemeStyles={true}
+  >
+    <h2>This section has automatic theme styling</h2>
+    <ThemeWrapper as="button" baseClass="theme-button">
+      Themed Button
+    </ThemeWrapper>
+  </ThemeWrapper>
+);
 ```
 
-## Usage
+### 5. Higher-Order Components (HOCs)
 
-### 1. Mark sections with theme attributes
+#### withTheme
+
+Injects complete theme context as props.
 
 ```tsx
-<section data-theme-section="hero" className="min-h-screen">
-  <h1>Hero Section</h1>
-</section>
+import { withTheme, WithThemeProps } from '@/components/theme';
 
-<section data-theme-section="about" className="min-h-screen">
-  <h2>About Section</h2>
-</section>
-```
-
-### 2. Apply theme transition classes
-
-```tsx
-<div className="theme-transition-all">
-  Content that transitions smoothly between themes
-</div>
-
-<button className="theme-transition-colors">
-  Button with color transitions
-</button>
-```
-
-### 3. Use CSS custom properties for theme-aware styling
-
-```css
-.my-component {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  border: var(--border-width) solid var(--border-primary);
-  transition: all var(--theme-transition-duration)
-    var(--theme-transition-easing);
+interface MyComponentProps {
+  title: string;
 }
+
+const MyComponent: React.FC<MyComponentProps & WithThemeProps> = ({
+  title,
+  theme,
+}) => (
+  <div className={theme.getThemeClass('my-component')}>
+    <h2>{title}</h2>
+    <p>Current theme: {theme.currentTheme}</p>
+  </div>
+);
+
+export default withTheme(MyComponent);
 ```
 
-## CSS Classes
+#### withThemeColors
 
-### Transition Classes
+Injects only theme colors as props.
 
-- `theme-transition-all` - Transitions all theme-related properties
-- `theme-transition-colors` - Transitions colors only
-- `theme-transition-borders` - Transitions border properties
-- `theme-transition-shadows` - Transitions box-shadow
+```tsx
+import { withThemeColors, WithThemeColorsProps } from '@/components/theme';
 
-### Theme State Classes
+const ColorPalette: React.FC<WithThemeColorsProps> = ({ colors }) => (
+  <div>
+    {Object.entries(colors).map(([name, color]) => (
+      <div
+        key={name}
+        style={{ backgroundColor: color, width: 50, height: 50 }}
+        title={`${name}: ${color}`}
+      />
+    ))}
+  </div>
+);
 
-- `theme-extreme-brutalist` - Applied when extreme theme is active
-- `theme-refined-brutalist` - Applied when refined theme is active
-- `theme-transitioning` - Applied during theme transitions
+export default withThemeColors(ColorPalette);
+```
 
-## Performance Considerations
+#### withThemeUtils
 
-1. **Throttled Updates**: Scroll events are throttled to 60fps for smooth performance
-2. **RequestAnimationFrame**: Smooth animations use RAF for optimal timing
-3. **Hysteresis**: Prevents rapid theme switching with buffer zones
-4. **Intersection Observer**: Efficient section visibility detection
-5. **CSS Transitions**: Hardware-accelerated transitions for smooth effects
+Injects theme utility functions as props.
 
-## Accessibility
+```tsx
+import { withThemeUtils, WithThemeUtilsProps } from '@/components/theme';
 
-- Respects `prefers-reduced-motion` for users who prefer minimal animations
-- Maintains keyboard navigation during theme transitions
-- Provides semantic theme information via data attributes
-- Includes debug information in development mode
+const ThemeToggler: React.FC<WithThemeUtilsProps> = ({
+  isExtreme,
+  toggleTheme,
+  getThemeClass,
+}) => (
+  <button className={getThemeClass('theme-toggler')} onClick={toggleTheme}>
+    Switch to {isExtreme ? 'Refined' : 'Extreme'} Theme
+  </button>
+);
 
-## Development
+export default withThemeUtils(ThemeToggler);
+```
 
-### Debug Mode
+## CSS-in-JS Utilities
 
-In development, debug panels show current theme state and transition progress.
+### Theme Style Functions
 
-### Testing
+```tsx
+import { createThemeStyles, themeStyleUtils } from '@/utils/theme-styles';
 
-Use the theme demo page at `/theme-demo` to test the system.
+const MyComponent = () => {
+  const { currentTheme } = useTheme();
 
-### Customization
+  // Create theme-aware styles
+  const buttonStyles = createThemeStyles(
+    (config) => themeStyleUtils.themeButton(config, 'primary'),
+    currentTheme
+  );
 
-All transition durations, easing functions, and thresholds are configurable through the component props and CSS custom properties.
+  const cardStyles = createThemeStyles(
+    (config) => ({
+      ...themeStyleUtils.themeCard(config, true),
+      padding: '1rem',
+      margin: '0.5rem',
+    }),
+    currentTheme
+  );
+
+  return (
+    <div style={cardStyles}>
+      <button style={buttonStyles}>Themed Button</button>
+    </div>
+  );
+};
+```
+
+### Available Style Utilities
+
+- `themeStyleUtils.brutalBorder(config, color?)` - Creates brutal border styles
+- `themeStyleUtils.brutalShadow(config, shadowType?)` - Creates shadow effects
+- `themeStyleUtils.themeText(config, size?)` - Creates text styles
+- `themeStyleUtils.themeCodeText(config, size?)` - Creates code text styles
+- `themeStyleUtils.themeBackground(config, variant?)` - Creates background styles
+- `themeStyleUtils.themeButton(config, variant?)` - Creates button styles
+- `themeStyleUtils.themeCard(config, elevated?)` - Creates card styles
+- `themeStyleUtils.themeInput(config)` - Creates input styles
+
+### CSS Custom Properties
+
+```tsx
+import { createThemeVariables } from '@/utils/theme-styles';
+
+const MyComponent = () => {
+  const { config } = useTheme();
+
+  // Generate CSS custom properties
+  const cssVariables = createThemeVariables(config, '--my-theme');
+
+  return (
+    <div style={cssVariables}>
+      <p style={{ color: 'var(--my-theme-accent)' }}>
+        This uses CSS custom properties
+      </p>
+    </div>
+  );
+};
+```
+
+## Best Practices
+
+### 1. Choose the Right Utility
+
+- Use `useTheme` for simple theme access in functional components
+- Use `ThemeRenderer` when you need render props pattern
+- Use `ConditionalThemeRenderer` for theme-specific content
+- Use `ThemeWrapper` for automatic theme styling
+- Use HOCs for reusable components that need theme injection
+
+### 2. Performance Considerations
+
+- HOCs are memoized by default when `memo: true` option is used
+- Theme transitions are optimized with requestAnimationFrame
+- CSS custom properties are used for efficient style updates
+
+### 3. Accessibility
+
+- Theme changes maintain focus states
+- Color contrast is maintained across themes
+- Reduced motion preferences are respected
+
+### 4. Testing
+
+```tsx
+import { render } from '@testing-library/react';
+import { ThemeProvider } from '@/components/theme';
+
+const renderWithTheme = (component, theme = 'extreme-brutalist') => {
+  return render(
+    <ThemeProvider initialTheme={theme}>{component}</ThemeProvider>
+  );
+};
+
+test('component renders with theme', () => {
+  renderWithTheme(<MyComponent />);
+  // Test theme-specific behavior
+});
+```
+
+## Migration Guide
+
+If you have existing components that need theme support:
+
+1. **Simple theme access**: Add `useTheme` hook
+2. **Props injection**: Wrap with appropriate HOC
+3. **Conditional rendering**: Use `ConditionalThemeRenderer`
+4. **Automatic styling**: Wrap with `ThemeWrapper`
+
+## Examples
+
+See `ThemeUtilsDemo.tsx` for comprehensive examples of all utilities in action.
