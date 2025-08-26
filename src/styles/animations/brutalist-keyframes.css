@@ -450,6 +450,21 @@
   }
 }
 
+@keyframes smoothGlow {
+  0% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.3);
+  }
+  100% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+}
+
 @keyframes buttonPress {
   0% {
     transform: translate(0, 0);

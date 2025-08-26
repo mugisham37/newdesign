@@ -6,6 +6,7 @@
 @import '../styles/themes/theme-variables.css';
 @import '../styles/themes/theme-transitions.css';
 @import '../styles/animations/brutalist-keyframes.css';
+@import '../styles/components/navigation.css';
 
 /* ===== GLOBAL RESET AND BASE STYLES ===== */
 *,

@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { ThemeProvider } from '../ThemeProvider';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/hooks/useTheme';
 
 // Simple test component to verify theme context
 const TestComponent: React.FC = () => {
