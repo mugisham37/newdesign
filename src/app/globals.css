@@ -8,6 +8,9 @@
 @import '../styles/animations/brutalist-keyframes.css';
 @import '../styles/components/navigation.css';
 @import '../styles/components/navigation-menu.css';
+@import '../styles/components/navigation-cta.css';
+@import '../styles/components/mobile-menu.css';
+@import '../styles/components/mobile-menu-toggle.css';
 
 /* ===== GLOBAL RESET AND BASE STYLES ===== */
 *,

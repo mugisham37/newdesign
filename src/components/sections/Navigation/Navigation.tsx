@@ -10,6 +10,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import { useScrollProgress } from '@/hooks/useScrollProgress';
+import { NavigationLogo } from './NavigationLogo';
+import { NavigationMenu } from './NavigationMenu';
+import { NavigationCTA } from './NavigationCTA';
+import { MobileMenu } from './MobileMenu';
+import { MobileMenuToggle } from './MobileMenuToggle';
 
 export interface NavigationProps {
   className?: string;
@@ -25,6 +30,7 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [backgroundOpacity, setBackgroundOpacity] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Handle scroll-based background changes
   useEffect(() => {
@@ -38,12 +44,22 @@ export const Navigation: React.FC<NavigationProps> = ({
     setBackgroundOpacity(opacity);
   }, [scrollY, currentTheme]);
 
+  // Handle mobile menu toggle
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleMobileMenuClose = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   // Generate theme-aware CSS classes
   const navigationClasses = [
     'navigation',
     getThemeClass('navigation'),
     isScrolled && 'navigation--scrolled',
     isTransitioning && 'navigation--transitioning',
+    isMobileMenuOpen && 'navigation--mobile-menu-open',
     className,
   ]
     .filter(Boolean)
@@ -62,27 +78,58 @@ export const Navigation: React.FC<NavigationProps> = ({
   } as React.CSSProperties;
 
   return (
-    <nav
-      className={navigationClasses}
-      style={navigationStyles}
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      {/* Background overlay with scroll-based opacity */}
-      <div className="navigation__background" />
+    <>
+      <nav
+        className={navigationClasses}
+        style={navigationStyles}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        {/* Background overlay with scroll-based opacity */}
+        <div className="navigation__background" />
 
-      {/* Border effects for brutal styling */}
-      <div className="navigation__border-effects">
-        <div className="navigation__border-top" />
-        <div className="navigation__border-bottom" />
-        <div className="navigation__border-accent" />
-      </div>
+        {/* Border effects for brutal styling */}
+        <div className="navigation__border-effects">
+          <div className="navigation__border-top" />
+          <div className="navigation__border-bottom" />
+          <div className="navigation__border-accent" />
+        </div>
 
-      {/* Main navigation container */}
-      <div className="navigation__container">{children}</div>
+        {/* Main navigation container */}
+        <div className="navigation__container">
+          {/* Logo */}
+          <NavigationLogo />
 
-      {/* Theme transition indicator */}
-      {isTransitioning && <div className="navigation__transition-indicator" />}
-    </nav>
+          {/* Desktop Menu */}
+          <div className="navigation__desktop-menu">
+            <NavigationMenu />
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="navigation__desktop-cta">
+            <NavigationCTA />
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="navigation__mobile-toggle">
+            <MobileMenuToggle
+              isOpen={isMobileMenuOpen}
+              onToggle={handleMobileMenuToggle}
+            />
+          </div>
+
+          {/* Custom children if provided */}
+          {children}
+        </div>
+
+        {/* Theme transition indicator */}
+        {isTransitioning && (
+          <div className="navigation__transition-indicator" />
+        )}
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={handleMobileMenuClose} />
+    </>
   );
 };

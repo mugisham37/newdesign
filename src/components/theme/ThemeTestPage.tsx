@@ -7,14 +7,20 @@
 
 import React from 'react';
 import { ScrollThemeProvider } from './ScrollThemeProvider';
+import { Navigation } from '@/components/sections/Navigation';
 import { NavigationLogo } from '@/components/sections/Navigation/NavigationLogo';
 import { NavigationMenu } from '@/components/sections/Navigation/NavigationMenu';
+import { NavigationCTA } from '@/components/sections/Navigation/NavigationCTA';
+import { MobileMenuToggle } from '@/components/sections/Navigation/MobileMenuToggle';
 
 export const ThemeTestPage: React.FC = () => {
   return (
     <ScrollThemeProvider
       onThemeChange={(theme) => console.log('Theme changed to:', theme)}
     >
+      {/* Full Navigation Component */}
+      <Navigation />
+
       <div className="theme-test-page">
         {/* Navigation Section - Extreme Brutalist */}
         <section
@@ -48,6 +54,29 @@ export const ThemeTestPage: React.FC = () => {
               </h3>
               <div className="flex justify-center">
                 <NavigationMenu />
+              </div>
+            </div>
+
+            {/* NavigationCTA Test */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-bold mb-4">
+                NavigationCTA Component:
+              </h3>
+              <div className="flex justify-center">
+                <NavigationCTA />
+              </div>
+            </div>
+
+            {/* MobileMenuToggle Test */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-bold mb-4">
+                MobileMenuToggle Component:
+              </h3>
+              <div className="flex justify-center">
+                <MobileMenuToggle
+                  isOpen={false}
+                  onToggle={() => console.log('Mobile menu toggled')}
+                />
               </div>
             </div>
 
@@ -106,6 +135,32 @@ export const ThemeTestPage: React.FC = () => {
               </h3>
               <div className="flex justify-center">
                 <NavigationMenu />
+              </div>
+            </div>
+
+            {/* NavigationCTA Test in Refined Theme */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                NavigationCTA in Refined Theme:
+              </h3>
+              <div className="flex justify-center">
+                <NavigationCTA
+                  primaryText="CONTACT US"
+                  secondaryText="LET'S TALK"
+                />
+              </div>
+            </div>
+
+            {/* MobileMenuToggle Test in Refined Theme */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                MobileMenuToggle in Refined Theme:
+              </h3>
+              <div className="flex justify-center">
+                <MobileMenuToggle
+                  isOpen={false}
+                  onToggle={() => console.log('Mobile menu toggled')}
+                />
               </div>
             </div>
 

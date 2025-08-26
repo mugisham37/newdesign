@@ -110,6 +110,24 @@
   min-height: 80px;
 }
 
+/* ===== NAVIGATION SECTIONS ===== */
+.navigation__desktop-menu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.navigation__desktop-cta {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__mobile-toggle {
+  display: none;
+  align-items: center;
+}
+
 /* ===== THEME TRANSITION INDICATOR ===== */
 .navigation__transition-indicator {
   position: absolute;
@@ -261,6 +279,12 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .navigation__desktop-cta {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .navigation {
     min-height: 70px;
@@ -269,6 +293,14 @@
   .navigation__container {
     padding: var(--space-3) var(--space-4);
     min-height: 70px;
+  }
+
+  .navigation__desktop-menu {
+    display: none;
+  }
+
+  .navigation__mobile-toggle {
+    display: flex;
   }
 
   .navigation--theme-extreme-brutalist {
