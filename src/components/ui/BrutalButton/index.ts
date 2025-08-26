@@ -1,6 +1,3 @@
-/**
- * Barrel export for BrutalButton component
- */
-
-// BrutalButton component will be exported here when created
-// export { BrutalButton } from './BrutalButton';
+// Barrel export for BrutalButton component
+export { BrutalButton, type BrutalButtonProps } from './BrutalButton';
+export { default } from './BrutalButton';

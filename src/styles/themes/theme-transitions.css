@@ -1,0 +1,384 @@
+/* Theme Transition Animations */
+
+/* ===== GLOBAL TRANSITION PROPERTIES ===== */
+* {
+  transition-property:
+    color, background-color, border-color, box-shadow, transform, opacity,
+    filter;
+  transition-duration: var(--theme-transition-duration, 600ms);
+  transition-timing-function: var(
+    --theme-transition-easing,
+    cubic-bezier(0.4, 0, 0.2, 1)
+  );
+}
+
+/* Disable transitions during theme switching to prevent jarring effects */
+.theme-transitioning * {
+  transition: none !important;
+}
+
+/* Re-enable transitions after theme switch */
+.theme-transition-complete * {
+  transition-property:
+    color, background-color, border-color, box-shadow, transform, opacity,
+    filter;
+  transition-duration: var(--theme-transition-duration, 600ms);
+  transition-timing-function: var(
+    --theme-transition-easing,
+    cubic-bezier(0.4, 0, 0.2, 1)
+  );
+}
+
+/* ===== COMPONENT-SPECIFIC TRANSITIONS ===== */
+
+/* Text transitions */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    text-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    font-family var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Background transitions */
+body,
+section,
+div,
+header,
+footer,
+nav {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    background-image var(--theme-transition-duration)
+      var(--theme-transition-easing);
+}
+
+/* Border transitions */
+button,
+input,
+textarea,
+select,
+.card,
+.border {
+  transition:
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing);
+}
+
+/* Shadow transitions */
+.shadow,
+.card,
+button,
+.brutal-shadow {
+  transition: box-shadow var(--theme-transition-duration)
+    var(--theme-transition-easing);
+}
+
+/* Font transitions */
+.font-transition {
+  transition:
+    font-family var(--theme-transition-duration) var(--theme-transition-easing),
+    font-weight var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* ===== THEME-SPECIFIC TRANSITION STATES ===== */
+
+/* Extreme to Refined transition */
+[data-theme='extreme-brutalist'] {
+  --transition-state: 'extreme';
+}
+
+[data-theme='refined-brutalist'] {
+  --transition-state: 'refined';
+}
+
+/* Transition overlay for smooth theme switching */
+.theme-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    var(--bg-primary) 0%,
+    transparent 50%,
+    var(--bg-primary) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 300ms ease-in-out;
+}
+
+.theme-transition-overlay.active {
+  opacity: 0.1;
+}
+
+/* ===== STAGGERED TRANSITION ANIMATIONS ===== */
+
+/* Stagger transitions for multiple elements */
+.stagger-transition > * {
+  transition-delay: calc(var(--stagger-index, 0) * 50ms);
+}
+
+.stagger-transition > *:nth-child(1) {
+  --stagger-index: 0;
+}
+.stagger-transition > *:nth-child(2) {
+  --stagger-index: 1;
+}
+.stagger-transition > *:nth-child(3) {
+  --stagger-index: 2;
+}
+.stagger-transition > *:nth-child(4) {
+  --stagger-index: 3;
+}
+.stagger-transition > *:nth-child(5) {
+  --stagger-index: 4;
+}
+.stagger-transition > *:nth-child(6) {
+  --stagger-index: 5;
+}
+.stagger-transition > *:nth-child(7) {
+  --stagger-index: 6;
+}
+.stagger-transition > *:nth-child(8) {
+  --stagger-index: 7;
+}
+.stagger-transition > *:nth-child(9) {
+  --stagger-index: 8;
+}
+.stagger-transition > *:nth-child(10) {
+  --stagger-index: 9;
+}
+
+/* ===== SECTION-SPECIFIC TRANSITIONS ===== */
+
+/* Navigation transitions */
+.navigation {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    backdrop-filter var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    border-bottom var(--theme-transition-duration)
+      var(--theme-transition-easing);
+}
+
+.navigation-logo {
+  transition:
+    transform var(--theme-transition-duration) var(--theme-transition-easing),
+    filter var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+.navigation-menu-item {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Hero section transitions */
+.hero {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    background-image var(--theme-transition-duration)
+      var(--theme-transition-easing);
+}
+
+.hero-title {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    text-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    font-family var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+.hero-metrics {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Button transitions */
+.brutal-button {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+    transform var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+.brutal-button:hover {
+  transition-duration: var(--duration-fast, 200ms);
+}
+
+/* Card transitions */
+.brutal-card {
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    border-color var(--theme-transition-duration) var(--theme-transition-easing),
+    border-width var(--theme-transition-duration) var(--theme-transition-easing),
+    border-radius var(--theme-transition-duration)
+      var(--theme-transition-easing),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .theme-transition-overlay {
+    display: none;
+  }
+}
+
+/* ===== THEME TRANSITION KEYFRAMES ===== */
+@keyframes themeShift {
+  0% {
+    filter: brightness(1) contrast(1) hue-rotate(0deg);
+  }
+  50% {
+    filter: brightness(1.1) contrast(1.2) hue-rotate(10deg);
+  }
+  100% {
+    filter: brightness(1) contrast(1) hue-rotate(0deg);
+  }
+}
+
+@keyframes colorShift {
+  0% {
+    color: var(--text-primary);
+  }
+  50% {
+    color: var(--color-accent);
+  }
+  100% {
+    color: var(--text-primary);
+  }
+}
+
+@keyframes shadowShift {
+  0% {
+    box-shadow: var(--shadow-brutal);
+  }
+  50% {
+    box-shadow: var(--shadow-brutal-double);
+  }
+  100% {
+    box-shadow: var(--shadow-brutal);
+  }
+}
+
+/* Apply theme shift animation during transitions */
+.theme-shifting {
+  animation: themeShift 0.6s ease-in-out;
+}
+
+.theme-shifting .text-element {
+  animation: colorShift 0.6s ease-in-out;
+}
+
+.theme-shifting .shadow-element {
+  animation: shadowShift 0.6s ease-in-out;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Use transform and opacity for better performance */
+.performance-transition {
+  transition:
+    transform var(--theme-transition-duration) var(--theme-transition-easing),
+    opacity var(--theme-transition-duration) var(--theme-transition-easing);
+  will-change: transform, opacity;
+}
+
+/* GPU acceleration for smooth transitions */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Contain layout shifts during transitions */
+.contain-layout {
+  contain: layout style paint;
+}
+
+/* ===== TRANSITION UTILITY CLASSES ===== */
+.transition-none {
+  transition: none !important;
+}
+.transition-all {
+  transition: all var(--theme-transition-duration)
+    var(--theme-transition-easing);
+}
+.transition-colors {
+  transition:
+    color,
+    background-color,
+    border-color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+.transition-opacity {
+  transition: opacity var(--theme-transition-duration)
+    var(--theme-transition-easing);
+}
+.transition-shadow {
+  transition: box-shadow var(--theme-transition-duration)
+    var(--theme-transition-easing);
+}
+.transition-transform {
+  transition: transform var(--theme-transition-duration)
+    var(--theme-transition-easing);
+}
+
+.transition-fast {
+  transition-duration: var(--duration-fast, 200ms) !important;
+}
+.transition-normal {
+  transition-duration: var(--duration-normal, 400ms) !important;
+}
+.transition-slow {
+  transition-duration: var(--duration-slow, 600ms) !important;
+}
+
+.ease-linear {
+  transition-timing-function: linear !important;
+}
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important;
+}
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1) !important;
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.ease-brutal {
+  transition-timing-function: var(--easing-brutal) !important;
+}

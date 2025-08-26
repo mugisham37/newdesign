@@ -51,17 +51,55 @@ const nextConfig = {
     ];
   },
 
-  // Bundle analyzer (optional, for development)
-  ...(process.env.ANALYZE === 'true' && {
-    webpack: (config) => {
+  // CSS Modules and Webpack configuration
+  webpack: (config, { dev, isServer }) => {
+    // CSS Modules configuration
+    const cssModuleRegex = /\.module\.(css|scss|sass)$/;
+
+    config.module.rules.forEach((rule) => {
+      if (rule.oneOf) {
+        rule.oneOf.forEach((oneOfRule) => {
+          if (oneOfRule.test && oneOfRule.test.toString().includes('css')) {
+            // Configure CSS Modules
+            if (oneOfRule.use && Array.isArray(oneOfRule.use)) {
+              oneOfRule.use.forEach((use) => {
+                if (use.loader && use.loader.includes('css-loader')) {
+                  if (use.options && use.options.modules) {
+                    use.options.modules = {
+                      ...use.options.modules,
+                      localIdentName: dev
+                        ? '[name]__[local]--[hash:base64:5]'
+                        : '[hash:base64:8]',
+                      exportLocalsConvention: 'camelCase',
+                    };
+                  }
+                }
+              });
+            }
+          }
+        });
+      }
+    });
+
+    // Bundle analyzer (optional, for development)
+    if (process.env.ANALYZE === 'true') {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       config.plugins.push(
-        new (require('@next/bundle-analyzer')({
-          enabled: true,
-        }))()
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          analyzerPort: 8888,
+          openAnalyzer: true,
+        })
       );
-      return config;
-    },
-  }),
+    }
+
+    return config;
+  },
+
+  // SASS options for better CSS organization
+  sassOptions: {
+    includePaths: ['./src/styles'],
+  },
 };
 
 module.exports = nextConfig;
