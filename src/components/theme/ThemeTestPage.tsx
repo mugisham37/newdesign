@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { ScrollThemeProvider } from './ScrollThemeProvider';
+import { NavigationLogo } from '@/components/sections/Navigation/NavigationLogo';
 
 export const ThemeTestPage: React.FC = () => {
   return (
@@ -26,6 +27,19 @@ export const ThemeTestPage: React.FC = () => {
             <p className="text-xl transition-colors duration-[600ms] ease-out">
               Navigation section with harsh, aggressive styling
             </p>
+
+            {/* NavigationLogo Test */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-bold mb-4">
+                NavigationLogo Component:
+              </h3>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <NavigationLogo />
+                <NavigationLogo text="CUSTOM.DEV" />
+                <NavigationLogo showStatus={false} />
+              </div>
+            </div>
+
             <div className="mt-8 p-4 border-8 border-black transition-all duration-[600ms] ease-out">
               <p className="font-mono">Brutal borders and sharp edges</p>
             </div>
@@ -62,6 +76,18 @@ export const ThemeTestPage: React.FC = () => {
             <p className="text-lg transition-colors duration-[600ms] ease-out text-gray-600">
               Social proof section with softer, professional styling
             </p>
+
+            {/* NavigationLogo Test in Refined Theme */}
+            <div className="mt-8 mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800">
+                NavigationLogo in Refined Theme:
+              </h3>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <NavigationLogo text="REFINED.DEV" statusText="LIVE" />
+                <NavigationLogo text="PORTFOLIO" showStatus={false} />
+              </div>
+            </div>
+
             <div className="mt-8 p-6 bg-white rounded-lg shadow-lg transition-all duration-[600ms] ease-out">
               <p className="text-gray-700">
                 Softer shadows and rounded corners

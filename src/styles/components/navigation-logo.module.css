@@ -1,0 +1,629 @@
+/* NavigationLogo Component Styles - CSS Modules */
+
+/* ===== BASE LOGO STYLES ===== */
+.navigationLogo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--logo-font-family, var(--font-display));
+  font-size: var(--text-xl);
+  font-weight: var(--font-black);
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  border: var(--logo-border-width, var(--border-width)) var(--border-style)
+    var(--border-primary);
+  border-radius: var(--logo-border-radius, var(--border-radius));
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  transition: all var(--logo-animation-duration, var(--duration-normal))
+    var(--logo-animation-easing, var(--easing-brutal));
+  z-index: 10;
+}
+
+.navigationLogoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== THEME VARIANTS ===== */
+.navigationLogo.navigationLogoExtremebrut {
+  background-color: var(--color-accent);
+  color: var(--text-inverse);
+  text-shadow: 2px 2px 0 var(--color-primary);
+  box-shadow: var(--logo-shadow-brutal, var(--shadow-brutal));
+}
+
+.navigationLogo.navigationLogoRefinedbrut {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  text-shadow: none;
+  box-shadow: var(--logo-shadow-brutal, var(--shadow-brutal-double));
+}
+
+/* ===== SHADOW LAYERS ===== */
+.navigationLogoShadowLayers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navigationLogoShadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: var(--logo-border-width, var(--border-width)) var(--border-style)
+    var(--border-primary);
+  border-radius: var(--logo-border-radius, var(--border-radius));
+  transition: all var(--logo-animation-duration, var(--duration-normal))
+    var(--logo-animation-easing, var(--easing-brutal));
+}
+
+.navigationLogoShadowLayer1 {
+  background-color: var(--color-accent);
+  transform: translate(4px, 4px);
+  z-index: -1;
+}
+
+.navigationLogoShadowLayer2 {
+  background-color: var(--color-secondary);
+  transform: translate(8px, 8px);
+  z-index: -2;
+}
+
+.navigationLogoShadowLayer3 {
+  background-color: var(--color-primary);
+  transform: translate(12px, 12px);
+  z-index: -3;
+}
+
+.navigationLogoShadowLayer4 {
+  background-color: var(--color-muted);
+  transform: translate(16px, 16px);
+  z-index: -4;
+  opacity: 0.5;
+}
+
+/* ===== BORDER EFFECTS ===== */
+.navigationLogoBorderEffects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.navigationLogoBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--logo-border-radius, var(--border-radius));
+  transition: all var(--logo-animation-duration, var(--duration-normal))
+    var(--logo-animation-easing, var(--easing-brutal));
+}
+
+.navigationLogoBorderMain {
+  border: var(--logo-border-width, var(--border-width)) var(--border-style)
+    var(--border-primary);
+}
+
+.navigationLogoBorderAccent {
+  border: 2px var(--border-style) var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--easing-out);
+}
+
+.navigationLogoBorderRotating {
+  border: 1px var(--border-style) var(--color-highlight);
+  opacity: 0;
+  transform-origin: center;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.navigationLogoContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== TEXT STYLES ===== */
+.navigationLogoText {
+  position: relative;
+  z-index: 3;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.navigationLogoChar {
+  display: inline-block;
+  transition: all var(--duration-fast) var(--easing-out);
+}
+
+/* ===== GLITCH EFFECTS ===== */
+.navigationLogoGlitchOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 1;
+}
+
+.navigationLogoGlitchText {
+  position: absolute;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  pointer-events: none;
+}
+
+.navigationLogoGlitchTextRed {
+  color: #ff0000;
+  transform: translate(-2px, 0);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.navigationLogoGlitchTextBlue {
+  color: #00ffff;
+  transform: translate(2px, 0);
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+/* ===== HOVER EFFECTS ===== */
+.navigationLogoHoverEffects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.navigationLogoShimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skew(-15deg);
+  transition: left var(--duration-slow) var(--easing-out);
+}
+
+.navigationLogoGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--color-accent);
+  border-radius: var(--logo-border-radius, var(--border-radius));
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity var(--duration-normal) var(--easing-out);
+  z-index: -1;
+}
+
+.navigationLogoStrike {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateY(-50%) scaleX(0) skew(-15deg);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--easing-brutal);
+}
+
+/* ===== STATUS INDICATOR ===== */
+.navigationLogoStatus {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--bg-primary);
+  border: 2px var(--border-style) var(--color-success);
+  border-radius: var(--space-2);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  color: var(--color-success);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  z-index: 5;
+}
+
+.navigationLogoStatusIndicator {
+  position: relative;
+  width: 8px;
+  height: 8px;
+}
+
+.navigationLogoStatusDot {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  animation: brutalPulse 2s ease-in-out infinite;
+}
+
+.navigationLogoStatusPulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.navigationLogoStatusText {
+  white-space: nowrap;
+}
+
+.navigationLogoTerminalCursor {
+  width: 6px;
+  height: 10px;
+  background-color: var(--color-success);
+  animation: blinkCursor 1s step-end infinite;
+  margin-left: var(--space-1);
+}
+
+/* ===== BRUTAL EFFECTS ===== */
+.navigationLogoBrutalEffects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.navigationLogoScanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent),
+    transparent
+  );
+  opacity: 0;
+  animation: scanLine 3s linear infinite;
+}
+
+.navigationLogoNoiseOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.15) 1px,
+    transparent 0
+  );
+  background-size: 4px 4px;
+  opacity: 0;
+  animation: noiseFlicker 0.1s ease-in-out infinite;
+}
+
+.navigationLogoCornerBrackets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.navigationLogoBracket {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px var(--border-style) var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--easing-out);
+}
+
+.navigationLogoBracketTopLeft {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.navigationLogoBracketTopRight {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.navigationLogoBracketBottomLeft {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.navigationLogoBracketBottomRight {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ===== HOVER STATES ===== */
+.navigationLogo:hover {
+  transform: translate(-2px, -2px) scale(1.02);
+}
+
+.navigationLogo:hover .navigationLogoShadowLayer1 {
+  transform: translate(6px, 6px);
+}
+
+.navigationLogo:hover .navigationLogoShadowLayer2 {
+  transform: translate(10px, 10px);
+}
+
+.navigationLogo:hover .navigationLogoShadowLayer3 {
+  transform: translate(14px, 14px);
+}
+
+.navigationLogo:hover .navigationLogoShadowLayer4 {
+  transform: translate(18px, 18px);
+  opacity: 0.7;
+}
+
+.navigationLogo:hover .navigationLogoBorderAccent {
+  opacity: 1;
+}
+
+.navigationLogo:hover .navigationLogoShimmer {
+  left: 100%;
+}
+
+.navigationLogo:hover .navigationLogoGlow {
+  opacity: 0.6;
+}
+
+.navigationLogo:hover .navigationLogoStrike {
+  transform: translateY(-50%) scaleX(1) skew(-15deg);
+}
+
+.navigationLogo:hover .navigationLogoBracket {
+  opacity: 1;
+}
+
+.navigationLogo:hover .navigationLogoScanLine {
+  opacity: 0.8;
+}
+
+.navigationLogo:hover .navigationLogoNoiseOverlay {
+  opacity: 0.1;
+}
+
+.navigationLogo:hover .navigationLogoChar {
+  transform: translateY(-1px);
+  animation: textGlitch 0.5s ease-out;
+}
+
+/* ===== ACTIVE STATES ===== */
+.navigationLogo:active {
+  transform: translate(2px, 2px) scale(0.98);
+}
+
+.navigationLogo:active .navigationLogoShadowLayer1 {
+  transform: translate(2px, 2px);
+}
+
+.navigationLogo:active .navigationLogoShadowLayer2 {
+  transform: translate(4px, 4px);
+}
+
+.navigationLogo:active .navigationLogoShadowLayer3 {
+  transform: translate(6px, 6px);
+}
+
+.navigationLogo:active .navigationLogoShadowLayer4 {
+  transform: translate(8px, 8px);
+}
+
+/* ===== GLITCH STATE ===== */
+.navigationLogoGlitch {
+  animation: brutalGlitch 0.3s ease-out;
+}
+
+.navigationLogoGlitch .navigationLogoGlitchOverlay {
+  opacity: 1;
+  animation: intenseGlitch 0.3s ease-out;
+}
+
+.navigationLogoGlitch .navigationLogoText {
+  animation: textGlitch 0.3s ease-out;
+}
+
+/* ===== BORDER ROTATING STATE ===== */
+.navigationLogoBorderRotating .navigationLogoBorderRotating {
+  opacity: 1;
+  animation: borderRotate 2s linear infinite;
+}
+
+/* ===== THEME-SPECIFIC OVERRIDES ===== */
+
+/* Extreme Brutalist Theme */
+:global([data-theme='extreme-brutalist']) .navigationLogo {
+  box-shadow: var(--shadow-brutal-double);
+}
+
+:global([data-theme='extreme-brutalist']) .navigationLogo:hover {
+  box-shadow: var(--shadow-brutal-triple);
+  animation: aggressiveShake 0.5s ease-in-out;
+}
+
+:global([data-theme='extreme-brutalist']) .navigationLogoStatus {
+  border-width: 3px;
+  background-color: var(--color-primary);
+}
+
+:global([data-theme='extreme-brutalist']) .navigationLogoScanLine {
+  opacity: 0.3;
+}
+
+:global([data-theme='extreme-brutalist']) .navigationLogoNoiseOverlay {
+  opacity: 0.05;
+}
+
+/* Refined Brutalist Theme */
+:global([data-theme='refined-brutalist']) .navigationLogo {
+  box-shadow: var(--shadow-brutal-double);
+  backdrop-filter: blur(10px);
+}
+
+:global([data-theme='refined-brutalist']) .navigationLogo:hover {
+  box-shadow: var(--shadow-brutal-triple);
+  animation: gentleFloat 2s ease-in-out;
+}
+
+:global([data-theme='refined-brutalist']) .navigationLogoStatus {
+  border-radius: var(--space-3);
+  backdrop-filter: blur(5px);
+}
+
+:global([data-theme='refined-brutalist']) .navigationLogoGlitchOverlay {
+  display: none; /* Disable glitch in refined theme */
+}
+
+:global([data-theme='refined-brutalist']) .navigationLogoScanLine {
+  display: none; /* Disable scan lines in refined theme */
+}
+
+:global([data-theme='refined-brutalist']) .navigationLogoNoiseOverlay {
+  display: none; /* Disable noise in refined theme */
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .navigationLogo {
+    font-size: var(--text-lg);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .navigationLogoStatus {
+    top: -6px;
+    right: -6px;
+    padding: var(--space-0-5) var(--space-1-5);
+    font-size: 10px;
+  }
+
+  .navigationLogoShadowLayer1 {
+    transform: translate(2px, 2px);
+  }
+
+  .navigationLogoShadowLayer2 {
+    transform: translate(4px, 4px);
+  }
+
+  .navigationLogoShadowLayer3 {
+    transform: translate(6px, 6px);
+  }
+
+  .navigationLogoShadowLayer4 {
+    transform: translate(8px, 8px);
+  }
+
+  .navigationLogo:hover .navigationLogoShadowLayer1 {
+    transform: translate(3px, 3px);
+  }
+
+  .navigationLogo:hover .navigationLogoShadowLayer2 {
+    transform: translate(5px, 5px);
+  }
+
+  .navigationLogo:hover .navigationLogoShadowLayer3 {
+    transform: translate(7px, 7px);
+  }
+
+  .navigationLogo:hover .navigationLogoShadowLayer4 {
+    transform: translate(9px, 9px);
+  }
+}
+
+@media (max-width: 480px) {
+  .navigationLogo {
+    font-size: var(--text-base);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .navigationLogoStatus {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-left: var(--space-2);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .navigationLogo,
+  .navigationLogo *,
+  .navigationLogo::before,
+  .navigationLogo::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .navigationLogoGlitchOverlay {
+    display: none !important;
+  }
+
+  .navigationLogoScanLine,
+  .navigationLogoNoiseOverlay {
+    display: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .navigationLogo {
+    border-width: 3px;
+  }
+
+  .navigationLogoStatus {
+    border-width: 3px;
+  }
+}
