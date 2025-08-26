@@ -166,6 +166,27 @@ select:focus {
   border: 0;
 }
 
+/* Theme transition utility classes */
+.theme-transition-all {
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-easing);
+  transition-property:
+    background-color, color, border-color, border-width, border-radius,
+    box-shadow, transform, opacity;
+}
+
+.theme-transition-colors {
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-easing);
+  transition-property: background-color, color, border-color;
+}
+
+.theme-transition-borders {
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-easing);
+  transition-property: border-width, border-radius, border-color;
+}
+
 .container {
   width: 100%;
   max-width: 1200px;
