@@ -133,3 +133,61 @@ export interface ParticleCircle {
   dy: number;
   magnetism: number;
 }
+
+// Card component props
+export interface CardProps {
+  style?: React.CSSProperties;
+  text?: string;
+  image?: string;
+  containerRef: React.RefObject<HTMLElement>;
+}
+
+// Marquee component props
+export interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+  reverse?: boolean;
+  pauseOnHover?: boolean;
+  children: React.ReactNode;
+  vertical?: boolean;
+  repeat?: number;
+}
+
+// OrbitingCircles component props
+export interface OrbitingCirclesProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+  children: React.ReactNode;
+  reverse?: boolean;
+  duration?: number;
+  radius?: number;
+  path?: boolean;
+  iconSize?: number;
+  speed?: number;
+}
+
+// Project component props
+export interface ProjectProps {
+  title: string;
+  description: string;
+  subDescription: string[];
+  href: string;
+  image: string;
+  tags: import("./projects").Tag[];
+  setPreview: (image: string | null) => void;
+}
+
+// ProjectDetails component props
+export interface ProjectDetailsProps {
+  title: string;
+  description: string;
+  subDescription: string[];
+  image: string;
+  tags: import("./projects").Tag[];
+  href: string;
+  closeModal: () => void;
+}
+
+// Timeline component props
+export interface TimelineProps {
+  data: import("./projects").Experience[];
+}

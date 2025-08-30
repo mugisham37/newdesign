@@ -6,7 +6,7 @@ import { Float } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { easing } from "maath";
 import HeroText from "../components/HeroText";
-import ParallaxBackground from "../components/parallaxBackground";
+import ParallaxBackground from "../components/ParallaxBackground";
 import { Astronaut } from "../components/Astronaut";
 import Loader from "../components/Loader";
 import type { ComponentProps } from "../types/components";

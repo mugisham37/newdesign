@@ -21,7 +21,7 @@ export interface LoadingState {
 }
 
 // EmailJS template parameters
-export interface EmailJSParams {
+export interface EmailJSParams extends Record<string, unknown> {
   from_name: string;
   to_name: string;
   from_email: string;

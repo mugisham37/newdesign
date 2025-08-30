@@ -101,7 +101,7 @@ export function Globe({ className, config = GLOBE_CONFIG }: GlobeProps) {
       glowColor: config.glowColor || [1, 1, 1],
       markers: config.markers || [],
       devicePixelRatio: config.devicePixelRatio || 2,
-      onRender: (state: Record<string, any>) => {
+      onRender: (state: Record<string, unknown>) => {
         if (!pointerInteracting.current) phiRef.current += 0.005;
         const cobeState = state as CobeState;
         cobeState.phi = phiRef.current + rs.get();
