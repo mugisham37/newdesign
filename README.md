@@ -1,97 +1,116 @@
-# 🌐 3D Awwwards-Level Developer Portfolio
+# 🚀 3D Developer Portfolio
 
-### Built with React, GSAP, Three.js, TailwindCSS
+A modern, animated 3D developer portfolio built with React, Three.js, TailwindCSS, and motion effects — designed to help you stand out and showcase your skills creatively.
 
-This is a fully animated, interactive, 3D developer portfolio designed to **impress clients, recruiters, and hiring managers**. It's more than a portfolio—it's a web experience built with production-level code, scroll-based animations, and real-world best practices.
-
-> ⚡ Inspired by Awwwards-level sites — built with Next.js, TypeScript, TailwindCSS, GSAP, React Three Fiber, and Drei.
-
-<br/>
-<div>
-  <img src="https://github.com/user-attachments/assets/4eaf9399-fd02-4a90-83f7-2b5a361bc032" alt="Hero" style="border-radius: 8px;"/>
-  <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-    <img src="https://github.com/user-attachments/assets/155bf742-b24f-4119-89f4-87e6d88c8f53" alt="Works" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/f22b9749-85ed-434f-a5f6-df1f8e221103" alt="ContactSummary" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/3e473322-b96a-433b-aec5-ece9bab25795" alt="Contact" style="width: 32%; border-radius: 8px;"/>
-  </div>
-</div>
-<br/>
-
-> 📺 [Watch Full YouTube Walkthrough](https://youtu.be/i0229UsdBwc)
+![3d Portfolio Screenshot GitHub](https://github.com/user-attachments/assets/9b0ed20e-074e-4f2a-81d8-20c9da751e9e)
 
 ---
 
-## 🚀 Tech Stack
+## 📚 Table of Contents
 
-| Technology       | Description                               |
-| ---------------- | ----------------------------------------- |
-| **Next.js**      | React framework with SSR and optimization |
-| **Tailwind CSS** | Utility-first styling for components      |
-| **GSAP**         | Scroll-based animation and motion logic   |
-| **Three.js**     | 3D scenes powered by React Three Fiber    |
-| **Drei**         | Useful helpers for 3D rendering           |
-
----
-
-## 📁 Features
-
-- 🔥 3D Hero Section with animated planet and golden ring
-- 🧩 Smooth slide-in Navbar with staggered link animations
-- 🎯 Scroll-triggered Service Summary with horizontal word motion
-- 🖼️ Works section with hover overlays and interactive previews
-- ✍️ About section with clip-path image reveal + typewriter text
-- 🏁 Marquee-based Contact Summary and CTA
-- 💼 Fully responsive and accessible on all screen sizes
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Assets](#-assets)
+- [Contact Me](#-contact-me)
+- [Suggestions or Feedback](#-suggestions-or-feedback)
+- [Like This Project?](#-like-this-project)
 
 ---
 
-## 📦 Setup & Installation
+## ✨ Features
+
+- 🔥 3D visuals powered by **React Three Fiber** and **Drei**
+- ⚡ Smooth transitions and scroll-based animations using **Framer Motion**
+- 🎨 Clean, responsive UI with **TailwindCSS**
+- 💌 Working contact form using **EmailJS**
+- 🧱 Beautiful UI enhancements with **Aceternity UI** and **Magic UI**
+- 🚀 Lightning-fast development with **Vite**
+
+---
+
+## 🛠 Tech Stack
+
+| Tech              | Description                           |
+|-------------------|---------------------------------------|
+| React             | Front-end JavaScript library          |
+| Vite              | Fast bundler and dev environment      |
+| TailwindCSS       | Utility-first CSS framework           |
+| React Three Fiber | 3D rendering with Three.js in React   |
+| Drei              | Helpers and abstractions for R3F      |
+| Framer Motion     | Animation library for React           |
+| EmailJS           | Form handling and email integration   |
+| Aceternity UI     | Custom UI components                  |
+| Magic UI          | Prebuilt UI elements and design extras|
+
+---
+
+## 📁 Project Structure
 
 ```bash
-git clone https://github.com/Ali-Sanati/awwwards-portfolio.git
-cd awwwards-portfolio
-npm install
-npm run dev
+├── public/
+│   ├── assets/             # Images, textures, models
+│   ├── models/             # 3D Astronaut model
+│   └── vite.svg
+├── src/
+│   ├── components/         # Reusable components
+│   ├── constants/          # Reusable datas
+│   ├── sections/           # Portfolio sections (Hero, About, etc.)
+│   ├── App.jsx             # Main app file
+│   ├── index.css           # Tailwind css
+│   └── main.jsx            # Entry point
+├── tailwind.config.js
+└── vite.config.js
 ```
-
-> Open http://localhost:5173 in your browser.
 
 ---
 
-## 🛠️ Customization Tips
-
-- Change text, images, and links in /constants/index.js
-
-- Update 3D models and scene in Hero.jsx
-
-- Add your own contact info in Contact.jsx
-
-- Adjust colors, fonts, and layout via tailwind.config.js
+## 🚀 Getting Started
+1. Clone the Repository
+```bash
+git clone https://github.com/Ali-Sanati/Portfolio.git
+cd Portfolio
+```
+2. Install Dependencies
+```bash
+npm install
+```
+3. Run the Development Server
+```bash
+npm run dev
+```
+The app will be available at http://localhost:5173.
 
 ---
 
 ## 🔗 Assets
-
 Assets used in the project can be found [here](https://github.com/user-attachments/files/19820923/public.zip)
 
 ---
 
-## 📣 Like the project?
-
-If this helped you build or inspire your own site:
-
-- ⭐ Star this repo
-
-- 📺 [Watch the full walkthrough on YouTube](https://youtu.be/i0229UsdBwc)
-
-- 📬 [Connect on LinkedIn](https://www.linkedin.com/in/ali-sanati)
-
-- 📷 [Follow me on Instagram](https://www.instagram.com/ali.sanatidev/reels/)
+## 📬 Contact Me
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://www.instagram.com/ali.sanatidev/reels/) 
+[![Static Badge](https://img.shields.io/badge/Youtube-%23FF0033?style=flat&logo=youtube)](https://www.youtube.com/channel/UCZhtUWTtk3bGJiMPN9T4HWA)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ali-sanati/) 
 
 ---
 
-## 🤝 Let’s Build Together
+## 💡 Suggestions or Feedback?
+Leave a comment on the [YouTube video](https://youtu.be/S9UQItTpwUQ) or open an issue here on GitHub.<br/>
+👉 What should I build next?
 
-Drop a comment on the video or open an issue with your idea!
+- A beautiful Landing Page
 
-> 📩 Like, subscribe, and let me know what kind of project you want to build together!
+- A complete E-commerce site
+
+- A fun App Clone (YouTube, Netflix, etc.)
+
+Or another interactive Portfolio
+
+Let me know!
+
+---
+
+## ⭐ Like This Project?
+Star the repo and [subscribe](https://www.youtube.com/channel/UCZhtUWTtk3bGJiMPN9T4HWA??sub_confirmation=1) to the YouTube channel for more dev content!
