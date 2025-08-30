@@ -6,38 +6,75 @@ Source: https://sketchfab.com/3d-models/tenhun-falling-spaceman-fanart-9fd80b6a2
 Title: Tenhun Falling spaceman (FanArt)
 */
 
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useMotionValue, useSpring } from "motion/react";
 import { useFrame } from "@react-three/fiber";
+import type * as THREE from "three";
+import type { GLTF } from "three-stdlib";
+import type { AstronautProps } from "@/types/components";
 
-export function Astronaut(props) {
-  const group = useRef();
+// Define the GLTF structure for the astronaut model
+interface AstronautGLTF extends GLTF {
+  nodes: {
+    metarig_rootJoint: THREE.Bone;
+    Cube001_0: THREE.SkinnedMesh;
+    Cube005_0: THREE.SkinnedMesh;
+    Cube002_0: THREE.SkinnedMesh;
+    Plane_0: THREE.SkinnedMesh;
+    Cube008_0: THREE.SkinnedMesh;
+    Cube004_0: THREE.SkinnedMesh;
+    Cube003_0: THREE.SkinnedMesh;
+    Cube_0: THREE.SkinnedMesh;
+    Cube009_0: THREE.SkinnedMesh;
+    Cube011_0: THREE.SkinnedMesh;
+  };
+  materials: {
+    "AstronautFallingTexture.png": THREE.MeshStandardMaterial;
+  };
+}
+
+export function Astronaut(props: AstronautProps) {
+  const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF(
     "/models/tenhun_falling_spaceman_fanart.glb"
-  );
+  ) as AstronautGLTF;
   const { actions } = useAnimations(animations, group);
+
+  // Initialize animations
   useEffect(() => {
-    if (animations.length > 0) {
-      actions[animations[0].name]?.play();
+    if (animations.length > 0 && actions) {
+      const firstAnimation = animations[0];
+      if (firstAnimation?.name && actions[firstAnimation.name]) {
+        actions[firstAnimation.name]?.play();
+      }
     }
   }, [actions, animations]);
 
+  // Floating animation using Motion values
   const yPosition = useMotionValue(5);
   const ySpring = useSpring(yPosition, { damping: 30 });
+
   useEffect(() => {
     ySpring.set(-1);
   }, [ySpring]);
+
+  // Update position on each frame
   useFrame(() => {
-    group.current.position.y = ySpring.get();
+    if (group.current) {
+      group.current.position.y = ySpring.get();
+    }
   });
+
   return (
     <group
       ref={group}
       {...props}
       dispose={null}
       rotation={[-Math.PI / 2, -0.2, 2.2]}
-      scale={props.scale || 0.3}
+      scale={Array.isArray(props.scale) ? props.scale : props.scale || 0.3}
       position={props.position || [1.3, -1, 0]}
     >
       <group name="Sketchfab_Scene">
@@ -127,4 +164,5 @@ export function Astronaut(props) {
   );
 }
 
+// Preload the GLTF model for better performance
 useGLTF.preload("/models/tenhun_falling_spaceman_fanart.glb");

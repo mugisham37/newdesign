@@ -9,7 +9,7 @@ export interface ComponentProps {
 
 // Three.js component props
 export interface AstronautProps {
-  scale?: number | number[];
+  scale?: number | [number, number, number];
   position?: [number, number, number];
   rotation?: [number, number, number];
   [key: string]: unknown;
