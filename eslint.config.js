@@ -5,7 +5,7 @@ import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 
 export default [
-  { ignores: [".next", "out", "dist"] },
+  { ignores: [".next", "out", "dist", "next-env.d.ts", "node_modules"] },
   // Node.js configuration files
   {
     files: ["*.config.js", "*.config.ts"],
@@ -18,7 +18,12 @@ export default [
     files: ["**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        React: "readonly",
+        process: "readonly",
+      },
       parserOptions: {
         ecmaVersion: "latest",
         ecmaFeatures: { jsx: true },
@@ -42,6 +47,7 @@ export default [
       // Next.js specific rules
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
+      "no-undef": "error",
     },
   },
   // TypeScript files
@@ -56,7 +62,12 @@ export default [
           jsx: true,
         },
       },
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        React: "readonly",
+        process: "readonly",
+      },
     },
     plugins: {
       "@typescript-eslint": tseslint,
@@ -68,12 +79,21 @@ export default [
       ...reactHooks.configs.recommended.rules,
       // Disable JS rules that conflict with TS
       "no-unused-vars": "off",
+      "no-undef": "off", // TypeScript handles this
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
           varsIgnorePattern: "^[A-Z_]",
           argsIgnorePattern: "^_",
           ignoreRestSiblings: true,
+        },
+      ],
+      "@typescript-eslint/no-unused-expressions": [
+        "error",
+        {
+          allowShortCircuit: true,
+          allowTernary: true,
+          allowTaggedTemplates: true,
         },
       ],
       // Next.js specific rules

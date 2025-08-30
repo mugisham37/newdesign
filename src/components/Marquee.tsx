@@ -53,8 +53,9 @@ const Marquee: React.FC<MarqueeProps> = ({
         repeat: configObj.repeat,
         paused: configObj.paused,
         defaults: { ease: "none" },
-        onReverseComplete: () =>
-          tl.totalTime(tl.rawTime() + tl.duration() * 100),
+        onReverseComplete: () => {
+          tl.totalTime(tl.rawTime() + tl.duration() * 100);
+        },
       }) as HorizontalLoopTimeline,
       length = itemsArray.length,
       startX = (itemsArray[0] as HTMLElement).offsetLeft,
@@ -158,7 +159,7 @@ const Marquee: React.FC<MarqueeProps> = ({
     tl.progress(1, true).progress(0, true); // pre-render for performance
 
     if (configObj.reversed) {
-      tl.vars.onReverseComplete();
+      tl.vars.onReverseComplete?.();
       tl.reverse();
     }
 

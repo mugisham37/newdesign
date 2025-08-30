@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { servicesData, type Service } from "../constants";
 import { useMediaQuery } from "react-responsive";
@@ -13,7 +13,12 @@ const Services: React.FC = () => {
     not headaches.`;
 
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
+  const [isDesktop, setIsDesktop] = useState(false);
+  const isDesktopQuery = useMediaQuery({ minWidth: "48rem" }); //768px
+
+  useEffect(() => {
+    setIsDesktop(isDesktopQuery);
+  }, [isDesktopQuery]);
 
   useGSAP(() => {
     serviceRefs.current.forEach((el) => {
