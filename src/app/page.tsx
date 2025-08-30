@@ -1,12 +1,24 @@
+import React from "react";
+import Navbar from "../sections/Navbar";
+import Hero from "../sections/Hero";
+import About from "../sections/About";
+import Projects from "../sections/Projects";
+import Experiences from "../sections/Experiences";
+import Testimonial from "../sections/Testimonial";
+import Contact from "../sections/Contact";
+import Footer from "../sections/Footer";
+
 export default function Home() {
   return (
-    <main>
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Next.js Portfolio</h1>
-        <p className="text-lg text-gray-600 mt-4">
-          Next.js project structure initialized successfully!
-        </p>
-      </div>
-    </main>
+    <div className="container mx-auto max-w-7xl">
+      <Navbar />
+      <Hero />
+      <About />
+      <Projects />
+      <Experiences />
+      <Testimonial />
+      <Contact />
+      <Footer />
+    </div>
   );
 }

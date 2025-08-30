@@ -1,2 +1,4 @@
-// TypeScript type definitions will be added in later tasks
-export {};
+// Re-export all types for convenient importing
+export * from "./components";
+export * from "./projects";
+export * from "./global";
