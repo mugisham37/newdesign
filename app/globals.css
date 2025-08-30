@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* CSS Custom Properties for Colors and Theme Variables */
+:root {
+  /* Portfolio Color Palette */
+  --color-primary: #e5e5e0;
+  --color-DarkLava: #393632;
+  --color-SageGray: #8b8b73;
+  --color-gold: #cfa355;
+
+  /* Font Family Variables (will be set by Next.js font optimization) */
+  --font-amiamie: "Amiamie", sans-serif;
+  --font-amiamie-round: "Amiamie-Round", sans-serif;
+
+  /* Animation Variables */
+  --animate-marquee: marquee 40s infinite linear;
+  --gap: 1rem; /* Default gap for marquee animation */
+}
+
+/* Keyframe Animations */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Body Styles and Scroll Behavior */
+body {
+  background: var(--color-primary);
+  color: black;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: var(--font-amiamie);
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility Classes */
+
+/* Clip Path Utility */
+.clip-path {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+/* Responsive Text Sizing Utilities */
+.banner-text-responsive {
+  font-size: 68px;
+  line-height: 2.25rem; /* leading-9 */
+}
+
+@media (min-width: 640px) {
+  .banner-text-responsive {
+    font-size: 118px;
+    line-height: 4rem; /* leading-16 */
+  }
+}
+
+@media (min-width: 768px) {
+  .banner-text-responsive {
+    font-size: 126px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner-text-responsive {
+    font-size: 152px;
+    line-height: 5rem; /* leading-20 */
+  }
+}
+
+.value-text-responsive {
+  font-size: 1.5rem; /* text-2xl */
+}
+
+@media (min-width: 768px) {
+  .value-text-responsive {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .value-text-responsive {
+    font-size: 32px;
+  }
+}
+
+.marquee-text-responsive {
+  font-size: 28px;
+}
+
+@media (min-width: 640px) {
+  .marquee-text-responsive {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-text-responsive {
+    font-size: 42px;
+  }
+}
+
+.contact-text-responsive {
+  font-size: 42px;
+}
+
+@media (min-width: 640px) {
+  .contact-text-responsive {
+    font-size: 52px;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-text-responsive {
+    font-size: 62px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-text-responsive {
+    font-size: 100px;
+  }
+}
+
+/* Additional Global Styles for Next.js Compatibility */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Ensure smooth scrolling works across browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on all elements */
+* {
+  overflow-x: hidden;
+}
+
+/* Reset for Next.js default styles */
+#__next {
+  min-height: 100vh;
+}
