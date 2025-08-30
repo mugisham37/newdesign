@@ -8,9 +8,8 @@
   --color-SageGray: #8b8b73;
   --color-gold: #cfa355;
 
-  /* Font Family Variables (will be set by Next.js font optimization) */
-  --font-amiamie: "Amiamie", sans-serif;
-  --font-amiamie-round: "Amiamie-Round", sans-serif;
+  /* Font Family Variables (set by Next.js font optimization) */
+  /* These will be overridden by the CSS variables from Next.js localFont */
 
   /* Animation Variables */
   --animate-marquee: marquee 40s infinite linear;
@@ -33,7 +32,7 @@ body {
   color: black;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  font-family: var(--font-amiamie);
+  font-family: var(--font-amiamie), sans-serif;
   margin: 0;
   padding: 0;
 }
