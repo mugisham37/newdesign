@@ -56,7 +56,7 @@
   - Test astronaut animation and floating behavior
   - _Requirements: 2.2, 2.3, 4.1, 4.3_
 
-- [ ] 8. Transform Globe component with proper client-side handling
+- [x] 8. Transform Globe component with proper client-side handling
 
   - Convert src/components/globe.jsx to TypeScript with "use client" directive
   - Add TypeScript interfaces for globe configuration and props
@@ -64,7 +64,7 @@
   - Test mouse/touch interactions and globe rendering
   - _Requirements: 2.2, 2.3, 4.1, 4.2_
 
-- [ ] 9. Transform Particles component with canvas handling
+- [x] 9. Transform Particles component with canvas handling
 
   - Convert src/components/Particles.jsx to TypeScript with "use client" directive
   - Add proper TypeScript types for particle system configuration
@@ -72,7 +72,7 @@
   - Test mouse interaction and particle animation performance
   - _Requirements: 2.2, 2.3, 4.1, 4.2_
 
-- [ ] 10. Transform Hero section with Three.js Canvas integration
+- [x] 10. Transform Hero section with Three.js Canvas integration
 
   - Convert src/sections/Hero.jsx to TypeScript with "use client" directive
   - Ensure React Three Fiber Canvas works correctly in Next.js

@@ -1,14 +1,22 @@
+"use client";
+
 import { twMerge } from "tailwind-merge";
 import React, { useEffect, useRef, useState } from "react";
+import type {
+  MousePosition,
+  CanvasSize,
+  ParticleCircle,
+  ParticlesProps,
+} from "@/types/components";
 
-function MousePosition() {
-  const [mousePosition, setMousePosition] = useState({
+function useMousePosition(): MousePosition {
+  const [mousePosition, setMousePosition] = useState<MousePosition>({
     x: 0,
     y: 0,
   });
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent): void => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
@@ -22,13 +30,13 @@ function MousePosition() {
   return mousePosition;
 }
 
-function hexToRgb(hex) {
+function hexToRgb(hex: string): [number, number, number] {
   hex = hex.replace("#", "");
 
   if (hex.length === 3) {
     hex = hex
       .split("")
-      .map((char) => char + char)
+      .map((char: string) => char + char)
       .join("");
   }
 
@@ -39,7 +47,7 @@ function hexToRgb(hex) {
   return [red, green, blue];
 }
 
-export const Particles = ({
+export const Particles: React.FC<ParticlesProps> = ({
   className = "",
   quantity = 100,
   staticity = 50,
@@ -51,16 +59,16 @@ export const Particles = ({
   vy = 0,
   ...props
 }) => {
-  const canvasRef = useRef(null);
-  const canvasContainerRef = useRef(null);
-  const context = useRef(null);
-  const circles = useRef([]);
-  const mousePosition = MousePosition();
-  const mouse = useRef({ x: 0, y: 0 });
-  const canvasSize = useRef({ w: 0, h: 0 });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
+  const context = useRef<CanvasRenderingContext2D | null>(null);
+  const circles = useRef<ParticleCircle[]>([]);
+  const mousePosition = useMousePosition();
+  const mouse = useRef<MousePosition>({ x: 0, y: 0 });
+  const canvasSize = useRef<CanvasSize>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
-  const rafID = useRef(null);
-  const resizeTimeout = useRef(null);
+  const rafID = useRef<number | null>(null);
+  const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -69,7 +77,7 @@ export const Particles = ({
     initCanvas();
     animate();
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
@@ -81,7 +89,7 @@ export const Particles = ({
     window.addEventListener("resize", handleResize);
 
     return () => {
-      if (rafID.current != null) {
+      if (rafID.current !== null) {
         window.cancelAnimationFrame(rafID.current);
       }
       if (resizeTimeout.current) {
@@ -99,12 +107,12 @@ export const Particles = ({
     initCanvas();
   }, [refresh]);
 
-  const initCanvas = () => {
+  const initCanvas = (): void => {
     resizeCanvas();
     drawParticles();
   };
 
-  const onMouseMove = () => {
+  const onMouseMove = (): void => {
     if (canvasRef.current) {
       const rect = canvasRef.current.getBoundingClientRect();
       const { w, h } = canvasSize.current;
@@ -118,7 +126,7 @@ export const Particles = ({
     }
   };
 
-  const resizeCanvas = () => {
+  const resizeCanvas = (): void => {
     if (canvasContainerRef.current && canvasRef.current && context.current) {
       canvasSize.current.w = canvasContainerRef.current.offsetWidth;
       canvasSize.current.h = canvasContainerRef.current.offsetHeight;
@@ -138,7 +146,7 @@ export const Particles = ({
     }
   };
 
-  const circleParams = () => {
+  const circleParams = (): ParticleCircle => {
     const x = Math.floor(Math.random() * canvasSize.current.w);
     const y = Math.floor(Math.random() * canvasSize.current.h);
     const translateX = 0;
@@ -165,7 +173,7 @@ export const Particles = ({
 
   const rgb = hexToRgb(color);
 
-  const drawCircle = (circle, update = false) => {
+  const drawCircle = (circle: ParticleCircle, update = false): void => {
     if (context.current) {
       const { x, y, translateX, translateY, size, alpha } = circle;
       context.current.translate(translateX, translateY);
@@ -181,7 +189,7 @@ export const Particles = ({
     }
   };
 
-  const clearContext = () => {
+  const clearContext = (): void => {
     if (context.current) {
       context.current.clearRect(
         0,
@@ -192,7 +200,7 @@ export const Particles = ({
     }
   };
 
-  const drawParticles = () => {
+  const drawParticles = (): void => {
     clearContext();
     const particleCount = quantity;
     for (let i = 0; i < particleCount; i++) {
@@ -201,13 +209,19 @@ export const Particles = ({
     }
   };
 
-  const remapValue = (value, start1, end1, start2, end2) => {
+  const remapValue = (
+    value: number,
+    start1: number,
+    end1: number,
+    start2: number,
+    end2: number
+  ): number => {
     const remapped =
       ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
     return remapped > 0 ? remapped : 0;
   };
 
-  const animate = () => {
+  const animate = (): void => {
     clearContext();
     circles.current.forEach((circle, i) => {
       // Handle the alpha value
