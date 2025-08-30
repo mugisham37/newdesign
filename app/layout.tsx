@@ -103,8 +103,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           crossOrigin="anonymous"
         />
         {/* Favicon and app icons */}
-        <link rel="icon" href="/vite.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/vite.svg" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#e5e5e0" />
         {/* Viewport configuration for responsive design */}
