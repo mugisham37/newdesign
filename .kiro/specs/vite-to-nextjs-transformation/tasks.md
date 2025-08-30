@@ -8,7 +8,7 @@
   - Configure ESLint for Next.js and TypeScript compatibility
   - _Requirements: 1.1, 1.2, 5.4, 6.4_
 
-- [ ] 2. Set up project dependencies and package configuration
+- [x] 2. Set up project dependencies and package configuration
 
   - Install all required dependencies (Next.js, TypeScript, Three.js ecosystem)
   - Remove Vite-specific dependencies from package.json
@@ -16,7 +16,7 @@
   - Verify all dependency versions are compatible with Next.js and TypeScript
   - _Requirements: 6.1, 6.2, 6.3, 6.5_
 
-- [ ] 3. Create core Next.js application structure
+- [-] 3. Create core Next.js application structure
 
   - Create src/app/layout.tsx with proper metadata and HTML structure
   - Transform src/App.jsx into src/app/page.tsx with TypeScript
