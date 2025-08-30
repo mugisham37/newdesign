@@ -109,7 +109,7 @@
   - Maintain exact text content and AnimatedHeaderSection integration
   - _Requirements: 4.1, 4.5, 7.1, 7.6_
 
-- [ ] 14. Migrate Navbar section with responsive behavior
+- [x] 14. Migrate Navbar section with responsive behavior
 
   - Convert src/sections/Navbar.jsx to TypeScript
   - Add proper interfaces for navigation props and state
@@ -117,7 +117,7 @@
   - Maintain scroll-based navigation and link behavior
   - _Requirements: 7.1, 7.6, 9.2_
 
-- [ ] 15. Convert ServiceSummary section to TypeScript
+- [x] 15. Convert ServiceSummary section to TypeScript
 
   - Convert src/sections/ServiceSummary.jsx to TypeScript
   - Add proper interfaces for service summary props

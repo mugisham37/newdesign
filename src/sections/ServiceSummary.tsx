@@ -1,34 +1,39 @@
+"use client";
+
+import React from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+
 gsap.registerPlugin(ScrollTrigger);
-const ServiceSummary = () => {
+
+const ServiceSummary: React.FC = () => {
   useGSAP(() => {
     gsap.to("#title-service-1", {
       xPercent: 20,
       scrollTrigger: {
-        target: "#title-service-1",
+        trigger: "#title-service-1",
         scrub: true,
       },
     });
     gsap.to("#title-service-2", {
       xPercent: -30,
       scrollTrigger: {
-        target: "#title-service-2",
+        trigger: "#title-service-2",
         scrub: true,
       },
     });
     gsap.to("#title-service-3", {
       xPercent: 100,
       scrollTrigger: {
-        target: "#title-service-3",
+        trigger: "#title-service-3",
         scrub: true,
       },
     });
     gsap.to("#title-service-4", {
       xPercent: -100,
       scrollTrigger: {
-        target: "#title-service-4",
+        trigger: "#title-service-4",
         scrub: true,
       },
     });
