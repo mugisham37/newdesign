@@ -1,12 +1,26 @@
+"use client";
+
+import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useRef } from "react";
+
 gsap.registerPlugin(ScrollTrigger);
-export const AnimatedTextLines = ({ text, className }) => {
-  const containerRef = useRef(null);
-  const lineRefs = useRef([]);
+
+interface AnimatedTextLinesProps {
+  text: string;
+  className?: string;
+}
+
+export const AnimatedTextLines: React.FC<AnimatedTextLinesProps> = ({
+  text,
+  className,
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lineRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
   const lines = text.split("\n").filter((line) => line.trim() !== "");
+
   useGSAP(() => {
     if (lineRefs.current.length > 0) {
       gsap.from(lineRefs.current, {
@@ -27,7 +41,9 @@ export const AnimatedTextLines = ({ text, className }) => {
       {lines.map((line, index) => (
         <span
           key={index}
-          ref={(el) => (lineRefs.current[index] = el)}
+          ref={(el) => {
+            lineRefs.current[index] = el;
+          }}
           className="block leading-relaxed tracking-wide text-pretty"
         >
           {line}
