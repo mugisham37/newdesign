@@ -40,7 +40,7 @@
   - Set up HTML structure with font class application
   - _Requirements: 1.2, 5.1, 5.2, 10.3_
 
-- [ ] 6. Migrate public assets with exact structure preservation
+- [x] 6. Migrate public assets with exact structure preservation
 
   - Copy all files from public/ directory maintaining identical paths
   - Verify fonts directory structure (/fonts/otf/ and /fonts/ttf/)
@@ -48,7 +48,7 @@
   - Copy project images and background assets with same paths
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
 
-- [ ] 7. Create constants and data migration
+- [x] 7. Create constants and data migration
 
   - Convert src/constants/index.js to TypeScript with proper interfaces
   - Define TypeScript interfaces for servicesData, projects, and socials
