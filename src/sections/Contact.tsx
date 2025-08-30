@@ -1,19 +1,24 @@
+"use client";
+
+import React from "react";
 import { useGSAP } from "@gsap/react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
-import { socials } from "../constants";
+import { socials, type Social } from "../constants";
 import gsap from "gsap";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   const text = `Got a question, how or project Idea?
-    WE’D love to hear from you and discus further!`;
-  const items = [
+    WE'D love to hear from you and discus further!`;
+
+  const items: string[] = [
     "just imagin, I code",
     "just imagin, I code",
     "just imagin, I code",
     "just imagin, I code",
     "just imagin, I code",
   ];
+
   useGSAP(() => {
     gsap.from(".social-link", {
       y: 100,
@@ -27,6 +32,7 @@ const Contact = () => {
       },
     });
   }, []);
+
   return (
     <section
       id="contact"
@@ -60,11 +66,13 @@ const Contact = () => {
               <h2>Social Media</h2>
               <div className="w-full h-px my-2 bg-white/30" />
               <div className="flex flex-wrap gap-2">
-                {socials.map((social, index) => (
+                {socials.map((social: Social, index: number) => (
                   <a
                     key={index}
                     href={social.href}
                     className="text-xs leading-loose tracking-wides uppercase md:text-sm hover:text-white/80 transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     {"{ "}
                     {social.name}

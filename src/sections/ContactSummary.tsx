@@ -1,18 +1,22 @@
-import { useRef } from "react";
+"use client";
+
+import React, { useRef } from "react";
 import Marquee from "../components/Marquee";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const ContactSummary = () => {
-  const containerRef = useRef(null);
-  const items = [
+const ContactSummary: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+
+  const items: string[] = [
     "Innovation",
     "Precision",
     "Trust",
     "Collaboration",
     "Excellence",
   ];
-  const items2 = [
+
+  const items2: string[] = [
     "contact us",
     "contact us",
     "contact us",
@@ -33,6 +37,7 @@ const ContactSummary = () => {
       },
     });
   }, []);
+
   return (
     <section
       ref={containerRef}
@@ -41,10 +46,10 @@ const ContactSummary = () => {
       <Marquee items={items} />
       <div className="overflow-hidden font-light text-center contact-text-responsive">
         <p>
-          “ Let’s build a <br />
+          " Let's build a <br />
           <span className="font-normal">memorable</span> &{" "}
           <span className="italic">inspiring</span> <br />
-          web application <span className="text-gold">together</span> “
+          web application <span className="text-gold">together</span> "
         </p>
       </div>
       <Marquee

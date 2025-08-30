@@ -149,7 +149,7 @@
   - Add proper TypeScript interfaces for project items
   - _Requirements: 7.1, 7.2_
 
-- [ ] 19. Convert ContactSummary section to TypeScript
+- [x] 19. Convert ContactSummary section to TypeScript
 
   - Convert src/sections/ContactSummary.jsx to TypeScript
   - Add proper interfaces for contact summary props
@@ -157,7 +157,7 @@
   - Maintain exact text content and layout
   - _Requirements: 7.1, 7.4_
 
-- [ ] 20. Migrate Contact section with social links integration
+- [x] 20. Migrate Contact section with social links integration
 
   - Convert src/sections/Contact.jsx to TypeScript
   - Integrate with migrated socials data from constants
