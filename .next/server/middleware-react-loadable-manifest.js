@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"components\\\\DynamicHero.tsx -> ../sections/Hero":{"id":4366,"files":["static/chunks/b536a0f1.0c8ee2e1e361cf1b.js","static/chunks/bd904a5c.bc43c789333233c4.js","static/chunks/586c993c.9353afb2e991dc1b.js","static/chunks/413.ed2c53068819bb60.js","static/chunks/366.ef226fb64270b191.js"]}}';
+self.__REACT_LOADABLE_MANIFEST="{\"components\\\\DynamicHero.tsx -> ../sections/Hero\":{\"id\":\"components\\\\DynamicHero.tsx -> ../sections/Hero\",\"files\":[\"static/chunks/_app-pages-browser_src_sections_Hero_tsx.js\"]}}"

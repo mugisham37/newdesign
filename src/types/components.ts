@@ -212,3 +212,27 @@ export interface TestimonialProps extends ComponentProps {
 export interface FooterProps extends ComponentProps {
   id?: string;
 }
+
+// Error handling interfaces
+export interface ErrorBoundaryProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
+}
+
+export interface LoaderProps {
+  message?: string;
+  showProgress?: boolean;
+  timeout?: number;
+}
+
+export interface ClientOnlyFallbackProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+  loading?: React.ReactNode;
+}
+
+export interface ThreeJSErrorBoundaryProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+}

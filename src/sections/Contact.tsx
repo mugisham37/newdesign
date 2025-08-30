@@ -49,6 +49,25 @@ const Contact: React.FC<ContactProps> = ({ className }) => {
     e.preventDefault();
     setIsLoading(true);
 
+    // Validate form data
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      showAlertMessage("warning", "Please fill in all fields.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      showAlertMessage("warning", "Please enter a valid email address.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       console.log("Form submitted:", formData);
 
@@ -60,18 +79,40 @@ const Contact: React.FC<ContactProps> = ({ className }) => {
         message: formData.message,
       };
 
-      await emailjs.send(
+      // Add timeout to EmailJS request
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Request timeout")), 10000)
+      );
+
+      const emailPromise = emailjs.send(
         "service_79b0nyj",
         "template_17us8im",
         emailParams,
         "pn-Bw_mS1_QQdofuV"
       );
 
+      await Promise.race([emailPromise, timeoutPromise]);
+
       setFormData({ name: "", email: "", message: "" });
-      showAlertMessage("success", "Your message has been sent!");
+      showAlertMessage("success", "Your message has been sent successfully!");
     } catch (error) {
       console.error("Email send error:", error);
-      showAlertMessage("danger", "Something went wrong! Please try again.");
+
+      let errorMessage = "Something went wrong! Please try again.";
+
+      if (error instanceof Error) {
+        if (error.message === "Request timeout") {
+          errorMessage =
+            "Request timed out. Please check your connection and try again.";
+        } else if (error.message.includes("network")) {
+          errorMessage = "Network error. Please check your connection.";
+        } else if (error.message.includes("service")) {
+          errorMessage =
+            "Email service temporarily unavailable. Please try again later.";
+        }
+      }
+
+      showAlertMessage("danger", errorMessage);
     } finally {
       setIsLoading(false);
     }

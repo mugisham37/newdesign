@@ -69,6 +69,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
   const rafID = useRef<number | null>(null);
   const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [canvasError, setCanvasError] = useState<string | null>(null);
 
   const rgb = hexToRgb(color);
 
@@ -171,8 +172,13 @@ export const Particles: React.FC<ParticlesProps> = ({
   }, [dpr, quantity, circleParams, drawCircle]);
 
   const initCanvas = useCallback((): void => {
-    resizeCanvas();
-    drawParticles();
+    try {
+      resizeCanvas();
+      drawParticles();
+    } catch (error) {
+      console.error("Canvas initialization error:", error);
+      setCanvasError("Failed to initialize particle system");
+    }
   }, [resizeCanvas, drawParticles]);
 
   const remapValue = (
@@ -238,32 +244,49 @@ export const Particles: React.FC<ParticlesProps> = ({
   }, [staticity, ease, vx, vy, circleParams, drawCircle, clearContext]);
 
   useEffect(() => {
-    if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d");
+    try {
+      if (canvasRef.current) {
+        context.current = canvasRef.current.getContext("2d");
+        if (!context.current) {
+          setCanvasError("Canvas 2D context not supported");
+          return;
+        }
+      }
+      initCanvas();
+      animate();
+
+      const handleResize = (): void => {
+        try {
+          if (resizeTimeout.current) {
+            clearTimeout(resizeTimeout.current);
+          }
+          resizeTimeout.current = setTimeout(() => {
+            initCanvas();
+          }, 200);
+        } catch (error) {
+          console.error("Resize handler error:", error);
+        }
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        try {
+          if (rafID.current !== null) {
+            window.cancelAnimationFrame(rafID.current);
+          }
+          if (resizeTimeout.current) {
+            clearTimeout(resizeTimeout.current);
+          }
+          window.removeEventListener("resize", handleResize);
+        } catch (error) {
+          console.error("Cleanup error:", error);
+        }
+      };
+    } catch (error) {
+      console.error("Particles initialization error:", error);
+      setCanvasError("Failed to initialize particles");
     }
-    initCanvas();
-    animate();
-
-    const handleResize = (): void => {
-      if (resizeTimeout.current) {
-        clearTimeout(resizeTimeout.current);
-      }
-      resizeTimeout.current = setTimeout(() => {
-        initCanvas();
-      }, 200);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      if (rafID.current !== null) {
-        window.cancelAnimationFrame(rafID.current);
-      }
-      if (resizeTimeout.current) {
-        clearTimeout(resizeTimeout.current);
-      }
-      window.removeEventListener("resize", handleResize);
-    };
   }, [animate, initCanvas]);
 
   useEffect(() => {
@@ -273,6 +296,25 @@ export const Particles: React.FC<ParticlesProps> = ({
   useEffect(() => {
     initCanvas();
   }, [refresh, initCanvas]);
+
+  // Show error state if canvas failed
+  if (canvasError) {
+    return (
+      <div
+        className={twMerge(
+          "pointer-events-none flex items-center justify-center",
+          className
+        )}
+        aria-hidden="true"
+        {...props}
+      >
+        <div className="text-center text-neutral-600 text-sm">
+          <div className="mb-1">✨</div>
+          <div>Particle effects unavailable</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

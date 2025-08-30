@@ -2,7 +2,7 @@
 
 import createGlobe from "cobe";
 import { useMotionValue, useSpring } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { GlobeProps, GlobeConfig, GlobeMarker } from "@/types/components";
@@ -51,6 +51,8 @@ export function Globe({ className, config = GLOBE_CONFIG }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef<number>(0);
+  const [globeError, setGlobeError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const r = useMotionValue(0);
   const rs = useSpring(r, {
@@ -76,76 +78,160 @@ export function Globe({ className, config = GLOBE_CONFIG }: GlobeProps) {
 
   useEffect(() => {
     const onResize = (): void => {
-      if (canvasRef.current) {
-        widthRef.current = canvasRef.current.offsetWidth;
+      try {
+        if (canvasRef.current) {
+          widthRef.current = canvasRef.current.offsetWidth;
+        }
+      } catch (error) {
+        console.error("Globe resize error:", error);
       }
     };
 
     window.addEventListener("resize", onResize);
     onResize();
 
-    if (!canvasRef.current) return;
+    if (!canvasRef.current) {
+      setGlobeError("Canvas not available");
+      return;
+    }
 
-    const globe = createGlobe(canvasRef.current, {
-      ...config,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
-      phi: config.phi || 0,
-      theta: config.theta || 0.3,
-      dark: config.dark || 1,
-      diffuse: config.diffuse || 0.4,
-      mapSamples: config.mapSamples || 16000,
-      mapBrightness: config.mapBrightness || 1.2,
-      baseColor: config.baseColor || [1, 1, 1],
-      markerColor: config.markerColor || [1, 1, 1],
-      glowColor: config.glowColor || [1, 1, 1],
-      markers: config.markers || [],
-      devicePixelRatio: config.devicePixelRatio || 2,
-      onRender: (state: Record<string, unknown>) => {
-        if (!pointerInteracting.current) phiRef.current += 0.005;
-        const cobeState = state as CobeState;
-        cobeState.phi = phiRef.current + rs.get();
-        cobeState.width = widthRef.current * 2;
-        cobeState.height = widthRef.current * 2;
-      },
-    });
+    let globe: ReturnType<typeof createGlobe>;
 
-    setTimeout(() => {
-      if (canvasRef.current) {
-        canvasRef.current.style.opacity = "1";
-      }
-    }, 0);
+    try {
+      setIsLoading(true);
+      globe = createGlobe(canvasRef.current, {
+        ...config,
+        width: widthRef.current * 2,
+        height: widthRef.current * 2,
+        phi: config.phi || 0,
+        theta: config.theta || 0.3,
+        dark: config.dark || 1,
+        diffuse: config.diffuse || 0.4,
+        mapSamples: config.mapSamples || 16000,
+        mapBrightness: config.mapBrightness || 1.2,
+        baseColor: config.baseColor || [1, 1, 1],
+        markerColor: config.markerColor || [1, 1, 1],
+        glowColor: config.glowColor || [1, 1, 1],
+        markers: config.markers || [],
+        devicePixelRatio: config.devicePixelRatio || 2,
+        onRender: (state: Record<string, unknown>) => {
+          try {
+            if (!pointerInteracting.current) phiRef.current += 0.005;
+            const cobeState = state as CobeState;
+            cobeState.phi = phiRef.current + rs.get();
+            cobeState.width = widthRef.current * 2;
+            cobeState.height = widthRef.current * 2;
+          } catch (error) {
+            console.error("Globe render error:", error);
+          }
+        },
+      });
+
+      setTimeout(() => {
+        try {
+          if (canvasRef.current) {
+            canvasRef.current.style.opacity = "1";
+            setIsLoading(false);
+          }
+        } catch (error) {
+          console.error("Globe opacity error:", error);
+          setGlobeError("Failed to initialize globe display");
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Globe creation error:", error);
+      setGlobeError("Failed to create globe");
+      setIsLoading(false);
+    }
 
     return () => {
-      globe.destroy();
-      window.removeEventListener("resize", onResize);
+      try {
+        if (globe) {
+          globe.destroy();
+        }
+        window.removeEventListener("resize", onResize);
+      } catch (error) {
+        console.error("Globe cleanup error:", error);
+      }
     };
   }, [rs, config]);
+
+  // Show error state
+  if (globeError) {
+    return (
+      <div
+        className={twMerge(
+          "mx-auto aspect-[1/1] w-full max-w-[600px] flex items-center justify-center",
+          className
+        )}
+      >
+        <div className="text-center p-6 bg-black/20 rounded-lg border border-white/10">
+          <div className="text-4xl mb-2">🌍</div>
+          <div className="text-red-400 text-lg mb-1">Globe Unavailable</div>
+          <div className="text-neutral-400 text-sm">{globeError}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
       className={twMerge(
-        "mx-auto aspect-[1/1] w-full max-w-[600px]",
+        "mx-auto aspect-[1/1] w-full max-w-[600px] relative",
         className
       )}
     >
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin w-8 h-8 border-2 border-white/20 border-t-white rounded-full mx-auto mb-2"></div>
+            <div className="text-neutral-400 text-sm">Loading globe...</div>
+          </div>
+        </div>
+      )}
       <canvas
         className={twMerge(
           "size-[30rem] opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
         )}
         ref={canvasRef}
         onPointerDown={(e: React.PointerEvent<HTMLCanvasElement>) => {
-          pointerInteracting.current = e.clientX;
-          updatePointerInteraction(e.clientX);
+          try {
+            pointerInteracting.current = e.clientX;
+            updatePointerInteraction(e.clientX);
+          } catch (error) {
+            console.error("Globe pointer down error:", error);
+          }
         }}
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e: React.MouseEvent<HTMLCanvasElement>) =>
-          updateMovement(e.clientX)
-        }
-        onTouchMove={(e: React.TouchEvent<HTMLCanvasElement>) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
+        onPointerUp={() => {
+          try {
+            updatePointerInteraction(null);
+          } catch (error) {
+            console.error("Globe pointer up error:", error);
+          }
+        }}
+        onPointerOut={() => {
+          try {
+            updatePointerInteraction(null);
+          } catch (error) {
+            console.error("Globe pointer out error:", error);
+          }
+        }}
+        onMouseMove={(e: React.MouseEvent<HTMLCanvasElement>) => {
+          try {
+            updateMovement(e.clientX);
+          } catch (error) {
+            console.error("Globe mouse move error:", error);
+          }
+        }}
+        onTouchMove={(e: React.TouchEvent<HTMLCanvasElement>) => {
+          try {
+            if (e.touches[0]) {
+              updateMovement(e.touches[0].clientX);
+            }
+          } catch (error) {
+            console.error("Globe touch move error:", error);
+          }
+        }}
       />
     </div>
   );

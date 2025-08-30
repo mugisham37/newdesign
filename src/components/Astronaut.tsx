@@ -8,7 +8,7 @@ Title: Tenhun Falling spaceman (FanArt)
 
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useMotionValue, useSpring } from "motion/react";
 import { useFrame } from "@react-three/fiber";
@@ -38,35 +38,56 @@ interface AstronautGLTF extends GLTF {
 
 export function Astronaut(props: AstronautProps) {
   const group = useRef<THREE.Group>(null);
-  const { nodes, materials, animations } = useGLTF(
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Always call hooks at the top level - never conditionally
+  const gltf = useGLTF(
     "/models/tenhun_falling_spaceman_fanart.glb"
   ) as AstronautGLTF;
-  const { actions } = useAnimations(animations, group);
-
-  // Initialize animations
-  useEffect(() => {
-    if (animations.length > 0 && actions) {
-      const firstAnimation = animations[0];
-      if (firstAnimation?.name && actions[firstAnimation.name]) {
-        actions[firstAnimation.name]?.play();
-      }
-    }
-  }, [actions, animations]);
-
-  // Floating animation using Motion values
+  const { actions } = useAnimations(gltf.animations, group);
   const yPosition = useMotionValue(5);
   const ySpring = useSpring(yPosition, { damping: 30 });
 
+  // Initialize animations with error handling
   useEffect(() => {
-    ySpring.set(-1);
+    try {
+      if (gltf.animations.length > 0 && actions) {
+        const firstAnimation = gltf.animations[0];
+        if (firstAnimation?.name && actions[firstAnimation.name]) {
+          actions[firstAnimation.name]?.play();
+        }
+      }
+    } catch (error) {
+      console.error("Failed to initialize astronaut animations:", error);
+      setLoadError("Failed to initialize animations");
+    }
+  }, [actions, gltf.animations]);
+
+  // Set spring animation with error handling
+  useEffect(() => {
+    try {
+      ySpring.set(-1);
+    } catch (error) {
+      console.error("Failed to set spring animation:", error);
+    }
   }, [ySpring]);
 
-  // Update position on each frame
+  // Update position on each frame with error handling
   useFrame(() => {
-    if (group.current) {
-      group.current.position.y = ySpring.get();
+    try {
+      if (group.current) {
+        group.current.position.y = ySpring.get();
+      }
+    } catch (error) {
+      console.error("Frame update error:", error);
     }
   });
+
+  // Return null if there's a load error
+  if (loadError) {
+    console.error("Astronaut component error:", loadError);
+    return null;
+  }
 
   return (
     <group
@@ -81,66 +102,66 @@ export function Astronaut(props: AstronautProps) {
         <group name="Sketchfab_model">
           <group name="Root">
             <group name="metarig">
-              <primitive object={nodes.metarig_rootJoint} />
+              <primitive object={gltf.nodes.metarig_rootJoint} />
               <skinnedMesh
                 name="Cube001_0"
-                geometry={nodes.Cube001_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube001_0.skeleton}
+                geometry={gltf.nodes.Cube001_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube001_0.skeleton}
               />
               <skinnedMesh
                 name="Cube005_0"
-                geometry={nodes.Cube005_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube005_0.skeleton}
+                geometry={gltf.nodes.Cube005_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube005_0.skeleton}
               />
               <skinnedMesh
                 name="Cube002_0"
-                geometry={nodes.Cube002_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube002_0.skeleton}
+                geometry={gltf.nodes.Cube002_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube002_0.skeleton}
               />
               <skinnedMesh
                 name="Plane_0"
-                geometry={nodes.Plane_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Plane_0.skeleton}
+                geometry={gltf.nodes.Plane_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Plane_0.skeleton}
               />
               <skinnedMesh
                 name="Cube008_0"
-                geometry={nodes.Cube008_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube008_0.skeleton}
+                geometry={gltf.nodes.Cube008_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube008_0.skeleton}
               />
               <skinnedMesh
                 name="Cube004_0"
-                geometry={nodes.Cube004_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube004_0.skeleton}
+                geometry={gltf.nodes.Cube004_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube004_0.skeleton}
               />
               <skinnedMesh
                 name="Cube003_0"
-                geometry={nodes.Cube003_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube003_0.skeleton}
+                geometry={gltf.nodes.Cube003_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube003_0.skeleton}
               />
               <skinnedMesh
                 name="Cube_0"
-                geometry={nodes.Cube_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube_0.skeleton}
+                geometry={gltf.nodes.Cube_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube_0.skeleton}
               />
               <skinnedMesh
                 name="Cube009_0"
-                geometry={nodes.Cube009_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube009_0.skeleton}
+                geometry={gltf.nodes.Cube009_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube009_0.skeleton}
               />
               <skinnedMesh
                 name="Cube011_0"
-                geometry={nodes.Cube011_0.geometry}
-                material={materials["AstronautFallingTexture.png"]}
-                skeleton={nodes.Cube011_0.skeleton}
+                geometry={gltf.nodes.Cube011_0.geometry}
+                material={gltf.materials["AstronautFallingTexture.png"]}
+                skeleton={gltf.nodes.Cube011_0.skeleton}
               />
               <group name="Cube001" />
               <group name="Cube005" />
