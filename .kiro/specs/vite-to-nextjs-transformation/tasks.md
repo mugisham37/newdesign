@@ -40,7 +40,7 @@
   - Test responsive design and custom animations
   - _Requirements: 2.4, 2.5_
 
-- [ ] 6. Convert constants and utility files to TypeScript
+- [x] 6. Convert constants and utility files to TypeScript
 
   - Transform src/constants/index.js to src/constants/index.ts with proper types
   - Add TypeScript interfaces for myProjects, experiences, and reviews arrays
@@ -48,7 +48,7 @@
   - Ensure all data structures have proper type safety
   - _Requirements: 1.2, 1.3, 5.3_
 
-- [ ] 7. Transform Three.js components to TypeScript with client-side rendering
+- [-] 7. Transform Three.js components to TypeScript with client-side rendering
 
   - Convert src/components/Astronaut.jsx to TypeScript with "use client" directive
   - Add proper TypeScript types for Three.js nodes, materials, and animations

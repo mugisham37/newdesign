@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type * as THREE from "three";
 
 // Base component props interface
