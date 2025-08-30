@@ -1,32 +1,48 @@
+"use client";
+
+import React from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import { projects } from "../constants";
+import { projects, type Project } from "../constants";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const Works = () => {
-  const overlayRefs = useRef([]);
-  const previewRef = useRef(null);
+// Interface for mouse position tracking
+interface MousePosition {
+  x: number;
+  y: number;
+}
 
-  const [currentIndex, setCurrentIndex] = useState(null);
+// Interface for GSAP quickTo functions
+interface QuickToFunction {
+  (value: number): void;
+}
+
+const Works: React.FC = () => {
+  const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const previewRef = useRef<HTMLDivElement>(null);
+
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const text = `Featured projects that have been meticulously
     crafted with passion to drive
     results and impact.`;
 
-  const mouse = useRef({ x: 0, y: 0 });
-  const moveX = useRef(null);
-  const moveY = useRef(null);
+  const mouse = useRef<MousePosition>({ x: 0, y: 0 });
+  const moveX = useRef<QuickToFunction | null>(null);
+  const moveY = useRef<QuickToFunction | null>(null);
 
   useGSAP(() => {
-    moveX.current = gsap.quickTo(previewRef.current, "x", {
-      duration: 1.5,
-      ease: "power3.out",
-    });
-    moveY.current = gsap.quickTo(previewRef.current, "y", {
-      duration: 2,
-      ease: "power3.out",
-    });
+    if (previewRef.current) {
+      moveX.current = gsap.quickTo(previewRef.current, "x", {
+        duration: 1.5,
+        ease: "power3.out",
+      });
+      moveY.current = gsap.quickTo(previewRef.current, "y", {
+        duration: 2,
+        ease: "power3.out",
+      });
+    }
 
     gsap.from("#project", {
       y: 100,
@@ -41,7 +57,7 @@ const Works = () => {
     });
   }, []);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number): void => {
     if (window.innerWidth < 768) return;
     setCurrentIndex(index);
 
@@ -61,15 +77,17 @@ const Works = () => {
       }
     );
 
-    gsap.to(previewRef.current, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-    });
+    if (previewRef.current) {
+      gsap.to(previewRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
-  const handleMouseLeave = (index) => {
+  const handleMouseLeave = (index: number): void => {
     if (window.innerWidth < 768) return;
     setCurrentIndex(null);
 
@@ -83,20 +101,24 @@ const Works = () => {
       ease: "power2.in",
     });
 
-    gsap.to(previewRef.current, {
-      opacity: 0,
-      scale: 0.95,
-      duration: 0.3,
-      ease: "power2.out",
-    });
+    if (previewRef.current) {
+      gsap.to(previewRef.current, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (window.innerWidth < 768) return;
     mouse.current.x = e.clientX + 24;
     mouse.current.y = e.clientY + 24;
-    moveX.current(mouse.current.x);
-    moveY.current(mouse.current.y);
+    if (moveX.current && moveY.current) {
+      moveX.current(mouse.current.x);
+      moveY.current(mouse.current.y);
+    }
   };
 
   return (
@@ -112,7 +134,7 @@ const Works = () => {
         className="relative flex flex-col font-light"
         onMouseMove={handleMouseMove}
       >
-        {projects.map((project, index) => (
+        {projects.map((project: Project, index: number) => (
           <div
             key={project.id}
             id="project"
@@ -122,7 +144,7 @@ const Works = () => {
           >
             {/* overlay */}
             <div
-              ref={(el) => {
+              ref={(el: HTMLDivElement | null) => {
                 overlayRefs.current[index] = el;
               }}
               className="absolute inset-0 hidden md:block duration-200 bg-black -z-10 clip-path"

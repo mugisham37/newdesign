@@ -133,7 +133,7 @@
   - Add proper TypeScript interfaces for service items
   - _Requirements: 7.1, 7.2_
 
-- [-] 17. Convert About section to TypeScript
+- [x] 17. Convert About section to TypeScript
 
   - Convert src/sections/About.jsx to TypeScript
   - Add proper interfaces for about section props
@@ -141,7 +141,7 @@
   - Maintain responsive text and layout styling
   - _Requirements: 7.1, 7.4_
 
-- [ ] 18. Migrate Works section with project data integration
+- [x] 18. Migrate Works section with project data integration
 
   - Convert src/sections/Works.jsx to TypeScript
   - Integrate with migrated projects data from constants
