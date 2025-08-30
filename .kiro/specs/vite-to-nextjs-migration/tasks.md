@@ -91,7 +91,7 @@
   - Maintain responsive styling and text formatting
   - _Requirements: 3.2, 7.1, 7.4_
 
-- [ ] 12. Migrate Marquee component with complex GSAP logic
+- [x] 12. Migrate Marquee component with complex GSAP logic
 
   - Convert src/components/Marquee.jsx to TypeScript with proper types
   - Add 'use client' directive for client-side GSAP functionality
@@ -100,7 +100,7 @@
   - Ensure Icon integration from @iconify/react works identically
   - _Requirements: 3.2, 7.1, 7.4, 7.5_
 
-- [ ] 13. Create Hero section with dynamic Three.js integration
+- [x] 13. Create Hero section with dynamic Three.js integration
 
   - Convert src/sections/Hero.jsx to TypeScript
   - Implement dynamic import for ThreeScene component with ssr: false
