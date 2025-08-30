@@ -119,15 +119,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <div id="__next" className="min-h-screen">
           {children}
         </div>
-        {/* Prevent flash of unstyled content */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Prevent FOUC (Flash of Unstyled Content)
-              document.documentElement.style.visibility = 'visible';
-            `,
-          }}
-        />
       </body>
     </html>
   );

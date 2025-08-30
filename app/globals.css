@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Prevent FOUC (Flash of Unstyled Content) */
+html {
+  visibility: visible !important;
+}
+
 /* CSS Custom Properties for Colors and Theme Variables */
 :root {
   /* Portfolio Color Palette */
