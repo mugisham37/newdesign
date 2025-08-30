@@ -125,7 +125,7 @@
   - Maintain responsive styling and layout
   - _Requirements: 7.1, 7.2_
 
-- [ ] 16. Migrate Services section with data integration
+- [x] 16. Migrate Services section with data integration
 
   - Convert src/sections/Services.jsx to TypeScript
   - Integrate with migrated servicesData from constants
@@ -133,7 +133,7 @@
   - Add proper TypeScript interfaces for service items
   - _Requirements: 7.1, 7.2_
 
-- [ ] 17. Convert About section to TypeScript
+- [-] 17. Convert About section to TypeScript
 
   - Convert src/sections/About.jsx to TypeScript
   - Add proper interfaces for about section props

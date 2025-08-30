@@ -1,10 +1,16 @@
+"use client";
+
 import { useRef } from "react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import { AnimatedTextLines } from "../components/AnimatedTextLines";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const About = () => {
+interface AboutProps {
+  // No props needed for this component
+}
+
+const About: React.FC<AboutProps> = () => {
   const text = `Passionate about clean architecture
     I build scalable, high-performance solutions
     from prototype to production`;
@@ -14,7 +20,7 @@ const About = () => {
 🎥 Teaching devs on Twitch/YouTube—because rising tides lift all ships
 🧗 Rock climbing (problem-solving with real stakes)
 🎸 Strumming chords while CI pipelines pass (multitasking at its finest)`;
-  const imgRef = useRef(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   useGSAP(() => {
     gsap.to("#about", {
       scale: 0.95,

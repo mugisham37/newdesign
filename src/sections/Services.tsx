@@ -1,15 +1,20 @@
-import { useRef } from "react";
+"use client";
+
+import React, { useRef } from "react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
-import { servicesData } from "../constants";
+import { servicesData, type Service } from "../constants";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-const Services = () => {
+
+const Services: React.FC = () => {
   const text = `I build secure, high-performance full-stack apps
     with smooth UX to drive growth 
     not headaches.`;
-  const serviceRefs = useRef([]);
+
+  const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
+
   useGSAP(() => {
     serviceRefs.current.forEach((el) => {
       if (!el) return;
@@ -25,6 +30,7 @@ const Services = () => {
       });
     });
   }, []);
+
   return (
     <section id="services" className="min-h-screen bg-black rounded-t-4xl">
       <AnimatedHeaderSection
@@ -34,9 +40,11 @@ const Services = () => {
         textColor={"text-white"}
         withScrollTrigger={true}
       />
-      {servicesData.map((service, index) => (
+      {servicesData.map((service: Service, index: number) => (
         <div
-          ref={(el) => (serviceRefs.current[index] = el)}
+          ref={(el) => {
+            serviceRefs.current[index] = el;
+          }}
           key={index}
           className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/30"
           style={
@@ -55,7 +63,7 @@ const Services = () => {
                 {service.description}
               </p>
               <div className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl text-white/80">
-                {service.items.map((item, itemIndex) => (
+                {service.items.map((item, itemIndex: number) => (
                   <div key={`item-${index}-${itemIndex}`}>
                     <h3 className="flex">
                       <span className="mr-12 text-lg text-white/30">
