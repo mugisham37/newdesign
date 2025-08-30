@@ -191,3 +191,24 @@ export interface ProjectDetailsProps {
 export interface TimelineProps {
   data: import("./projects").Experience[];
 }
+
+// Section component props
+export interface AboutProps extends ComponentProps {
+  id?: string;
+}
+
+export interface ProjectsProps extends ComponentProps {
+  id?: string;
+}
+
+export interface ExperiencesProps extends ComponentProps {
+  id?: string;
+}
+
+export interface TestimonialProps extends ComponentProps {
+  id?: string;
+}
+
+export interface FooterProps extends ComponentProps {
+  id?: string;
+}

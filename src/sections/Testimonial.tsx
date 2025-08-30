@@ -1,7 +1,9 @@
+import React from "react";
 import { twMerge } from "tailwind-merge";
 import Marquee from "../components/Marquee";
 import { reviews } from "../constants";
 import Image from "next/image";
+import type { TestimonialProps } from "../types/components";
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
@@ -40,19 +42,19 @@ const ReviewCard = ({ img, name, username, body }: ReviewCardProps) => {
   );
 };
 
-export default function Testimonial() {
+const Testimonial: React.FC<TestimonialProps> = ({ className = "" }) => {
   return (
-    <div className="items-start mt-25 md:mt-35 c-space">
+    <div className={`items-start mt-25 md:mt-35 c-space ${className}`}>
       <h2 className="text-heading">Hear From My Clients</h2>
       <div className="relative flex flex-col items-center justify-center w-full mt-12 overflow-hidden">
         <Marquee pauseOnHover className="[--duration:20s]">
-          {firstRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
+          {firstRow.map((review, index: number) => (
+            <ReviewCard key={`${review.username}-${index}`} {...review} />
           ))}
         </Marquee>
         <Marquee reverse pauseOnHover className="[--duration:20s]">
-          {secondRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
+          {secondRow.map((review, index: number) => (
+            <ReviewCard key={`${review.username}-${index}`} {...review} />
           ))}
         </Marquee>
         <div className="absolute inset-y-0 left-0 w-1/4 pointer-events-none bg-gradient-to-r from-primary"></div>
@@ -60,4 +62,6 @@ export default function Testimonial() {
       </div>
     </div>
   );
-}
+};
+
+export default Testimonial;
