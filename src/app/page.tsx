@@ -1,24 +1,25 @@
-import React from "react";
-import Navbar from "../sections/Navbar";
-import Hero from "../components/DynamicHero";
-import About from "../sections/About";
-import Projects from "../sections/Projects";
-import Experiences from "../sections/Experiences";
-import Testimonial from "../sections/Testimonial";
-import Contact from "../sections/Contact";
-import Footer from "../sections/Footer";
+import Navigation from "@/sections/Navigation";
+import Hero from "@/sections/Hero";
+import BrandSoul from "@/sections/About";
+import Experience from "@/sections/Experience";
+import Projects from "@/sections/Projects";
+import CTASection from "@/sections/CTASection";
+import Process from "@/sections/Process";
+import Testimonial from "@/sections/Testimonial";
+import Footer from "@/sections/Footer";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-w-7xl">
-      <Navbar />
+    <>
+      <Navigation />
       <Hero />
-      <About />
+      <BrandSoul />
+      <Experience />
       <Projects />
-      <Experiences />
+      <CTASection />
+      <Process />
       <Testimonial />
-      <Contact />
       <Footer />
-    </div>
+    </>
   );
 }

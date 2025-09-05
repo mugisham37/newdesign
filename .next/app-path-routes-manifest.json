@@ -1,1 +1,8 @@
-{"/_not-found/page":"/_not-found","/page":"/","/test-error-handling/page":"/test-error-handling"}
+{
+  "/_not-found/page": "/_not-found",
+  "/api/send-onboarding-email/route": "/api/send-onboarding-email",
+  "/api/test-email/route": "/api/test-email",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/test-email/page": "/test-email"
+}

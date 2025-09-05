@@ -1,154 +1,208 @@
 "use client";
+import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
+import { useState, useEffect } from "react";
 
-import React, { Suspense, useCallback, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
-import { easing } from "maath";
-import HeroText from "../components/HeroText";
-import ParallaxBackground from "../components/ParallaxBackground";
-import { Astronaut } from "../components/Astronaut";
-import Loader from "../components/Loader";
-import ThreeJSErrorBoundary from "../components/ThreeJSErrorBoundary";
-import ClientOnlyFallback from "../components/ClientOnlyFallback";
-import type { ComponentProps } from "../types/components";
-import type * as THREE from "three";
+export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [touchPosition, setTouchPosition] = useState({ x: 0, y: 0 });
 
-// Type for the Hero component props
-type HeroProps = ComponentProps;
+  useEffect(() => {
+    // Detect touch device
+    const checkTouchDevice = () => {
+      setIsTouchDevice(
+        "ontouchstart" in window || navigator.maxTouchPoints > 0
+      );
+    };
 
-// Camera rig component for smooth mouse-based camera movement
-function Rig() {
-  return useFrame((state, delta) => {
-    easing.damp3(
-      state.camera.position,
-      [state.pointer.x / 10, 1 + state.pointer.y / 10, 3],
-      0.5,
-      delta
-    );
-  });
-}
+    checkTouchDevice();
+    window.addEventListener("resize", checkTouchDevice);
 
-// Enhanced Canvas component with error handling
-const SafeCanvas: React.FC<{
-  children: React.ReactNode;
-  onError: (error: Error) => void;
-  isMobile: boolean;
-}> = ({ children, onError, isMobile }) => {
-  const handleCanvasCreated = useCallback(
-    ({ gl }: { gl: THREE.WebGLRenderer }) => {
-      try {
-        // Optimize renderer settings
-        gl.setClearColor(0x000000, 0);
-        gl.shadowMap.enabled = true;
-        gl.shadowMap.type = 2; // PCFSoftShadowMap
-
-        // Mobile optimizations
-        if (isMobile) {
-          gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        }
-      } catch (error) {
-        console.error("Canvas setup error:", error);
-        onError(error as Error);
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isTouchDevice) {
+        setMousePosition({ x: e.clientX, y: e.clientY });
       }
-    },
-    [onError, isMobile]
-  );
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isTouchDevice && e.touches.length > 0) {
+        const touch = e.touches[0];
+        setTouchPosition({ x: touch.clientX, y: touch.clientY });
+        setIsHovering(true);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (isTouchDevice) {
+        // Keep content visible for a moment after touch ends
+        setTimeout(() => setIsHovering(false), 2000);
+      }
+    };
+
+    if (isTouchDevice) {
+      window.addEventListener("touchmove", handleTouchMove, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd, { passive: true });
+      window.addEventListener(
+        "touchstart",
+        (e) => {
+          const touch = e.touches[0];
+          setTouchPosition({ x: touch.clientX, y: touch.clientY });
+          setIsHovering(true);
+        },
+        { passive: true }
+      );
+    } else {
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchstart", handleTouchEnd);
+      window.removeEventListener("resize", checkTouchDevice);
+    };
+  }, [isTouchDevice]);
+
+  // Calculate responsive circle size and position - SCALED DOWN for better mobile/tablet visibility
+  const getCircleSize = () => {
+    if (typeof window !== "undefined") {
+      const width = window.innerWidth;
+      if (width < 640) return 300; // Mobile - increased from 150
+      if (width < 1024) return 400; // Tablet - increased from 200
+      return 288; // Desktop - kept same
+    }
+    return 288;
+  };
+
+  const currentPosition = isTouchDevice ? touchPosition : mousePosition;
+  const circleSize = getCircleSize();
 
   return (
-    <Canvas
-      camera={{ position: [0, 1, 3] }}
-      gl={{
-        antialias: !isMobile, // Disable antialiasing on mobile for performance
-        alpha: true,
-        powerPreference: "high-performance",
-      }}
-      dpr={isMobile ? [1, 1.5] : [1, 2]} // Lower DPR on mobile
-      onCreated={handleCanvasCreated}
+    <main
+      id="hero"
+      className="min-h-[80vh] bg-black relative overflow-hidden lg:cursor-none"
+      onMouseEnter={() => !isTouchDevice && setIsHovering(true)}
+      onMouseLeave={() => !isTouchDevice && setIsHovering(false)}
     >
-      {children}
-    </Canvas>
-  );
-};
+      {/* Pixelated Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <PixelatedCanvas
+          src="/assets/images/head-shot.jpg"
+          width={1520}
+          height={680}
+          cellSize={3}
+          dotScale={0.85}
+          shape="square"
+          backgroundColor="#000000"
+          dropoutStrength={0.2}
+          interactive
+          distortionStrength={2}
+          distortionRadius={120}
+          distortionMode="swirl"
+          followSpeed={1}
+          jitterStrength={2}
+          jitterSpeed={0.8}
+          sampleAverage
+          tintColor="#000000"
+          tintStrength={0.3}
+          objectFit="cover"
+          fadeOnLeave
+          fadeSpeed={1}
+          className="w-full h-full object-cover"
+          responsive
+        />
+      </div>
 
-const Hero: React.FC<HeroProps> = ({ className = "" }) => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
-  const [canvasError, setCanvasError] = useState(false);
+      {/* White overlay with circular cutout */}
+      <div
+        className="absolute inset-0 bg-white z-20"
+        style={{
+          maskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+          WebkitMaskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+        }}
+      />
 
-  // Handle canvas errors
-  const handleCanvasError = useCallback((error: Error) => {
-    console.error("Hero canvas error:", error);
-    setCanvasError(true);
-  }, []);
+      {/* Main heading - responsive sizing and positioning */}
+      <div
+        className="relative min-h-[80vh] z-30"
+        style={{
+          maskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+          WebkitMaskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+        }}
+      >
+        <h1
+          className="absolute 
+          bottom-20 left-4 
+          sm:bottom-14 sm:left-6 
+          md:bottom-16 md:left-8 
+          lg:bottom-20 lg:left-24 
+          text-[42px] 
+          sm:text-[56px] 
+          md:text-[84px] 
+          lg:text-[170px] 
+          font-normal text-black leading-none tracking-tight
+          max-w-[calc(100vw-2rem)]
+          sm:max-w-[calc(100vw-3rem)]
+          md:max-w-[calc(100vw-4rem)]
+          lg:max-w-none
+        "
+        >
+          <span className="block sm:inline">Moses</span>
+          <span className="hidden sm:inline"> — </span>
+          <span className="block sm:inline">Mugisha</span>
+        </h1>
+      </div>
 
-  // Fallback component for when 3D content fails
-  const ThreeDFallback = () => (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div className="text-center">
-        <div className="text-6xl mb-4">🚀</div>
-        <div className="text-white/60 text-lg">Interactive 3D Experience</div>
-        <div className="text-neutral-500 text-sm mt-2">
-          {canvasError ? "3D content unavailable" : "Loading..."}
+      {/* Bottom information - responsive layout */}
+      <div
+        className="absolute 
+          bottom-2 left-4 right-4
+          sm:bottom-4 sm:left-6 sm:right-6
+          md:bottom-6 md:left-8 md:right-8
+          lg:bottom-8 lg:left-28 lg:right-28
+          flex flex-col gap-2
+          sm:flex-row sm:justify-between sm:items-end
+          z-30"
+        style={{
+          maskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+          WebkitMaskImage: isHovering
+            ? `radial-gradient(circle ${circleSize}px at ${currentPosition.x}px ${currentPosition.y}px, transparent ${circleSize}px, white ${circleSize}px)`
+            : "none",
+        }}
+      >
+        <div className="text-xs sm:text-sm text-black">
+          7° 18&apos; 38.664&quot; S 112° 45&apos; 32.1084&quot; E
+        </div>
+        <div className="text-xs sm:text-sm text-black sm:text-right">
+          <div>Surabaya, 1:38:56 PM</div>
+          <div>Tuesday, September 2, 2025</div>
         </div>
       </div>
-    </div>
+
+      {/* Touch instruction for mobile - only shows briefly on first load */}
+      {isTouchDevice && (
+        <div className="absolute top-4 left-4 right-4 z-40 pointer-events-none">
+          <div
+            className={`text-white text-sm text-center bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 transition-opacity duration-1000 ${
+              isHovering ? "opacity-0" : "opacity-100"
+            }`}
+          >
+            Touch and drag to reveal content
+          </div>
+        </div>
+      )}
+    </main>
   );
-
-  return (
-    <section
-      className={`flex items-start justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space ${className}`}
-    >
-      {/* Hero text content */}
-      <HeroText />
-
-      {/* Parallax background */}
-      <ParallaxBackground />
-
-      {/* Three.js Canvas with 3D astronaut */}
-      <figure
-        className="absolute inset-0"
-        style={{ width: "100vw", height: "100vh" }}
-      >
-        <ClientOnlyFallback fallback={<ThreeDFallback />}>
-          <ThreeJSErrorBoundary fallback={<ThreeDFallback />}>
-            <SafeCanvas onError={handleCanvasError} isMobile={isMobile}>
-              <Suspense
-                fallback={
-                  <Loader message="Loading astronaut..." timeout={15000} />
-                }
-              >
-                {/* Ambient lighting for better model visibility */}
-                <ambientLight intensity={0.5} />
-                <directionalLight
-                  position={[10, 10, 5]}
-                  intensity={1}
-                  castShadow
-                  shadow-mapSize-width={isMobile ? 1024 : 2048}
-                  shadow-mapSize-height={isMobile ? 1024 : 2048}
-                />
-
-                {/* Floating astronaut with responsive positioning */}
-                <Float
-                  speed={1.5}
-                  rotationIntensity={0.5}
-                  floatIntensity={0.5}
-                  floatingRange={[-0.1, 0.1]}
-                >
-                  <Astronaut
-                    scale={isMobile ? 0.23 : 0.3}
-                    position={isMobile ? [0, -1.5, 0] : [1.3, -1, 0]}
-                  />
-                </Float>
-
-                {/* Camera rig for mouse interaction */}
-                <Rig />
-              </Suspense>
-            </SafeCanvas>
-          </ThreeJSErrorBoundary>
-        </ClientOnlyFallback>
-      </figure>
-    </section>
-  );
-};
-
-export default Hero;
+}
